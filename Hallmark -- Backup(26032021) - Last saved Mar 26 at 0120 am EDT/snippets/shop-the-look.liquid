@@ -1,0 +1,37 @@
+<div class="full-width">
+  {% capture image_layout %}
+  <div class="image-wrapper image--{{ section.settings.layout }}">
+    {% if section.settings.image != blank %}
+    <img class="lazyload"
+         src="{{ section.settings.image | img_url: 'master' }}"
+         data-src="{{ section.settings.image | img_url:"master" }}"
+         data-sizes="auto"
+         alt="" />
+    {% endif %}
+  </div>
+  {% endcapture %}
+  <div class="page-width">
+    <div class="layout layout-image--{{ section.settings.layout }}">
+      {% if section.settings.layout == 'left' %}
+      {{ image_layout }}
+      {% endif %}
+
+      <div class="content-wrapper 
+                  content--{% if section.settings.layout == 'left' %}right{% else %}left{% endif %}">
+        {% if section.settings.section_title != blank %}
+        <h2>{{ section.settings.section_title }}</h2>
+        {% endif %}
+        {% if section.settings.sub_title != blank %}
+        <p>{{ section.settings.sub_title }}</p>
+        {% endif %}
+        {% if section.settings.title != blank %}
+        <h3>{{ section.settings.title }}</h3>
+        {% endif %}
+      </div>
+
+      {% if section.settings.layout == 'right' %}
+      {{ image_layout }}
+      {% endif %}
+    </div>
+  </div>
+</div>

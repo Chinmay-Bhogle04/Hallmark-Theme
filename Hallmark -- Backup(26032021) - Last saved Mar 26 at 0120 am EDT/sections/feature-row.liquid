@@ -1,0 +1,174 @@
+<div class="full-width">
+  <div class="page-width">{% include 'section-header' %}</div>
+  <section>
+    {% for block in section.blocks %}
+    {% capture image_layout %}
+      <div class="feature-row__item feature-row--image feature-row__image--{% if block.settings.layout == 'left' %}left{% else %}right{% endif %}">
+        {% if block.settings.image != blank %}
+          {% capture img_id %}FeatureRowImage-{{ block.id }}{% endcapture %}
+          {% capture wrapper_id %}FeatureRowImageWrapper-{{ block.id }}{% endcapture %}
+          {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+            <div data-image-loading-animation>
+              <img id="{{ img_id }}"
+                   class="feature-row__image lazyload"
+                   data-src="{{ img_url }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ block.settings.image.alt | escape }}">
+            </div>
+          </div>
+
+          <noscript>
+            {{ block.settings.image | img_url: '600x600', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+          </noscript>
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+    {% endcapture %}
+    <div class="feature-row">
+      {% if block.settings.layout == 'left' %}
+        {{ image_layout }}
+      {% endif %}
+
+      <div class="feature-row__item feature-row__text feature-row__text--{{ block.settings.layout }} text-center">
+        {% if block.settings.heading != blank %}
+          <h2 class="h3">{{ block.settings.heading | escape }}</h2>
+        {% endif %}
+        {% if block.settings.text != blank %}
+          <div class="rte rte-setting featured-row__subtext">{{ block.settings.text }}</div>
+        {% endif %}
+        {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+          {%- capture ariaLabel -%}
+            {{- block.settings.button_label -}}
+            {%- if block.settings.button_link.type == 'frontpage_link' -%}
+              : {{ 'homepage.general.title' | t -}}
+            {%- elsif block.settings.button_link.type == 'catalog_link' -%}
+              : {{ 'collections.catalog.title' | t -}}
+            {%- elsif block.settings.button_link.object.title -%}
+              : {{ block.settings.button_link.object.title -}}
+            {%- endif -%}
+          {%- endcapture -%}
+
+          <a href="{{ block.settings.button_link }}"
+            class="btn"
+            aria-label="{{ ariaLabel }}">
+            {{- block.settings.button_label | escape -}}
+          </a>
+        {% endif %}
+      </div>
+
+      {% if block.settings.layout == 'right' %}
+        {{ image_layout }}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </section>
+</div>
+
+
+{% schema %}
+{
+  "name": {
+    "cs": "Obrázek s textem",
+    "da": "Billede med tekst",
+    "de": "Foto mit Text",
+    "en": "Image with text",
+    "es": "Imagen con texto",
+    "fi": "Kuva tekstillä",
+    "fr": "Image avec texte",
+    "it": "Immagine con testo",
+    "ja": "テキスト付き画像",
+    "ko": "텍스트 포함 이미지",
+    "nb": "Bilde med tekst",
+    "nl": "Afbeelding met tekst",
+    "pl": "Obraz z tekstem",
+    "pt-BR": "Imagem com texto",
+    "pt-PT": "Imagem com texto",
+    "sv": "Bild med text",
+    "th": "รูปภาพพร้อมข้อความ",
+    "tr": "Metin içeren görsel",
+    "vi": "Hình ảnh có chữ",
+    "zh-CN": "带文本图片",
+    "zh-TW": "附文字的圖片"
+  },
+  "class": "index-section feature-row-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Feature row"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle",
+      "default": "Subtitle"
+    }
+  ],
+  "blocks":[
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Image alignment",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Image with text"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

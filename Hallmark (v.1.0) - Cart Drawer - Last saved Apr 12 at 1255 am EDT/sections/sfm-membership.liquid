@@ -1,0 +1,120 @@
+<div class="page-width">
+  <div class="wrapper text-center">
+    {% if section.settings.sub_title != blank %}
+    <p class="sub-title">{{ section.settings.sub_title }}</p>
+    {% endif %}
+    {% if section.settings.title != blank %}
+    <h2>{{ section.settings.title }}</h2>
+    {% endif %}
+    <ul>
+      {% for block in section.blocks %}
+      <li class="column">
+        <img class="lazyload"
+             src="{{ block.settings.image | img_url: 'master' }}"
+             data-src="{{ block.settings.image | img_url:"master" }}"
+             data-sizes="auto"
+             alt="" />
+        {% if block.settings.title != blank %}
+        <h3>{{ block.settings.title }}</h3>
+        {% endif %}
+        {% if block.settings.text != blank %}
+        <div class="column-text">{{ block.settings.text }}</div>
+        {% endif %}
+        {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+        <a href="{{ block.settings.button_link }}" class="btn btn-inline">
+          {{ block.settings.button_label }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="0 0 8 13"><defs><style>.inline-btn-wh-a,.inline-btn-wh-b{fill:#fff;}.inline-btn-wh-a{opacity:0;}</style></defs><g transform="translate(-147 -1599)"><rect class="inline-btn-wh-a" width="8" height="13" transform="translate(147 1599)"></rect><g transform="translate(6978.088 362.389)"><path class="inline-btn-wh-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"></path></g></g></svg>
+        </a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% if section.settings.text != blank %}
+    <p class="text">{{ section.settings.text }}</p>
+    {% endif %}
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+    <a href="{{ section.settings.button_link }}" class="btn btn-inline btn-inline-dark">
+      {{ section.settings.button_label }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="11" viewBox="0 0 8 11"><defs><style>.sfm-mb-arr-a{fill:#fff;opacity:0;}.sfm-mb-arr-b{fill:#6a3c62;}</style></defs><g transform="translate(-291.602 -2971.75)"><rect class="sfm-mb-arr-a" width="8" height="11" transform="translate(291.602 2971.75)"/><g transform="translate(7122.69 1734.388)"><path class="sfm-mb-arr-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"/></g></g></svg>
+    </a>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Membership",
+	"class": "sfm-membership-section",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subtitle",
+        "default": "Subtitle"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text",
+        "default": "Text"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+	],
+	"blocks": [
+	  {
+        "type": "column",
+        "name": "Column",
+		"settings": [
+		  {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+			"default": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+			"default": "<p>Text goes here.</p>"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

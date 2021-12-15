@@ -1,0 +1,138 @@
+<!--    discount code html  -->
+<div id="shopify-section-checkout-discount" class="shopify-section" style="display:none;">
+  <div id="discount-wrapper">
+    {% comment %}
+    <p class="discount-title">Apply the coupon in the box above or select from below.</p>
+    <div class="discount-button-wrapper">
+      <div class="discount-wrapper">
+        <div class="section__discount">
+          <div class="section__discount-code">
+            <div class="svg-wrapper">
+              <svg class="discount_svg" xmlns="http://www.w3.org/2000/svg" width="13.68" height="12.224" viewBox="0 0 13.68 12.224"><defs><style>.discount_svg .a{fill:#717171;}.discount_svg .b{fill:#a8a8a8;}</style></defs><g transform="translate(0 -23.224)"><g transform="translate(0 23.224)"><g transform="translate(0 0)"><path class="a" d="M10.67,23.224H6.47a1,1,0,0,0-.709.294L.294,28.984a1,1,0,0,0,0,1.419l4.2,4.2a1,1,0,0,0,1.418,0l5.467-5.466a1.006,1.006,0,0,0,.294-.71v-4.2A1,1,0,0,0,10.67,23.224ZM8.915,26.735a.752.752,0,1,1,.752-.752A.753.753,0,0,1,8.915,26.735Z" transform="translate(0 -23.224)"/></g></g><g transform="translate(6.865 24.227)"><g transform="translate(0 0)"><path class="b" d="M224.8,55.224v4.669a.871.871,0,0,1-.256.617l-5.555,5.555.085.085a1,1,0,0,0,1.418,0l5.017-5.016a1,1,0,0,0,.294-.709v-4.2A1,1,0,0,0,224.8,55.224Z" transform="translate(-218.988 -55.224)"/></g></g></g></svg>
+            </div>
+            <div class="discount-code-wrapper">
+              <div class="code-button">
+                <p class="code-off">FIRST10 - Extra 10% OFF</p>
+                <!-- <a href="javascript:void(0);">View Details</a> -->
+              </div>
+              <div class="apply-button FIRST10">
+                <p id="apply-discount" data-discount-code="FIRST10">
+                  <span>Apply</span>
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19.13" height="13.018" viewBox="0 0 19.13 13.018"><defs><style>.tick-a{fill:#6a3c62;}</style></defs><g transform="translate(-15.876 -21.316)"><g transform="translate(15.876 21.316)"><path class="tick-a" d="M141.879,165.829a1.49,1.49,0,0,0-2.107-.056l-9.516,9.025-4.539-4.66a1.491,1.491,0,0,0-2.136,2.08l5.565,5.714a1.491,1.491,0,0,0,2.094.042l10.583-10.037A1.49,1.49,0,0,0,141.879,165.829Z" transform="translate(-123.158 -165.364)"/></g></g></svg>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button name="button" type="submit" class="field__input-btn btn btn--disabled" data-trekkie-id="apply_discount_button" aria-busy="false" disabled="disabled">
+        Apply
+      </button>
+    </div>
+    {% endcomment %}
+
+    {% assign checkoutTotalPrice = checkout.line_items_subtotal_price %}
+
+    {% if checkoutTotalPrice < 14999 %}
+    <div class="free-gift-text">
+      <p>Shop for {{ 14999 | minus: checkoutTotalPrice | money }} more and receive a Free Necklace worth $79. <a href="/collections/all">Continue Shopping</a></p>
+    </div>
+    {% else %}
+    <div class="free-gift-text">
+      <p>Free Necklace Worth $79 is Added to your Cart</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+<script type="text/javascript">
+  window.$ = Checkout.$;
+  $(document).on('page:load page:change', function(){
+    //     console.log(Shopify.Checkout.step);
+    var discountHtml = $("#discount-wrapper").html();
+    $('.order-summary__section--discount').append(discountHtml);
+    if(Shopify.Checkout.step=="contact_information"){
+      $('.order-summary-toggle').trigger('click');
+    }
+    $(document).on("click","#apply-discount",function(){
+      var discountCode = $(this).data('discount-code');
+      $('[name="checkout[reduction_code]"]').val(discountCode);
+      $('[name="checkout[reduction_code]"]').closest('form').submit();
+    });
+    $(document).on("click",".code-button a",function(){
+      $(this).fadeOut();
+      $(this).closest('.section__discount').find('.section__discount-description').stop().slideDown();
+    });
+
+    function checkDiscountApplied(){
+      $('.tags-list .tag').each(function(){
+        var discountCode = $(this).find(".reduction-code__text").text();
+        $('.'+discountCode).addClass('applied-discount');
+      });
+      $('.discount-button-wrapper .section__discount').each(function(){
+        var isDiscountApplied = $(this).find(".apply-button").hasClass('applied-discount');
+        if(!isDiscountApplied){
+          $(this).addClass('disabled-discount');
+        }
+      });
+    }
+
+    var appliedDiscount = $(".tags-list .tag").length;
+    if(appliedDiscount){
+      checkDiscountApplied();
+    }
+
+    var cartTotalValue = $('#order-summary .payment-due__price').data('checkout-payment-due-target');
+    if(cartTotalValue>14998){
+      var hasFreeProduct = false;
+      $('.product-table [data-order-summary-section="line-items"] tr').each(function(){
+      	var variantId = $(this).data('variant-id');
+        if(variantId == '41179800666293'){
+          hasFreeProduct = true;
+        }
+      });
+      console.log(cartTotalValue,hasFreeProduct);
+      if(!hasFreeProduct){
+        $('.free-product-in-cart').css('display','flex');
+        var freeProduct = {
+          "id": 41179800666293,
+          "quantity": 1
+        }
+//         $.ajax({
+//           type: 'POST',
+//           url: '/cart/add.js',
+//           data: freeProduct,
+//           dataType: 'json',
+//           success: function () {
+//             console.log('added');
+//             //             location.reload();
+//           }
+//         });
+      }
+    }
+    console.log(cartTotalValue,hasFreeProduct);
+    
+    $(document).on('click','.tags-list .tag__wrapper .tag__button',function(e){
+      //alert();
+      e.preventDefault();    
+      $('form [data-trekkie-id="apply_discount_button"]').addClass("btn--loading");
+      var formTag = $(this).closest('form');
+      var tagUrl = $(formTag).attr("action");
+      $.ajax({
+        url: tagUrl,
+        type: 'post',
+        data: formTag.serialize(),
+        success: function(response) {
+          location.reload();
+        }
+      })
+    });
+
+    $(document).on('click','[data-step="contact_information"] .step__footer__continue-btn',function(){
+      var pincode = jQuery('.field__input-wrapper input[name="checkout[shipping_address][zip]"]').val();
+      $.cookie('pincode', pincode);
+    })
+
+  });
+</script>

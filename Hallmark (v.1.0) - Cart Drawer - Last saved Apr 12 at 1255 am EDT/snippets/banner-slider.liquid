@@ -1,0 +1,37 @@
+<section>
+  <div class="banner-slider">
+    {% for block in section.blocks %}
+    <div class="banner">
+      <img class="lazyload{% if block.settings.mob_image != blank %} small--hide{% endif %}"
+           src="{{ block.settings.desk_image | img_url: '1280x' }}"
+           data-src="{{ block.settings.desk_image | img_url:"1280x" }}"
+           data-sizes="auto"
+           alt="" />
+      <img class="lazyload medium-up--hide"
+           src="{{ block.settings.mob_image | img_url: '375x' }}"
+           data-src="{{ block.settings.mob_image | img_url:"375x" }}"
+           data-sizes="auto"
+           alt="" />
+      <div class="banner-content small--text-center">
+        <div class="page-width">
+          {% if block.settings.content_subtitle != blank %}
+          <span class="content-subtitle">{{ block.settings.content_subtitle }}</span>
+          {% endif %}
+          {% if block.settings.content_title != blank %}
+          <h3>{{ block.settings.content_title }}</h3>
+          {% endif %}
+          {% if block.settings.text != blank %}
+          <div class="text">{{ block.settings.text }}</div>
+          {% endif %}
+          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+          <a href="{{ block.settings.button_link }}" class="btn btn-secondary">
+            {{ block.settings.button_label }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="14" class="icon-arrow" viewBox="0 0 10 14"><defs><style>.bnsl-arr-a{fill:#fff;opacity:0;}.bnsl-arr-b{fill:#6a3c62;}</style></defs><g transform="translate(-290.602 -2970.5)"><rect class="bnsl-arr-a" width="10" height="14" transform="translate(290.602 2970.5)"/><g transform="translate(7122.689 1734.388)"><path class="bnsl-arr-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"/></g></g></svg>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,37 @@
+{% if section.settings.enable_section %}
+{% include 'announcement-slider' %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Announcement slider",
+	"class": "announcement-slider-section",
+    "settings": [
+      {
+		"type": "checkbox",
+		"id": "enable_section",
+		"label": "Enable section"
+      }
+	],
+    "blocks": [
+      {
+        "type": "content",
+        "name": "Content",
+        "settings": [
+		  {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+			"default": "Title"
+          }
+		]
+	  }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,206 @@
+{%- comment -%}
+This snippet structures the micro-data using JSON-LD specification. Please note that for Product especially,
+the schema often changes. We try to output as much info as possible, but Google may add new requirements over time,
+or change the format of some info
+{%- endcomment -%}
+
+{%- if request.page_type == 'product' -%}
+{%- capture main_entity_microdata -%}
+"@type": "Product",
+"name": {{ product.title | json }},
+"image": {
+"@type": "ImageObject",
+"url": "https:{{ product.featured_media | img_url: '1024x' }}",
+"name": {{ product.featured_media.alt | json }},
+"width": "1024",
+"height": "1024"
+},
+"description": {{ product.description | strip_html | json }},
+"brand": "Hallmark Diamonds",
+"sku": {{ product.selected_or_first_available_variant.sku | json }},
+"category": {{ product.type | json }},
+"url": "{{ shop.url }}{{ product.url }}",
+"offers": [
+{%- for variant in product.variants -%}
+{
+"@type": "AggregateOffer",
+"url": "{{ shop.url }}{{ product.url }}",
+"priceCurrency": {{ cart.currency.iso_code | json }},
+"lowprice": {{ variant.price | divided_by: 100.0 | json }},
+"highPrice": "{{ variant.compare_at_price | divided_by: 100.0 | json }}"
+}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+]
+{%- endcapture -%}
+{%- elsif request.page_type == 'collection' -%}
+{%- capture main_entity_microdata -%}
+"@type":"ItemList",
+"name":"{{collection.title}}",
+"url":"{{collection.url}}",
+"description":"{{collection.description }}",
+"image": {
+"@type": "ImageObject",
+"url": "https:{{ collection.image | img_url: '1024x' }}",
+"name": "{{ collection.image.alt }}",
+"width": "1024",
+"height": "1024"
+},
+"mainEntityOfPage":{
+"@type":"CollectionPage",
+"@id":"{{collection.id}}"
+},
+"itemListElement":[
+{%- for product in collection.products limit:20 -%}
+{
+"@type":"ListItem",
+"position":{{forloop.index}},
+"name":{{ product.title | json }},
+"url":"{{ shop.url }}{{product.url}}"
+}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]
+{%- endcapture -%}
+{%- elsif request.page_type == 'article' -%}
+{%- capture main_entity_microdata -%}
+"@type": "BlogPosting",
+"mainEntityOfPage": "{{ article.url }}",
+"articleSection": {{ blog.title | json }},
+"keywords": "{{ article.tags | join: ', ' }}",
+"headline": {{ article.title | json }},
+"description": {{ article.excerpt_or_content | strip_html | truncatewords: 25 | json }},
+"dateCreated": "{{ article.created_at | date: '%Y-%m-%dT%T' }}",
+"datePublished": "{{ article.published_at | date: '%Y-%m-%dT%T' }}",
+"dateModified": "{{ article.published_at | date: '%Y-%m-%dT%T' }}",
+"image": {
+"@type": "ImageObject",
+"url": "https:{{ article.image | img_url: '1024x' }}",
+"image": "https:{{ article.image | img_url: '1024x' }}",
+"name": {{ article.image.alt | json }},
+"width": "1024",
+"height": "1024"
+},
+"author": {
+"@type": "Person",
+"name": "{{ article.user.first_name | escape }} {{ article.user.last_name | escape }}",
+"givenName": {{ article.user.first_name | json }},
+"familyName": {{ article.user.last_name | json }}
+},
+"publisher": {
+"@type": "Organization",
+"name": {{ shop.name | json }}
+},
+"commentCount": {{ article.comments_count }},
+"comment": [
+{%- for comment in article.comments limit: 5 -%}
+{
+"@type": "Comment",
+"author": {{ comment.author | json }},
+"datePublished": "{{ comment.created_at | date: '%Y-%m-%dT%T' }}",
+"text": {{ comment.content | json }}
+}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]
+{%- endcapture -%}
+
+{%- elsif request.page_type == 'index' -%}
+{%- capture main_entity_microdata -%}
+"@type": "Organization",
+"name": "Hallmark Diamonds",
+"url": "https://www.hallmarkdiamondscollection.com/",
+"logo": "https://cdn.shopify.com/s/files/1/0554/4398/0469/files/Logo.png?v=1616047851",
+"contactPoint": {
+"@type": "ContactPoint",
+"telephone": "(929) 203-9424",
+"contactType": "customer service",
+"areaServed": "US",
+"availableLanguage": "en"
+},
+"sameAs": [
+"https://www.facebook.com/HallmarkDiamonds",
+"https://www.instagram.com/hallmarkdiamonds"
+]
+{%- endcapture -%}
+{%- elsif request.page_type == 'search' -%}
+{%- capture main_entity_microdata -%}
+"@type" : "WebSite", 
+"name" : "Hallmark Diamonds",
+"url" : "https://www.hallmarkdiamondscollection.com/",
+"potentialAction" : {
+"@type" : "SearchAction",
+"target" : "https://www.hallmarkdiamondscollection.com/search?q={{ search.terms }}",
+"query-input" : "required name={{ search.terms }}"
+}
+{%- endcapture -%}
+{%- endif -%}
+
+<!-- Microdata -->
+{%- capture breadcrumb_entity_microdata -%}
+"@type": "BreadcrumbList",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Home",
+"item": "{{ shop.url }}"
+}
+{%- if request.page_type == 'product' -%}
+,{
+"@type": "ListItem",
+"position": 2,
+"name": {{ product.title | json }},
+"item": "{{ shop.url }}{{ product.url | within: collection }}"
+}
+{%- elsif request.page_type == 'collection' -%}
+,{
+"@type": "ListItem",
+"position": 3,
+"name": {{ collection.title | json }},
+"item": "{{ shop.url }}{{ collection.url }}"
+}
+{%- elsif request.page_type == 'blog' -%}
+,{
+"@type": "ListItem",
+"position": 2,
+"name": {{ blog.title | json }},
+"item": "{{ shop.url }}{{ blog.url }}"
+}
+{%- elsif request.page_type == 'article' -%}
+,{
+"@type": "ListItem",
+"position": 2,
+"name": {{ blog.title | json }},
+"item": "{{ shop.url }}{{ blog.url }}"
+}, {
+"@type": "ListItem",
+"position": 3,
+"name": {{ blog.title | json }},
+"item": "{{ shop.url }}{{ blog.url }}{{ article.url }}"
+}
+{%- elsif request.page_type == 'page' -%}
+,{
+"@type": "ListItem",
+"position": 2,
+"name": {{ page.title | json }},
+"item": "{{ shop.url }}{{ page.url }}"
+}
+{%- endif -%}
+]
+{%- endcapture -%}
+
+{% if main_entity_microdata != blank %}
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    {{ main_entity_microdata }}
+  }
+</script>
+{% endif %}
+
+{% if breadcrumb_entity_microdata != blank %}
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    {{ breadcrumb_entity_microdata }}
+  }
+</script>
+{% endif %}

@@ -1,0 +1,100 @@
+<div class="full-width section-padding">
+  {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  {%- assign img_url_m = section.settings.mobileImage | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  {%- assign preview_banner = section.settings.image -%}
+  {%- assign preview_banner_m = section.settings.mobileImage -%}
+  <div class="account-banner-text">
+    <div class="image-wrapper small--hide">
+      <div class="desktop-banner absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: preview_banner.aspect_ratio | times: 100 }}%;">
+        <img class="grid-view-item__image lazyload"
+             alt="{{ preview_image.alt }}"
+             data-src="{{ img_url }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ preview_banner.aspect_ratio }}"
+             data-sizes="auto"
+             data-image>
+      </div>
+    </div>
+    <div class="image-wrapper medium-up--hide">
+      <div class="mobile-banner absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: preview_banner_m.aspect_ratio | times: 100 }}%;">
+        <img class="grid-view-item__image lazyload"
+             alt="{{ preview_image.alt }}"
+             data-src="{{ img_url_m }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ preview_banner_m.aspect_ratio }}"
+             data-sizes="auto"
+             data-image>
+      </div>
+    </div>
+    <div class="text-wrapper">
+      {% if section.settings.text != blank %}
+      <p class="sub_text">{{ section.settings.text }}</p>
+      {% endif %}
+      {% if section.settings.main_text != blank %}
+      <a class="main_text">{{ section.settings.main_text }}</a>
+      {% endif %}
+      {% if section.settings.signup_text != blank %}
+      <p class="signup_text">{{ section.settings.signup_text }}</p>
+      {% endif %}
+      {% if section.settings.link_text != blank %}
+      <a class="signup_link" {% if section.settings.link != blank %}href="{{ section.settings.link }}"{% endif %}>{{ section.settings.link_text }} <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg></a>
+      {% endif %}
+    </div>
+    {% if section.settings.link != blank %}
+    <a href="{{ section.settings.link }}" class="banner_link"></a>
+    {% endif %}
+  </div>
+</div>
+{% schema %}
+{
+"name": "Register banner",
+"class": "Register-banner",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Desktop banner"
+},
+{
+"type": "image_picker",
+"id": "mobileImage",
+"label": "Mobile banner"
+},
+{
+"type": "text",
+"id": "text",
+"label": "Banner text",
+"default": "You are special.<br>You deserve a treat."
+},
+{
+"type": "text",
+"id": "main_text",
+"label": "Main text",
+"default": "Celebrate You."
+},
+{
+"type": "text",
+"id": "signup_text",
+"label": "Sign up text",
+"default": "Sign up & Discover your favourite diamond<br>pieces to sparkle you."
+},
+{
+"type": "text",
+"id": "link_text",
+"label": "Link Text",
+"default": "Create Your Account"
+},
+{
+"type": "url",
+"id": "link",
+"label": "Banner link"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

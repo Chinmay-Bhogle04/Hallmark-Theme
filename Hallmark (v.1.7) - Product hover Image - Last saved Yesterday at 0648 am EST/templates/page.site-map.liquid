@@ -1,0 +1,41 @@
+<section class="page__content site_map" data-section-type="shopinfo__page">
+  <div class="page-width">
+    <div class="header-title-wrapper">
+      <h1 class="header--main-heading text-center">{{ page.title }}</h1>
+    </div>
+    <div class="sitemap-page">
+      <div class="main-menu">
+        <ul class="level-parent">
+          {% for mainlink in linklists["main-menu"].links %}
+          <li class="level-1">
+            <a href="{{ mainlink.url }}">{{ mainlink.title }}</a>
+          </li>
+          
+          {% if mainlink.links != blank %}
+          {% for childlink in mainlink.links %}
+          <li class="level-2">
+            <a href="{{ childlink.url }}" {% if childlink.current %} aria-current="page"{% endif %}>
+              {{ childlink.title | escape }}
+            </a>        
+          </li>
+          
+          {% if childlink.links != blank %}
+          {% for grandchildlink in childlink.links %}
+          <li class="level-3">
+            <a href="{{ grandchildlink.url }}" {% if grandchildlink.current %} aria-current="page"{% endif %}>
+              {{ grandchildlink.title | escape }}
+            </a>
+          </li>
+          {% endfor %}
+          {% endif %}
+          
+          {% endfor %}
+          {% endif %}
+          
+          
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+{% include 'shop-the-look' %}
+
+
+{% schema %}
+{
+  "name": "Shop the look",
+  "class": "shop-the-look-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Shop the look"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle",
+      "default": "Subtitle"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Recommended size: 898px * 623px"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Image alignment",
+      "default": "right",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

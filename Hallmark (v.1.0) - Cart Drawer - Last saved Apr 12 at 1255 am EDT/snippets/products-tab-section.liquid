@@ -1,0 +1,283 @@
+{% assign main_description = product.description %}
+<div class="product_description--accordion">
+  <div class="tab-wrapper">
+    {% if main_description != blank %}
+    <h3 class="accordion-header">
+      Products Details
+      <svg class="plus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.4 341.4" style="enable-background:new 0 0 341.4 341.4;" xml:space="preserve"><g><g><polygon points="192,149.4 192,0 149.4,0 149.4,149.4 0,149.4 0,192 149.4,192 149.4,341.4 192,341.4 192,192 341.4,192 341.4,149.4 "/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+      <svg class="minus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.333 341.333" style="enable-background:new 0 0 341.333 341.333;" xml:space="preserve"><g><g><rect y="149.333" width="341.333" height="42.667"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+    </h3>
+    <div class="accordion-content">
+      {% for description in main_description %}
+      {% if forloop.index == 1 %}  
+      {{ description }}
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="tab-wrapper">
+    <h3 class="accordion-header">
+      Specifications
+      <svg class="plus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.4 341.4" style="enable-background:new 0 0 341.4 341.4;" xml:space="preserve"><g><g><polygon points="192,149.4 192,0 149.4,0 149.4,149.4 0,149.4 0,192 149.4,192 149.4,341.4 192,341.4 192,192 341.4,192 341.4,149.4 "/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+      <svg class="minus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.333 341.333" style="enable-background:new 0 0 341.333 341.333;" xml:space="preserve"><g><g><rect y="149.333" width="341.333" height="42.667"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+    </h3>
+    <div class="accordion-content">            
+      <div class="meta-field-des">
+        <table class="tab_specification">
+          {% assign MetalType = product.metafields.global['Metal Type'] %}
+          {% if MetalType != 0 and MetalType != blank %}
+          <tr>
+            <th>Metal Type </th> <td>{{ MetalType }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign MetalColor = product.metafields.global['Metal Color'] %}
+          {% if MetalColor != 0 and MetalColor != blank %}
+          <tr>
+            <th>Metal Color</th> <td>{{ MetalColor }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign RhodiumPlating  = product.metafields.global['Rhodium Plating'] %}
+          {% if RhodiumPlating != 0 and RhodiumPlating != blank %}
+          <tr>
+            <th>Rhodium Plating</th> <td>{{ RhodiumPlating }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign stoneType = product.metafields.global['Stone Type & Shape 1'] %}
+          {% if stoneType != 0 and stoneType != blank %}
+          <tr>
+            <th>Stone Type & Shape 1</th> <td>{{ stoneType }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign Color1 = product.metafields.global['Color 1'] %}
+          {% if Color1 != 0 and Color1 != blank %}
+          <tr>
+            <th>Color 1</th> <td>{{ Color1 }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign Clarity1 = product.metafields.global['Clarity 1'] %}
+          {% if Clarity1 != 0 and Clarity1 != blank %}
+          <tr>
+            <th>Clarity 1</th> <td>{{ Clarity1 }}</td>
+          </tr>
+          {% endif %} 
+
+          {% assign TotalWeight = product.metafields.global['Total Weight (CT.TW.) 1'] %}
+          {% if TotalWeight != 0 and TotalWeight != blank %}
+          <tr>
+            <th>Total Weight (CT.TW.) 1</th> <td>{{ TotalWeight }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign StoneType = product.metafields.global['Stone Type & Shape 2'] %}
+          {% if StoneType != 0 and StoneType != blank %}
+          <tr>
+            <th>Stone Type & Shape 2</th> <td>{{ StoneType }}</td>
+          </tr>
+          {% endif %}
+          
+          {% assign Color2 = product.metafields.global['Color 2'] %}
+          {% if Color2 != 0 and Color2 != blank %}
+          <tr>
+            <th>Color 2</th> <td>{{ Color2 }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign Clarity2 = product.metafields.global['Clarity 2'] %}
+          {% if Clarity2 != 0 and Clarity2 != blank %}
+          <tr>
+            <th>Clarity 2</th> <td>{{ Clarity2 }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign TotalWeight = product.metafields.global['Total Weight (CT.TW.) 2'] %}
+          {% if TotalWeight != 0 and TotalWeight != blank %}
+          <tr>
+            <th>Total Weight (CT.TW.) 2</th> <td>{{ TotalWeight }}</td>
+          </tr>
+          {% endif %} 
+          
+          {% assign stoneType3 = product.metafields.global['Stone Type & Shape 3'] %}
+          {% if stoneType3 != 0 and stoneType3 != blank %}
+          <tr>
+            <th>Stone Type & Shape 3</th> <td>{{ stoneType3 }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign Color3 = product.metafields.global['Color 3'] %}
+          {% if Color3 != 0 and Color3 != blank %}
+          <tr>
+            <th>Color 3</th> <td>{{ Color3 }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign Clarity3 = product.metafields.global['Clarity 3'] %}
+          {% if Clarity3 != 0 and Clarity3 != blank %}
+          <tr>
+            <th>Clarity 3</th> <td>{{ Clarity3 }}</td>
+          </tr>
+          {% endif %} 
+
+          {% assign TotalWeight3 = product.metafields.global['Total Weight (CT.TW.) 3'] %}
+          {% if TotalWeight3 != 0 and TotalWeight3 != blank %}
+          <tr>
+            <th>Total Weight (CT.TW.) 3</th> <td>{{ TotalWeight3 }}</td>
+          </tr>
+          {% endif %}
+          
+          {% assign stoneType4 = product.metafields.global['Stone Type & Shape 4'] %}
+          {% if stoneType4 != 0 and stoneType4 != blank %}
+          <tr>
+            <th>Stone Type & Shape 4</th> <td>{{ stoneType4 }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign Color4 = product.metafields.global['Color 4'] %}
+          {% if Color4 != 0 and Color4 != blank %}
+          <tr>
+            <th>Color 4</th> <td>{{ Color4 }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign Clarity4 = product.metafields.global['Clarity 4'] %}
+          {% if Clarity4 != 0 and Clarity4 != blank %}
+          <tr>
+            <th>Clarity 4</th> <td>{{ Clarity4 }}</td>
+          </tr>
+          {% endif %} 
+
+          {% assign TotalWeight4 = product.metafields.global['Total Weight (CT.TW.) 4'] %}
+          {% if TotalWeight4 != 0 and TotalWeight4 != blank %}
+          <tr>
+            <th>Total Weight (CT.TW.) 4</th> <td>{{ TotalWeight4 }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign DesignStyle  = product.metafields.global['Design Style'] %}
+          {% if DesignStyle != 0 and DesignStyle != blank %}
+          <tr>
+            <th>Design Style</th> <td>{{ DesignStyle }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign PendantMeasurement = product.metafields.global['Pendant Measurement'] %}
+          {% if PendantMeasurement != 0 and PendantMeasurement != blank %}
+          <tr>
+            <th>Pendant Measurement</th> <td>{{ PendantMeasurement }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign NecklaceChainLen = product.metafields.global['Necklace Chain Length & Type'] %}
+          {% if NecklaceChainLen != 0 and NecklaceChainLen != blank %}
+          <tr>
+            <th>Necklace Chain Length & Type</th> <td>{{ NecklaceChainLen }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign NecklaceClasp = product.metafields.global['Necklace Clasp Type'] %}
+          {% if NecklaceClasp != 0 and NecklaceClasp != blank %}
+          <tr>
+            <th>Necklace Clasp Type</th> <td>{{ NecklaceClasp }}</td>
+          </tr>
+          {% endif %}
+
+          {% assign OverallMeasurement = product.metafields.global['Overall Measurement'] %}
+          {% if OverallMeasurement != 0 and OverallMeasurement != blank %}
+          <tr>
+            <th>Overall Measurement</th> <td>{{ OverallMeasurement }}</td>
+          </tr>
+          {% endif %}   
+
+          {% assign EarringsBack = product.metafields.global['Earrings Back'] %}
+          {% if EarringsBack != 0 and EarringsBack != blank %}
+          <tr>
+            <th>Earrings Back</th> <td>{{ EarringsBack }}</td>
+          </tr>
+          {% endif %} 
+          
+          {% assign BraceletClaspType = product.metafields.global['Bracelet Clasp Type'] %}
+          {% if BraceletClaspType != 0 and BraceletClaspType != blank %}
+          <tr>
+            <th>Bracelet Clasp Type</th> <td>{{ BraceletClaspType }}</td>
+          </tr>
+          {% endif %} 
+          
+          {% assign BraceletChainType = product.metafields.global['Bracelet Chain Type'] %}
+          {% if BraceletChainType != 0 and BraceletChainType != blank %}
+          <tr>
+            <th>Bracelet Chain Type</th> <td>{{ BraceletChainType }}</td>
+          </tr>
+          {% endif %} 
+          
+          {% assign TopdesignMeasurement = product.metafields.global['Top design Measurement'] %}
+          {% if TopdesignMeasurement != 0 and TopdesignMeasurement != blank %}
+          <tr>
+            <th>Top design Measurement</th> <td>{{ TopdesignMeasurement }}</td>
+          </tr>
+          {% endif %} 
+          
+          {% assign Bandthickness = product.metafields.global['Band thickness'] %}
+          {% if Bandthickness != 0 and Bandthickness != blank %}
+          <tr>
+            <th>Band thickness</th> <td>{{ Bandthickness }}</td>
+          </tr>
+          {% endif %} 
+        </table>
+      </div> 
+    </div>
+  </div>
+
+  <div class="tab-wrapper">
+    <h3 class="accordion-header">
+      About The Brand
+      <svg class="plus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.4 341.4" style="enable-background:new 0 0 341.4 341.4;" xml:space="preserve"><g><g><polygon points="192,149.4 192,0 149.4,0 149.4,149.4 0,149.4 0,192 149.4,192 149.4,341.4 192,341.4 192,192 341.4,192 341.4,149.4 "/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+      <svg class="minus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.333 341.333" style="enable-background:new 0 0 341.333 341.333;" xml:space="preserve"><g><g><rect y="149.333" width="341.333" height="42.667"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+    </h3>
+    <div class="accordion-content">
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diseam nonumy eirmod tempor invidunt ut labore.</p>
+    </div>
+  </div>
+
+  <div class="tab-wrapper">
+    <h3 class="accordion-header">
+      Shipping & Return Policy
+      <svg class="plus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.4 341.4" style="enable-background:new 0 0 341.4 341.4;" xml:space="preserve"><g><g><polygon points="192,149.4 192,0 149.4,0 149.4,149.4 0,149.4 0,192 149.4,192 149.4,341.4 192,341.4 192,192 341.4,192 341.4,149.4 "/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+      <svg class="minus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.333 341.333" style="enable-background:new 0 0 341.333 341.333;" xml:space="preserve"><g><g><rect y="149.333" width="341.333" height="42.667"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+    </h3>
+    <div class="accordion-content">
+      <p class="no-margin">Enjoy complimentary shipping & returns on all orders.</p>
+      <p class="no-margin">Online purchases can only be returned online, not in-store.</p>
+      <p class="no-margin">If for any reason you are not satisfied, we will gladly accept most items for exchange, refund or merchandise credit within 30 days. Custom and engraved items are non-refundable. After 30 days, all sales are final. All returns must be in the original condition.</p>
+      <p>All refunds will be issued in the original form of payment within 14 days from the date the return is received. Merchandise credits will be issued through our system within 3 days from the date the return is received. Please contact us at <a href="mailto:info@diamondsmadeforyou.com" aria-describedby="a11y-external-message">info@diamondsmadeforyou.com</a>.</p>
+    </div>
+  </div>
+
+  <div class="tab-wrapper">
+    <h3 class="accordion-header">
+      Warranty
+      <svg class="plus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.4 341.4" style="enable-background:new 0 0 341.4 341.4;" xml:space="preserve"><g><g><polygon points="192,149.4 192,0 149.4,0 149.4,149.4 0,149.4 0,192 149.4,192 149.4,341.4 192,341.4 192,192 341.4,192 341.4,149.4 "/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+      <svg class="minus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.333 341.333" style="enable-background:new 0 0 341.333 341.333;" xml:space="preserve"><g><g><rect y="149.333" width="341.333" height="42.667"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+    </h3>
+    <div class="accordion-content">
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diseam nonumy eirmod tempor invidunt ut labore.</p>
+    </div>
+  </div>
+
+  <div class="tab-wrapper">
+    <h3 class="accordion-header">
+      Need Help?
+      <svg class="plus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.4 341.4" style="enable-background:new 0 0 341.4 341.4;" xml:space="preserve"><g><g><polygon points="192,149.4 192,0 149.4,0 149.4,149.4 0,149.4 0,192 149.4,192 149.4,341.4 192,341.4 192,192 341.4,192 341.4,149.4 "/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+      <svg class="minus" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 341.333 341.333" style="enable-background:new 0 0 341.333 341.333;" xml:space="preserve"><g><g><rect y="149.333" width="341.333" height="42.667"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+    </h3>
+    <div class="accordion-content">
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diseam nonumy eirmod tempor invidunt ut labore.</p>
+    </div>
+  </div>
+
+</div>

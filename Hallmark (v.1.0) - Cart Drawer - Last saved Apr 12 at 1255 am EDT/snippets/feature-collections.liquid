@@ -1,0 +1,55 @@
+<section>
+  {% for block in section.blocks %}
+  {% capture image_layout %}
+  <div class="feature-collections__item feature-collections__image">
+    <img class="lazyload"
+         src="{{ block.settings.image | img_url: '861x' }}"
+         data-src="{{ block.settings.image | img_url:"861x" }}"
+         data-sizes="auto"
+         alt="" />
+  </div>
+  {% endcapture %}
+  <div class="feature-collections layout-{% if block.settings.layout == 'left' %}left{% else %}right{% endif %}">
+    {% if block.settings.layout == 'left' %}
+    {{ image_layout }}
+    {% endif %}
+
+    <div class="feature-collections__item feature-collections__text">
+      <div class="content" style="background-color: {{ block.settings.background_color }};">
+        {% if block.settings.block_sub_title != blank %}
+        <span class="block-sub-title">{{ block.settings.block_sub_title | escape }}</span>
+        {% endif %}
+        {% if block.settings.heading != blank %}
+        <h3>{{ block.settings.heading | escape }}</h3>
+        {% endif %}
+        {% if block.settings.text != blank %}
+        <div class="subtext">{{ block.settings.text }}</div>
+        {% endif %}
+        {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+        {%- capture ariaLabel -%}
+        {{- block.settings.button_label -}}
+        {%- if block.settings.button_link.type == 'frontpage_link' -%}
+        : {{ 'homepage.general.title' | t -}}
+        {%- elsif block.settings.button_link.type == 'catalog_link' -%}
+        : {{ 'collections.catalog.title' | t -}}
+        {%- elsif block.settings.button_link.object.title -%}
+        : {{ block.settings.button_link.object.title -}}
+        {%- endif -%}
+        {%- endcapture -%}
+
+        <a href="{{ block.settings.button_link }}"
+           class="btn btn-inline btn-inline-dark"
+           aria-label="{{ ariaLabel }}">
+          {{- block.settings.button_label | escape -}}
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="0 0 8 13"><defs><style>.inline-btn-dark-a{fill:#fff;opacity:0;}.inline-btn-dark-b{fill:#293542;}</style></defs><g transform="translate(-291.239 -2970.859)"><rect class="inline-btn-dark-a" width="8" height="13" transform="translate(291.239 2970.859)"/><g transform="translate(7122.69 1734.388)"><path class="inline-btn-dark-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"/></g></g></svg>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if block.settings.layout == 'right' %}
+    {{ image_layout }}
+    {% endif %}
+  </div>
+  {% endfor %}
+</section>

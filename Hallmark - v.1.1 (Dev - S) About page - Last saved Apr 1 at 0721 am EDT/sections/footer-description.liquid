@@ -1,0 +1,27 @@
+<div class="page-width">
+  {% if section.settings.text != blank %}
+  <div class="rte-setting">{{ section.settings.text }}</div>
+  {% endif %}
+</div>
+
+
+{% schema %}
+{
+  "name": "Footer description",
+  "class": "footer-description",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer description",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,159 @@
+<div class="full-width homepage-collection-list" style="background-color:{{ section.settings.background }};">
+  <div class="page-width">
+    <div class="section-padding">
+      {% include 'section-header' %}
+    </div>
+    {% case section.settings.grid %}
+    {% when 2 %}
+    {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+    {%- assign grid_item_width = 'small--one-whole medium-up--one-third' -%}
+    {% when 4 %}
+    {%- assign grid_item_width = 'small--one-whole medium-up--one-quarter' -%}
+    {% when 5 %}
+    {%- assign grid_item_width = 'small--one-whole medium-up--one-fifth' -%}
+    {% endcase %}
+
+    <div class="collection-list text-center swiper-container swiper-collection-container wow fadeInUp" data-wow-delay="500ms">
+      <div class="swiper-wrapper grid grid--no-gutters grid--uniform">
+        {% for block in section.blocks limit: section.blocks.size %}
+        <div class="swiper-slide grid__item {{ grid_item_width }}" {{ block.shopify_attributes }}>
+          {% if block.settings.block_button_label != blank and block.settings.block_button_link != blank %}
+          <a href="{{ block.settings.block_button_link }}">
+          {% endif %}
+          {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          {%- assign preview_image = block.settings.image -%}
+          <div class="image-wrapper absolute-image-wrapper" style="padding-top:{{ 1 | divided_by: preview_image.aspect_ratio | times: 100 }}%;">
+            <img class="lazyload"
+                 src="https://cdn.shopify.com/s/files/1/0554/4398/0469/files/image_28.png?v=1618986182"
+                 alt="{{ block.settings.block_title }}"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ preview_image.aspect_ratio }}"
+                 data-sizes="auto"
+                 data-image/>
+          </div>
+          <div class="collection-details">
+            {% if block.settings.block_title != blank %}
+            <h3>{{ block.settings.block_title }}</h3>
+            {% endif %}
+            {% if block.settings.block_button_label != blank and block.settings.block_button_link != blank %}
+            <span class="btn btn-inline btn-inline-dark">
+              {{ block.settings.block_button_label }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="0 0 8 13"><defs><style>.inline-btn-dark-a{fill:#fff;opacity:0;}.inline-btn-dark-b{fill:#293542;}</style></defs><g transform="translate(-291.239 -2970.859)"><rect class="inline-btn-dark-a" width="8" height="13" transform="translate(291.239 2970.859)"></rect><g transform="translate(7122.69 1734.388)"><path class="inline-btn-dark-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"></path></g></g></svg>
+            </span>
+            {% endif %}
+          </div>
+          {% if block.settings.block_button_label != blank and block.settings.block_button_link != blank %}
+          </a>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      <!-- Add Scrollbar -->
+      <div class="swiper-scrollbar"></div>
+    </div>
+
+    {% if section.blocks.size == 0 %}
+    {% include 'no-blocks' %}
+    {% endif %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Collection list",
+  "class": "collection-list-section section-padding",
+  "max_blocks": 12,
+  "settings": [
+	{
+      "type": "color",
+      "id": "background",
+      "label": "Background color"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collection list"
+    },
+	{
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle",
+      "default": "Subtitle"
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "label": "Collections per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_collection",
+      "name": "Collection",
+      "settings": [
+		{
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+		  "info": "Recommended size: 298px * 302px"
+        },
+        {
+          "type": "text",
+          "id": "block_title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "text",
+          "id": "block_button_label",
+          "label": "Button label",
+		  "default": "Shop the selection"
+        },
+        {
+          "type": "url",
+          "id": "block_button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection list",
+      "category": "Collection",
+      "blocks": [
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

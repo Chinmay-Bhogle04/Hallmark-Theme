@@ -1,0 +1,75 @@
+<script type="text/javascript">
+  if (typeof window.restock_config != "object") {
+    window.restock_config = {}
+  }
+
+  {% assign masterapp_page_type = '' %}
+  window.restock = {
+    shop_slug: "{{shop.permanent_domain | remove: '.myshopify.com' }}",
+    store_id: "{{shop.permanent_domain}}",
+    money_format: "{{shop.money_format | replace: '"', "'"}}",
+    customer: null,
+    cart: null,
+  }
+
+  {% if customer %}
+  window.restock.customer = {
+    id: {{customer.id}},
+    email: "{{customer.email}}",
+    tags: {{customer.tags | json}},
+    first_name: "{{customer.first_name}}",
+    last_name: "{{customer.last_name}}",
+  };
+  {% endif %}
+
+  {% if template contains 'collection' %}
+  {% unless collection.id == blank %}
+  {% assign masterapp_page_type = 'collection' %}
+  window.restock.collection = {
+    id: {{collection.id}}
+  }
+    {% endunless %}
+    {% endif %}
+
+    {% if template contains 'product' %}
+    {% unless product.id == blank %}
+    {% assign masterapp_page_type = 'product' %}
+    window.restock.product = {
+    id: {{product.id}},
+    price: {{product.price}},
+    tags: {{product.tags | json}},
+    variants: {{product.variants | json}}
+  };
+  window.restock.product_collections = []
+  {% for c in product.collections %}
+  window.restock.product_collections.push({{c.id}})
+  {% endfor %}
+  {% endunless %}
+  {% endif %}
+
+  {% if template contains 'cart' %}
+  {% assign masterapp_page_type = 'cart' %}
+  {% endif %}
+
+  {% if cart %}
+  window.restock.cart = {{cart | json}}
+    delete window.restock.cart.note
+  window.restock.cart_collections = {}
+  {% for item in cart.items %}
+  window.restock.cart_collections["v{{item.variant_id}}"] = []
+                                  {% for c in item.product.collections %}
+                                  window.restock.cart_collections["v{{item.variant_id}}"].push({{c.id}})
+                                  {% endfor %}
+                                  {% endfor %}
+                                  if (typeof window.restock.cart.items == "object") {
+                                  for (var i=0; i<window.restock.cart.items.length; i++) {
+                                  ["sku", "grams", "vendor", "url", "image", "handle", "requires_shipping", "product_type", "product_description"].map(function(a) {
+    delete window.restock.cart.items[i][a]
+  })
+  }
+  }
+  {% endif %}
+  window.restock.page_type = "{{masterapp_page_type}}"
+  window.restock.partner_url = "https://restock-master.hulkapps.com";
+</script>
+<link rel="stylesheet" type="text/css" href="https://restock-master.hulkapps.com/assets/restock-master.css">

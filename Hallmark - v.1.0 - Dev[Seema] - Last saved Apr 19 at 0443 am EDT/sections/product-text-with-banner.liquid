@@ -1,0 +1,78 @@
+<!-- text-with-banner.liquid -->
+<div class="full-width">
+  <div class="page-width">{% include 'section-header' %}</div>
+  <section>{% include 'text-with-banner' %}</section>
+</div>
+
+{% schema %}
+  {
+    "name": "Text with banner",
+	"class": "index-section text-with-banner",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Section header"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Text with banner"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subtitle",
+        "default": "Subtitle"
+      },
+	  {
+        "type": "header",
+        "content": "Image"
+      },
+	  {
+        "type": "image_picker",
+        "id": "desk_image",
+		"label": "Desktop image",
+		"info": "Recommended image: 1280px * 448px"
+      },
+	  {
+        "type": "image_picker",
+        "id": "mob_image",
+		"label": "Mobile image",
+		"info": "Recommended image: 375px * 267px"
+      },
+	  {
+        "type": "header",
+        "content": "Section Content"
+      },
+      {
+        "type": "text",
+        "id": "content_title",
+        "label": "Title",
+        "default": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+		"default": "<p>Text goes here.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

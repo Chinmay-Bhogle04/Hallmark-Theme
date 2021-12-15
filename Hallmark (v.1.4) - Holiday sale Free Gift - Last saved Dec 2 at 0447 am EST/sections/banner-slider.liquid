@@ -1,0 +1,71 @@
+<div class="full-width">
+  {% include 'banner-slider' %}
+</div>
+
+{% schema %}
+  {
+    "name": "Banner slider",
+	"class": "banner-slider-section",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "banner",
+        "name": "Banner",
+		"settings": [
+          {
+          	"type": "image_picker",
+			"id": "desk_image",
+			"label": "Desktop image",
+			"info": "Recommended size: 1280px * 548px"
+          },
+		  {
+          	"type": "image_picker",
+			"id": "mob_image",
+			"label": "Desktop image",
+			"info": "Recommended size: 375px * 561px"
+          },
+          {
+            "type": "text",
+            "id": "content_title",
+            "label": "Title",
+            "default": "Title"
+          },
+          {
+            "type": "text",
+            "id": "content_subtitle",
+            "label": "Sub Title",
+            "default": "Sub Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Text goes here.</p>"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+		]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner Slider",
+        "category": "Advanced layout"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

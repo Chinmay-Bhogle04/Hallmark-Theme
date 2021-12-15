@@ -1,0 +1,171 @@
+<style>
+  .main__header .breadcrumb .breadcrumb__item:first-child{
+    display:none;
+  }
+  .tag__button {
+    background: transparent
+  }
+
+  .tag__button:hover {
+    border-width: 0px
+  }
+
+  #discount-wrapper {
+    display: none
+  }
+
+  .discount-button-wrapper {
+    display: flex;
+    clear: both;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    padding-top: 15px
+  }
+
+  .discount-button-wrapper .svg-wrapper {
+    margin-right: 7px
+  }
+  .discount-button-wrapper .svg-wrapper svg{
+    vertical-align: -2px;
+  }
+
+  .discount-button-wrapper .discount-wrapper {
+    flex-grow: 1
+  }
+
+  .discount-button-wrapper .section__discount {
+    background: #EBEBEB;
+    padding: 0;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column
+  }
+
+  .discount-button-wrapper .section__discount-code {
+    display: flex;
+    padding: 10px 13px
+  }
+
+  .discount-button-wrapper .discount-code-wrapper {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center
+  }
+
+  .discount-button-wrapper .field__input-btn {
+    visibility: hidden;
+    opacity: 0
+  }
+
+  .discount-button-wrapper .code-off,
+  .discount-button-wrapper #apply-discount {
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 700
+  }
+
+  .discount-button-wrapper .code-off {
+    color: #707070
+  }
+
+  .discount-button-wrapper #apply-discount {
+    color: #6a3c62;
+    text-transform: uppercase;
+    cursor: pointer
+  }
+
+  .discount-button-wrapper #apply-discount span:last-child {
+    display: none
+  }
+
+  .discount-button-wrapper .applied-discount span:first-child {
+    display: none
+  }
+
+  .discount-button-wrapper .applied-discount span:last-child {
+    display: inline-block !important
+  }
+
+  .discount-button-wrapper .applied-discount #apply-discount {
+    pointer-events: none
+  }
+
+  .discount-button-wrapper .code-button a {
+    font-size: 10px;
+    letter-spacing: 0.1px;
+    line-height: 14px;
+    color: #6a3c62
+  }
+
+  .discount-button-wrapper .discount-details h5 {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0
+  }
+
+  .discount-button-wrapper .section__discount-description {
+    padding: 10px 13px 15px;
+    border-top: 1px solid #fff;
+  }
+
+  .discount-button-wrapper .details ul {
+    padding-left: 10px;
+    margin-bottom: 0;
+    margin-top:5px;  
+  }
+
+  .discount-button-wrapper .details li {
+    font-size: 12px;
+    line-height: 15px
+  }
+
+  .discount-button-wrapper .disabled-discount #apply-discount {
+    pointer-events: none;
+    color: #AEAEAE
+  }
+
+  .discount-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    color: #323232;
+  }
+  /*  Thank you page css  */
+  #thankyou-cross-sell, .free-gift-text {
+    border: 1px solid #6a3c62;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    background: rgba(106,60,98,0.05);
+  }
+  .free-gift-text{padding: 10px 16px; margin-top: 20px;}
+  .free-gift-text p{ font-weight:500; }
+  .free-gift-text p a{font-weight: 700;}
+  .discount-description .discount_code{color:#6a3c62;}
+  .free-product-in-cart {
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 20px;
+    display:none;
+  }
+  @media (min-width: 768px) {
+    .tags-list .tag{
+      margin-bottom: .8571428571em;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .discount-button-wrapper .btn--disabled {
+      display: none
+    }
+  }
+</style>

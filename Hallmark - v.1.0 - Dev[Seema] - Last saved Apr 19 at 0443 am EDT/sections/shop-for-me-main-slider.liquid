@@ -1,0 +1,149 @@
+{% include 'main-banner-slider' %}
+
+{% schema %}
+{
+    "name": "Banner Slideshow",
+    "class": "index-section index-section--flush index-section--slideshow",
+	"max_blocks": 6,
+    "blocks": [
+      {
+        "type": "banner-content",
+        "name": "Banner Content",
+        "settings": [
+		  {
+            "type": "checkbox",
+            "id": "enable_banner",
+            "label": "Enable Banner"
+          },
+		  {
+            "type": "textarea",
+            "id": "video",
+            "label": "mp4 video"
+          },
+		  {
+            "type": "textarea",
+            "id": "mobVideo",
+            "label": "mp4 mobile video"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_large",
+            "label": "Banner Image (Desktop)",
+            "info": "Recommended size 2562x1298 (px)"
+          },
+		  {
+            "type": "image_picker",
+            "id": "banner_small",
+            "label": "Banner Image (Mobile)",
+            "info": "Recommended size 800x1470 (px)"
+          },
+		  {
+             "type": "select",
+             "id": "horizontal_alignment",
+             "label": "Content Alignment (Horizontal)",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left"
+               },
+               {
+                 "value": "center",
+                 "label": "Center"
+               },
+               {
+                 "value": "right",
+                 "label": "Right"
+               }
+             ],
+             "default": "left"
+          },
+		  {
+             "type": "select",
+             "id": "vertical_alignment",
+             "label": "Content Alignment (Vertical)",
+             "options": [
+               {
+                 "value": "top",
+                 "label": "Top"
+               },
+               {
+                 "value": "middle",
+                 "label": "Middle"
+               },
+               {
+                 "value": "bottom",
+                 "label": "Bottom"
+               }
+             ],
+             "default": "top"
+          },
+		  {
+             "type": "select",
+             "id": "text_align",
+             "label": "Text Align",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left"
+               },
+               {
+                 "value": "center",
+                 "label": "Center"
+               },
+               {
+                 "value": "right",
+                 "label": "Right"
+               }
+             ],
+             "default": "left"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+          },
+		  {
+            "type": "color",
+            "id": "titleColor",
+            "label": "Title font color"
+          },
+		  {
+            "type": "text",
+            "id": "title_font_size",
+            "label": "Title font size",
+            "default": "57"
+          },
+		  {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Subtitle"
+          },
+		  {
+            "type": "color",
+            "id": "subtitleColor",
+            "label": "Subtitle font color"
+          },
+		  {
+            "type": "text",
+            "id": "subtitle_font_size",
+            "label": "Subtitle font size",
+            "default": "57"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button URL"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

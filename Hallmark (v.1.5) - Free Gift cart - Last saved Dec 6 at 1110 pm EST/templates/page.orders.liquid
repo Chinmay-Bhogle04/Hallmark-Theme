@@ -1,0 +1,81 @@
+<div class="myaccount-wrapper order-history">
+  <div class="page-width">
+    <div class="breadcrumb medium-up--hide">
+      <a href="">My account</a>
+      <span class="separator"></span>
+      <span>Your Orders</span>
+    </div>
+    <div class="grid myaccount">
+      {% include 'account-sidebar' %}
+      <div class="grid__item myaccount__content myaccount__order-history">
+        <h2>Your Orders</h2>
+
+        <table class="responsive-table order-table">
+          <thead>
+            <tr>
+              <th scope="col">{{ 'customer.orders.order_number' | t }}</th>
+              <th scope="col">{{ 'customer.orders.date' | t }}</th>
+              <th scope="col">{{ 'customer.orders.payment_status' | t }}</th>
+              <th scope="col">{{ 'customer.orders.fulfillment_status' | t }}</th>
+              <th scope="col">{{ 'customer.orders.total' | t }}</th>
+              <th class="text-right" scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+            <tr>
+              <th data-label="{{ 'customer.orders.order_number' | t }}" scope="row">
+                <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">{{ order.name }}</a>
+              </th>
+              <th data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | time_tag: format: 'date' }}</th>
+              <th data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</th>
+              <th data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</th>
+              <th data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</th>
+              <th scope="row" class="order-buttons">
+                <a href="{{ order.customer_url }}" class="btn btn--small" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">View Order details</a>
+              </th>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+	  <!-- Order details -->
+      <div class="grid__item myaccount__content myaccount__order-details hide">
+        <h2>Order details</h2>
+        <div class="order-details-info">
+          <div class="image-wrapper">
+            <img class="lazyload"
+                 src="https://cdn.shopify.com/s/files/1/0554/4398/0469/products/222909_360x.jpg?"
+                 data-src="https://cdn.shopify.com/s/files/1/0554/4398/0469/products/222909_360x.jpg?"
+                 data-sizes="auto"
+                 alt="" />
+          </div>
+          <div class="details">
+            <span class="order-id">ORDER #155566577</span>
+            <p class="medium-up--hide">Diamond Collection</p>
+            <h3>Round Diamond Wedding Pendant</h3>
+            <p class="small--hide">Diamond Collection</p>
+            <ul>
+              <li>
+                <span class="label">Size</span>
+                <span class="separator medium-up--hide">•</span>
+                <span><b>7</b></span>
+              </li>
+              <li>
+                <span class="label">Quantity</span>
+                <span class="separator medium-up--hide">•</span>
+                <span><b>1</b></span>
+              </li>
+              <li>
+                <span class="label">Total</span>
+                <span class="separator medium-up--hide">•</span>
+                <span><b>$200.00</b></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

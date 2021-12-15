@@ -1,0 +1,107 @@
+<section data-section-id="{{ section.id }}" data-section-type="hallmark-banner-section">
+  <div class="slideshow__banner">
+    {%- assign max_height = 720 -%}
+    {% for block in section.blocks %}
+    {% if block.settings.enable_banner %}
+    <a href="{{ block.settings.button_url }}">
+      <div class="slideshow__banner-slide " id="block-{{ block.id }}">
+        {% if block.settings.video != blank %}
+        <div class="small--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_large.aspect_ratio | times: 100}}%;">
+          <video width="100%" height="100%" playsinline autoplay muted loop id="myVideo">
+            <source src="{{ block.settings.video }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {% else %}
+        {% unless block.settings.banner_large == nil %}
+        {%- assign img_url = block.settings.banner_large | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="small--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_large.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}"
+               class="custom__image lazyload js image_scale"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ block.settings.banner_large.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ block.settings.banner_large.alt | escape }}">
+        </div>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ block.banner_large.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.banner_large.image.alt, 'custom__image' }}
+        </noscript>
+        {% endunless %}
+        {% endif %}
+
+        {% if block.settings.mobVideo != blank %}
+        <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_small.aspect_ratio | times: 100}}%;">
+          <video width="100%" height="100%" playsinline autoplay muted loop id="myVideoMob" poster="{{ block.settings.banner_small | img_url:"800x" }}">
+            <source src="{{ block.settings.mobVideo }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {% else %}
+        {% unless block.settings.banner_small == nil %}
+        {%- assign img_url = block.settings.banner_small | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_small.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}"
+               class="custom__image lazyload js image_scale"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ block.settings.banner_small.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ block.settings.banner_small.alt | escape }}">
+        </div>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ block.banner_small.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.banner_small.image.alt, 'custom__image' }}
+        </noscript>
+        {% endunless %}
+        {% endif %}
+        <div class="slideshow__banner-text
+                    {% if block.settings.horizontal_alignment == 'center' and block.settings.vertical_alignment == 'middle' %} content_center-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'center' and block.settings.vertical_alignment == 'top' %} content_center_top-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'center' and block.settings.vertical_alignment == 'bottom' %} content_center_bottom-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'left' and block.settings.vertical_alignment == 'top' %} content_left_top-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'left' and block.settings.vertical_alignment == 'middle' %} content_left_middle-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'left' and block.settings.vertical_alignment == 'bottom' %} content_left_bottom-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'right' and block.settings.vertical_alignment == 'top' %} content_right_top-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'right' and block.settings.vertical_alignment == 'middle' %} content_right_middle-aligned{% endif %}
+             		{% if block.settings.horizontal_alignment == 'right' and block.settings.vertical_alignment == 'bottom' %} content_right_bottom-aligned{% endif %}">
+          <div class="slideshow__banner-text-container
+                      {% if block.settings.vertical_alignment == 'middle' %} content_middle-aligned{% endif %}
+                      {% if block.settings.vertical_alignment == 'bottom' %} content_bottom-aligned{% endif %}
+                      {% if block.settings.text_align == 'center' %} text-center{% endif %}
+                      {% if block.settings.text_align == 'right' %} text-right{% endif %}
+                      {% if block.settings.full_width_content and block.settings.textand_button_align == 'text_left'%} full-width-alignment1{% endif %}
+                      {% if block.settings.full_width_content and block.settings.textand_button_align == 'text_right'%} full-width-alignment2{% endif %}">
+            {% unless block.settings.logo == blank %}
+            {%- assign img_url = block.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="lazyload js image_scale"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ block.settings.logo.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ block.settings.banner_small.alt | escape }}">
+            {% endunless %}
+            {% unless block.settings.title == blank %}
+            <h2 class="title" style="color:{{ block.settings.titleColor }};">{{ block.settings.title }}</h2>
+            {% endunless %}
+            {% unless block.settings.subtitle == blank %}
+            <p class="subtitle" style="color:{{ block.settings.subtitleColor }};">{{ block.settings.subtitle }}</p>
+            {% endunless %}
+            {% unless block.settings.button_label == blank %}
+            <span class="button-wrapper">
+              <span class="btn_style1">
+                {{ block.settings.button_label }}
+              </span>
+            </span>
+            {% endunless %}
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endif %}
+
+
+    {% endfor %}
+  </div>
+</section>

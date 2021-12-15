@@ -1,0 +1,108 @@
+<div class="full-width">
+  {% for block in section.blocks %}
+  <section>
+    {% if block.settings.link != blank %}
+    <a href="{{ block.settings.link }}">
+    {% endif %}
+    <img class="lazyload small--hide bg-image"
+         src="{{ block.settings.desk_image | img_url: '1280x' }}"
+         data-src="{{ block.settings.desk_image | img_url:"1280x" }}"
+         data-sizes="auto"
+         alt="" />
+    <img class="lazyload medium-up--hide bg-image"
+         src="{{ block.settings.mob_image | img_url: '375x' }}"
+         data-src="{{ block.settings.mob_image | img_url:"375x" }}"
+         data-sizes="auto"
+         alt="" />
+    <div class="content small--text-center">
+      {% if block.settings.title != blank %}
+      <h2 style="color: {{ block.settings.text_color }};">
+        {{ block.settings.title }}
+        {% if block.settings.icon != blank %}
+        <img class="lazyload"
+             src="{{ block.settings.icon | img_url: '93x' }}"
+             data-src="{{ block.settings.icon | img_url:"93x" }}"
+             data-sizes="auto"
+             alt="" />
+        {% else %}
+        <img class="lazyload"
+             src="https://cdn.shopify.com/s/files/1/0554/4398/0469/files/Group_85233.png?v=1617262021"
+             data-src="https://cdn.shopify.com/s/files/1/0554/4398/0469/files/Group_85233.png?v=1617262021"
+             data-sizes="auto"
+             alt="" />
+        {% endif %}
+      </h2>
+      {% endif %}
+      {% if block.settings.text != blank %}
+      <p style="color: {{ block.settings.text_color }};">{{ block.settings.text }}</p>
+      {% endif %}
+    </div>
+    {% if block.settings.link != blank %}
+    </a>
+    {% endif %}
+  </section>
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Find gifts by messaging",
+	"class": "find-gifts-by-messaging",
+    "settings": [],
+	"blocks": [
+      {
+        "type": "block",
+        "name": "Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "desk_image",
+            "label": "Desktop image",
+            "info": "Recommended size: 1280px * 259px"
+          },
+		  {
+            "type": "image_picker",
+            "id": "mob_image",
+            "label": "Mobile image",
+            "info": "Recommended size: 375px * 366px"
+          },
+		  {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+          },
+		  {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+			"default": "Text goes here."
+          },
+		  {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "#391D00"
+          },
+		  {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon",
+            "info": "Recommended size: 93px * 78px"
+          },
+		  {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

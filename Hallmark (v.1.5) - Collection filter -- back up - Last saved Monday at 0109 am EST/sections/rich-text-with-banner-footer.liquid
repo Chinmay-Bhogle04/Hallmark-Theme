@@ -1,0 +1,81 @@
+{% for block in section.blocks %}
+<div class="page-width">
+  <div class="rich-text text-center {% if forloop.first == false %}section-padding{% endif %} wow fadeInUp">
+    {% if block.settings.title != blank %}
+    <div class="section-header text-center " >
+      {% if block.settings.sub_title != blank %}
+      <p>{{ block.settings.sub_title }}</p>
+      {% endif %}
+      <h2>{{ block.settings.title | escape }}</h2>
+    </div>
+    {% endif %}
+    {% if block.settings.text != blank %}
+    <div class="text">{{ block.settings.text }}</div>
+    {% endif %}
+  </div>
+  {% if block.settings.desk_image != blank %}
+  <div class="image-wrapper wow fadeInUp" >
+    <img class="lazyload {% if block.settings.mob_image != blank %}small--hide{% endif %}"
+         src="{{ block.settings.desk_image | img_url: 'master' }}"
+         data-src="{{ block.settings.desk_image | img_url:"master" }}"
+         data-sizes="auto"
+         alt="" />
+    {% if block.settings.mob_image != blank %}
+    <img class="lazyload medium-up--hide"
+         src="{{ block.settings.mob_image | img_url: 'master' }}"
+         data-src="{{ block.settings.mob_image | img_url:"master" }}"
+         data-sizes="auto"
+         alt="" />
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Rich text with banner",
+	"class": "rich-text-with-banner",
+    "settings": [
+      
+	],
+    "blocks": [
+      {
+        "type": "featured_collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          {
+            "type": "image_picker",
+            "id": "desk_image",
+            "label": "Desktop Image",
+            "info": "Recommended size: 1250px * 450px"
+          },
+          {
+            "type": "image_picker",
+            "id": "mob_image",
+            "label": "Mobile Image",
+            "info": "Recommended size: 600px * 600px"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

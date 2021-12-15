@@ -1,0 +1,57 @@
+{% include 'get-help' %}
+
+
+{% schema %}
+  {
+    "name": "Get help",
+	"class": "index-section get-help",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Get help"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subtitle",
+        "default": "Subtitle"
+      },
+	  {
+        "type": "image_picker",
+        "id": "desk_image",
+		"label": "Desktop image",
+		"info": "Recommended image: 1280px * 378px"
+      },
+	  {
+        "type": "image_picker",
+        "id": "mob_image",
+		"label": "Mobile image",
+		"info": "Recommended image: 375px * 233px"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+	],
+    "presets": [
+      {
+        "name": "Get help",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

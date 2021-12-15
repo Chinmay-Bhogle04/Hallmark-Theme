@@ -1,0 +1,145 @@
+<!-- sections/homepage-button-link.liquid -->
+<div class="button-text-wrapper" style="background-color:{{ section.settings.bg_color }};">
+  <div class="page-width">
+    <div class="button-description">
+      <h1 class="description">
+        {{ section.settings.descripiton }}
+      </h1>
+      <div class="text-container">
+        <div class="button-group-wrapper">
+          {% if section.settings.button_label != blank %}
+          <div {% if section.settings.button_label1_TID %}id="{{ section.settings.button_label1_TID }}"{% endif %} class="button-wrapper">
+            {{ section.settings.button_label }}{% include 'left-arrow' %}
+            {% assign linklist1 = section.settings.button_url %}
+            <div class="link-dropdown-wrapper">
+              <ul>
+                <li class="desktop-hide">
+                  <a href="javascript:void(0);" class="close-popup" aria-describedby="a11y-external-message">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><defs><style>.close-popup .a{fill:#fff;opacity:0;}.close-popup .b{fill:#dcdee2;}.close-popup .c{fill:none;stroke:#f8f8f8;stroke-linecap:round;stroke-width:1.5px;}</style></defs><g transform="translate(-1026 -146)"><rect class="a" width="34" height="34" transform="translate(1026 146)"></rect><g transform="translate(36.254 -155.822)"><circle class="b" cx="13" cy="13" r="13" transform="translate(993.745 305.822)"></circle><line class="c" y2="11.138" transform="translate(1010.818 315.024) rotate(47)"></line><line class="c" y2="11.138" transform="translate(1010.544 322.894) rotate(137)"></line></g></g></svg>  
+                  </a>
+                </li>
+                {% for link in linklists[linklist1].links %}
+                <li><a  href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          {% endif %}
+          {% if section.settings.button_label2 != blank %}
+          <div {% if section.settings.button_label2_TID %}id="{{ section.settings.button_label2_TID }}"{% endif %} class="button-wrapper">
+            {{ section.settings.button_label2 }}{% include 'left-arrow' %}
+            {% assign linklist2 = section.settings.button_url2 %}
+            <div class="link-dropdown-wrapper">
+              <ul>
+                <li class="desktop-hide">
+                  <a href="javascript:void(0);" class="close-popup" aria-describedby="a11y-external-message">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><defs><style>.close-popup .a{fill:#fff;opacity:0;}.close-popup .b{fill:#dcdee2;}.close-popup .c{fill:none;stroke:#f8f8f8;stroke-linecap:round;stroke-width:1.5px;}</style></defs><g transform="translate(-1026 -146)"><rect class="a" width="34" height="34" transform="translate(1026 146)"></rect><g transform="translate(36.254 -155.822)"><circle class="b" cx="13" cy="13" r="13" transform="translate(993.745 305.822)"></circle><line class="c" y2="11.138" transform="translate(1010.818 315.024) rotate(47)"></line><line class="c" y2="11.138" transform="translate(1010.544 322.894) rotate(137)"></line></g></g></svg>  
+                  </a>
+                </li>
+                {% for link in linklists[linklist2].links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          {% endif %}
+          {% if section.settings.button_label3 != blank %}
+          <div {% if section.settings.button_label3_TID %}id="{{ section.settings.button_label3_TID }}"{% endif %} class="button-wrapper">
+            {{ section.settings.button_label3 }}{% include 'left-arrow' %}
+            {% assign linklist3 = section.settings.button_url3 %}
+            <div class="link-dropdown-wrapper">
+              <ul>
+                <li class="desktop-hide">
+                  <a href="javascript:void(0);" class="close-popup" aria-describedby="a11y-external-message">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><defs><style>.close-popup .a{fill:#fff;opacity:0;}.close-popup .b{fill:#dcdee2;}.close-popup .c{fill:none;stroke:#f8f8f8;stroke-linecap:round;stroke-width:1.5px;}</style></defs><g transform="translate(-1026 -146)"><rect class="a" width="34" height="34" transform="translate(1026 146)"></rect><g transform="translate(36.254 -155.822)"><circle class="b" cx="13" cy="13" r="13" transform="translate(993.745 305.822)"></circle><line class="c" y2="11.138" transform="translate(1010.818 315.024) rotate(47)"></line><line class="c" y2="11.138" transform="translate(1010.544 322.894) rotate(137)"></line></g></g></svg>  
+                  </a>
+                </li>
+                {% for link in linklists[linklist3].links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Buttons",
+  "settings": [
+  {
+    "type": "color",
+    "id": "bg_color",
+    "label": "Background color"
+  },
+  {
+    "type": "textarea",
+    "id": "descripiton",
+    "label": "Descripiton"
+  },
+  {
+    "type": "text",
+    "id": "button_label1_TID",
+    "label": "Button Tracking ID"
+  },
+  {
+    "type": "text",
+    "id": "button_label",
+    "label": "Button Label",
+    "default": "Shop Now"
+  },
+  {
+    "type": "link_list",
+    "id": "button_url",
+    "label": "Button URL"
+  },
+  {
+    "type": "text",
+    "id": "button_label2_TID",
+    "label": "Button 2 Tracking ID"
+  },
+  {
+    "type": "text",
+    "id": "button_label2",
+    "label": "Button Label2",
+    "default": "Shop Now"
+  },
+  {
+    "type": "link_list",
+    "id": "button_url2",
+    "label": "Button URL2"
+  },
+  {
+    "type": "text",
+    "id": "button_label3_TID",
+    "label": "Button 3 Tacking ID"
+  },
+  {
+    "type": "text",
+    "id": "button_label3",
+    "label": "Button Label3",
+    "default": "Shop Now"
+  },
+  {
+    "type": "link_list",
+    "id": "button_url3",
+    "label": "Button URL3"
+  }
+  ],
+  "presets": [
+  {
+    "name": "Buttons",
+    "category": "Advanced layout"
+  }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

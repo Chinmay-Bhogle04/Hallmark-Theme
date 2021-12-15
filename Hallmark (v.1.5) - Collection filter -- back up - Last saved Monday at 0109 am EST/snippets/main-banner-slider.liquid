@@ -1,0 +1,327 @@
+<section data-section-id="{{ section.id }}" data-section-type="hallmark-banner-section">
+  <div class="slideshow__banner active-slider">
+    {%- assign max_height = 720 -%}
+    {% for block in section.blocks %}
+    {% if block.settings.enable_banner %}
+    
+    {% if block.type == "banner-content" %}
+    {% if block.settings.button_label2 == blank %}
+    <a class="sildeshow__fullwidth-link"href="{{ block.settings.button_url }}">
+      {% endif %}
+      <div class="slideshow__banner-slide " id="block-{{ block.id }}">
+        {% if block.settings.video != blank %}
+        <div class="small--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_large.aspect_ratio | times: 100}}%;">
+          <video width="100%" height="100%" playsinline autoplay muted loop id="myVideo">
+            <source src="{{ block.settings.video }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {% else %}
+        {% unless block.settings.banner_large == nil %}
+        {%- assign img_url = block.settings.banner_large | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="small--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_large.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}"
+               class="custom__image lazyload js image_scale"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ block.settings.banner_large.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ block.settings.banner_large.alt | escape }}">
+        </div>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ block.banner_large.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.banner_large.image.alt, 'custom__image' }}
+        </noscript>
+        {% endunless %}
+        {% endif %}
+
+        {% if block.settings.mobVideo != blank %}
+        <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_small.aspect_ratio | times: 100}}%;">
+          <video width="100%" height="100%" playsinline autoplay muted loop id="myVideoMob" poster="{{ block.settings.banner_small | img_url:"800x" }}">
+            <source src="{{ block.settings.mobVideo }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {% else %}
+        {% unless block.settings.banner_small == nil %}
+        {%- assign img_url = block.settings.banner_small | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_small.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}"
+               class="custom__image lazyload js image_scale"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ block.settings.banner_small.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ block.settings.banner_small.alt | escape }}">
+        </div>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ block.banner_small.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.banner_small.image.alt, 'custom__image' }}
+        </noscript>
+        {% endunless %}
+        {% endif %}
+        <div class="slideshow__banner-text
+                    {% if block.settings.horizontal_alignment == 'center' and block.settings.vertical_alignment == 'middle' %} content_center_middle-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'center' and block.settings.vertical_alignment == 'top' %} content_center_top-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'center' and block.settings.vertical_alignment == 'bottom' %} content_center_bottom-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'left' and block.settings.vertical_alignment == 'top' %} content_left_top-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'left' and block.settings.vertical_alignment == 'middle' %} content_left_middle-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'left' and block.settings.vertical_alignment == 'bottom' %} content_left_bottom-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'right' and block.settings.vertical_alignment == 'top' %} content_right_top-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'right' and block.settings.vertical_alignment == 'middle' %} content_right_middle-aligned{% endif %}
+             		{% if block.settings.horizontal_alignment == 'right' and block.settings.vertical_alignment == 'bottom' %} content_right_bottom-aligned{% endif %}">
+          <div class="slideshow__banner-text-container
+                      {% if block.settings.vertical_alignment == 'middle' %} content_middle-aligned{% endif %}
+                      {% if block.settings.vertical_alignment == 'bottom' %} content_bottom-aligned{% endif %}
+                      {% if block.settings.text_align == 'center' %} text-center{% endif %}
+                      {% if block.settings.text_align == 'right' %} text-right{% endif %}
+                      {% if block.settings.full_width_content and block.settings.textand_button_align == 'text_left'%} full-width-alignment1{% endif %}
+                      {% if block.settings.full_width_content and block.settings.textand_button_align == 'text_right'%} full-width-alignment2{% endif %}">
+            {% unless block.settings.logo == blank %}
+            {%- assign img_url = block.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="lazyload js image_scale"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ block.settings.logo.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ block.settings.banner_small.alt | escape }}">
+            {% endunless %}
+            {% unless block.settings.title == blank %}
+            <h2 class="title" style="color:{{ block.settings.titleColor }};">{{ block.settings.title }}</h2>
+            {% endunless %}
+            {% unless block.settings.subtitle == blank %}
+            <p class="subtitle" style="color:{{ block.settings.subtitleColor }};">{{ block.settings.subtitle }}</p>
+            {% endunless %}
+            
+            {% if block.settings.button_label2 == blank %}
+            {% if block.settings.button_label != blank %}
+            <span class="button-wrapper">
+              {{ block.settings.button_label }}
+            </span>
+            {% endif %}
+            {% else %}
+            <div class="button-group-wrapper">
+              {% if block.settings.button_label != blank %}
+              <a href="{{ block.settings.button_url }}" class="button-wrapper">
+                {{ block.settings.button_label }}{% include 'left-arrow' %}
+              </a>
+              {% endif %}
+              {% if block.settings.button_label2 != blank %}
+              <a href="{{ block.settings.button_url2 }}" class="button-wrapper">
+                {{ block.settings.button_label2 }}{% include 'left-arrow' %}
+              </a>
+              {% endif %}
+              {% if block.settings.button_label3 != blank %}
+              <a href="{{ block.settings.button_url3 }}" class="button-wrapper">
+                {{ block.settings.button_label3 }}{% include 'left-arrow' %}
+              </a>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% if block.settings.button_label2 == blank %}
+    </a>
+    {% endif %}
+    {% else %}
+    <div class="slideshow__banner-slide with-filter" id="block-{{ block.id }}">
+      {% if block.settings.video != blank %}
+      <div class="small--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_large.aspect_ratio | times: 100}}%;">
+        <video width="100%" height="100%" playsinline autoplay muted loop id="myVideo">
+          <source src="{{ block.settings.video }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      {% else %}
+      {% unless block.settings.banner_large == nil %}
+      {%- assign img_url = block.settings.banner_large | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <div class="small--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_large.aspect_ratio | times: 100}}%;">
+        <img id="{{ img_id }}"
+             class="custom__image lazyload js image_scale"
+             data-src="{{ img_url }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ block.settings.banner_large.aspect_ratio }}"
+             data-sizes="auto"
+             alt="{{ block.settings.banner_large.alt | escape }}">
+      </div>
+      <noscript>
+        {% capture image_size %}{{ max_height }}x{% endcapture %}
+        {{ block.banner_large.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.banner_large.image.alt, 'custom__image' }}
+      </noscript>
+      {% endunless %}
+      {% endif %}
+
+      {% if block.settings.mobVideo != blank %}
+      <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_small.aspect_ratio | times: 100}}%;">
+        <video width="100%" height="100%" playsinline autoplay muted loop id="myVideoMob" poster="{{ block.settings.banner_small | img_url:"800x" }}">
+          <source src="{{ block.settings.mobVideo }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      {% else %}
+      {% unless block.settings.banner_small == nil %}
+      {%- assign img_url = block.settings.banner_small | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_small.aspect_ratio | times: 100}}%;">
+        <img id="{{ img_id }}"
+             class="custom__image lazyload js image_scale"
+             data-src="{{ img_url }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ block.settings.banner_small.aspect_ratio }}"
+             data-sizes="auto"
+             alt="{{ block.settings.banner_small.alt | escape }}">
+      </div>
+      <noscript>
+        {% capture image_size %}{{ max_height }}x{% endcapture %}
+        {{ block.banner_small.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.banner_small.image.alt, 'custom__image' }}
+      </noscript>
+      {% endunless %}
+      {% endif %}
+      <div class="slideshow__banner-text
+                  {{ block.settings.horizontal_alignment }}-{{ block.settings.vertical_alignment }}--button
+                  {% if block.settings.horizontal_alignment == 'center' and block.settings.vertical_alignment == 'middle' %} content_center_middle-aligned{% endif %}
+                  {% if block.settings.horizontal_alignment == 'center' and block.settings.vertical_alignment == 'top' %} content_center_top-aligned{% endif %}
+                  {% if block.settings.horizontal_alignment == 'center' and block.settings.vertical_alignment == 'bottom' %} content_center_bottom-aligned{% endif %}
+                  {% if block.settings.horizontal_alignment == 'left' and block.settings.vertical_alignment == 'top' %} content_left_top-aligned{% endif %}
+                  {% if block.settings.horizontal_alignment == 'left' and block.settings.vertical_alignment == 'middle' %} content_left_middle-aligned{% endif %}
+                  {% if block.settings.horizontal_alignment == 'left' and block.settings.vertical_alignment == 'bottom' %} content_left_bottom-aligned{% endif %}
+                  {% if block.settings.horizontal_alignment == 'right' and block.settings.vertical_alignment == 'top' %} content_right_top-aligned{% endif %}
+                  {% if block.settings.horizontal_alignment == 'right' and block.settings.vertical_alignment == 'middle' %} content_right_middle-aligned{% endif %}
+                  {% if block.settings.horizontal_alignment == 'right' and block.settings.vertical_alignment == 'bottom' %} content_right_bottom-aligned{% endif %}">
+        <div class="slideshow__banner-text-container
+                    {% if block.settings.vertical_alignment == 'middle' %} content_middle-aligned{% endif %}
+                    {% if block.settings.vertical_alignment == 'bottom' %} content_bottom-aligned{% endif %}
+                    {% if block.settings.text_align == 'center' %} text-center{% endif %}
+                    {% if block.settings.text_align == 'right' %} text-right{% endif %}
+                    {% if block.settings.full_width_content and block.settings.textand_button_align == 'text_left'%} full-width-alignment1{% endif %}
+                    {% if block.settings.full_width_content and block.settings.textand_button_align == 'text_right'%} full-width-alignment2{% endif %}">
+          {% unless block.settings.logo == blank %}
+          {%- assign img_url = block.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <img class="lazyload js image_scale"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ block.settings.logo.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ block.settings.banner_small.alt | escape }}">
+          {% endunless %}
+          {% unless block.settings.pretitle == blank %}
+          <h3 class="pretitle" style="color:{{ block.settings.PretitleColor }};font-size:{{ block.settings.pretitleSize }}px;">{{ block.settings.pretitle }}</h3>
+          {% endunless %}
+          {% unless block.settings.title == blank %}
+          <h2 class="title" style="color:{{ block.settings.titleColor }};font-size:{{ block.settings.titleSize }}px;">{{ block.settings.title }}</h2>
+          {% endunless %}
+          {% unless block.settings.subtitle == blank %}
+          <p class="subtitle" style="color:{{ block.settings.subtitleColor }};font-size:{{ block.settings.subtitleSize }}px;">{{ block.settings.subtitle }}</p>
+          {% endunless %}
+          {% if block.settings.button_label != blank %}
+          <div class="button-group-wrapper" style="justify-content: left;">
+            <a href="{{ block.settings.button_url }}" class="button-wrapper">
+              {{ block.settings.button_label }}
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="button-group-wrapper filter-wrapper">
+        {% if block.settings.button_label1 != blank %}
+        <div class="button-wrapper">
+          <span class="pre-text">{{ block.settings.button_pre1 }}</span>
+          <span>{{ block.settings.button_label1 }}</span><span class="left-arrow">{% include 'left-arrow' %}</span>
+          {% assign linklist = block.settings.button_url1 %}
+          <div class="link-dropdown-wrapper">
+            <ul>
+              <li class="desktop-hide">
+                <a href="javascript:void(0);" class="close-popup" aria-describedby="a11y-external-message">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><defs><style>.close-popup .a{fill:#fff;opacity:0;}.close-popup .b{fill:#dcdee2;}.close-popup .c{fill:none;stroke:#f8f8f8;stroke-linecap:round;stroke-width:1.5px;}</style></defs><g transform="translate(-1026 -146)"><rect class="a" width="34" height="34" transform="translate(1026 146)"></rect><g transform="translate(36.254 -155.822)"><circle class="b" cx="13" cy="13" r="13" transform="translate(993.745 305.822)"></circle><line class="c" y2="11.138" transform="translate(1010.818 315.024) rotate(47)"></line><line class="c" y2="11.138" transform="translate(1010.544 322.894) rotate(137)"></line></g></g></svg>  
+                </a>
+              </li>
+              {% for link in linklists[linklist].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+        {% if block.settings.button_label2 != blank %}
+        <div class="button-wrapper">
+          <span class="pre-text">{{ block.settings.button_pre2 }}</span>
+          <span>{{ block.settings.button_label2 }}</span><span class="left-arrow">{% include 'left-arrow' %}</span>
+          {% assign linklist = block.settings.button_url2 %}
+          <div class="link-dropdown-wrapper">
+            <ul>
+              <li class="desktop-hide">
+                <a href="javascript:void(0);" class="close-popup" aria-describedby="a11y-external-message">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><defs><style>.close-popup .a{fill:#fff;opacity:0;}.close-popup .b{fill:#dcdee2;}.close-popup .c{fill:none;stroke:#f8f8f8;stroke-linecap:round;stroke-width:1.5px;}</style></defs><g transform="translate(-1026 -146)"><rect class="a" width="34" height="34" transform="translate(1026 146)"></rect><g transform="translate(36.254 -155.822)"><circle class="b" cx="13" cy="13" r="13" transform="translate(993.745 305.822)"></circle><line class="c" y2="11.138" transform="translate(1010.818 315.024) rotate(47)"></line><line class="c" y2="11.138" transform="translate(1010.544 322.894) rotate(137)"></line></g></g></svg>  
+                </a>
+              </li>
+              {% for link in linklists[linklist].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+        {% if block.settings.button_label3 != blank %}
+        <div class="button-wrapper">
+          <span class="pre-text">{{ block.settings.button_pre3 }}</span>
+          <span>{{ block.settings.button_label3 }}</span><span class="left-arrow">{% include 'left-arrow' %}</span>
+          {% assign linklist = block.settings.button_url3 %}
+          <div class="link-dropdown-wrapper">
+            <ul>
+              <li class="desktop-hide">
+                <a href="javascript:void(0);" class="close-popup" aria-describedby="a11y-external-message">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><defs><style>.close-popup .a{fill:#fff;opacity:0;}.close-popup .b{fill:#dcdee2;}.close-popup .c{fill:none;stroke:#f8f8f8;stroke-linecap:round;stroke-width:1.5px;}</style></defs><g transform="translate(-1026 -146)"><rect class="a" width="34" height="34" transform="translate(1026 146)"></rect><g transform="translate(36.254 -155.822)"><circle class="b" cx="13" cy="13" r="13" transform="translate(993.745 305.822)"></circle><line class="c" y2="11.138" transform="translate(1010.818 315.024) rotate(47)"></line><line class="c" y2="11.138" transform="translate(1010.544 322.894) rotate(137)"></line></g></g></svg>  
+                </a>
+              </li>
+              {% for link in linklists[linklist].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+        {% if block.settings.button_label4 != blank %}
+        <div class="button-wrapper">
+          <span class="pre-text">{{ block.settings.button_pre4 }}</span>
+          <span>{{ block.settings.button_label4 }}</span><span class="left-arrow">{% include 'left-arrow' %}</span>
+          {% assign linklist = block.settings.button_url4 %}
+          <div class="link-dropdown-wrapper">
+            <ul>
+              <li class="desktop-hide">
+                <a href="javascript:void(0);" class="close-popup" aria-describedby="a11y-external-message">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><defs><style>.close-popup .a{fill:#fff;opacity:0;}.close-popup .b{fill:#dcdee2;}.close-popup .c{fill:none;stroke:#f8f8f8;stroke-linecap:round;stroke-width:1.5px;}</style></defs><g transform="translate(-1026 -146)"><rect class="a" width="34" height="34" transform="translate(1026 146)"></rect><g transform="translate(36.254 -155.822)"><circle class="b" cx="13" cy="13" r="13" transform="translate(993.745 305.822)"></circle><line class="c" y2="11.138" transform="translate(1010.818 315.024) rotate(47)"></line><line class="c" y2="11.138" transform="translate(1010.544 322.894) rotate(137)"></line></g></g></svg>  
+                </a>
+              </li>
+              {% for link in linklists[linklist].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+        {% if block.settings.button_label5 != blank %}
+        <div class="button-wrapper">
+          <span class="pre-text">{{ block.settings.button_pre5 }}</span>
+          <span>{{ block.settings.button_label5 }}</span><span class="left-arrow">{% include 'left-arrow' %}</span>
+          {% assign linklist = block.settings.button_url5 %}
+          <div class="link-dropdown-wrapper">
+            <ul>
+              <li class="desktop-hide">
+                <a href="javascript:void(0);" class="close-popup" aria-describedby="a11y-external-message">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><defs><style>.close-popup .a{fill:#fff;opacity:0;}.close-popup .b{fill:#dcdee2;}.close-popup .c{fill:none;stroke:#f8f8f8;stroke-linecap:round;stroke-width:1.5px;}</style></defs><g transform="translate(-1026 -146)"><rect class="a" width="34" height="34" transform="translate(1026 146)"></rect><g transform="translate(36.254 -155.822)"><circle class="b" cx="13" cy="13" r="13" transform="translate(993.745 305.822)"></circle><line class="c" y2="11.138" transform="translate(1010.818 315.024) rotate(47)"></line><line class="c" y2="11.138" transform="translate(1010.544 322.894) rotate(137)"></line></g></g></svg>  
+                </a>
+              </li>
+              {% for link in linklists[linklist].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>

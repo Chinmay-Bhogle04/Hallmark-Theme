@@ -1,0 +1,120 @@
+<div class="cart-popup" data-cart-popup tabindex="-1">
+  <div class="cart-popup__header">
+    <div class="section-header">
+      <h2 id="CartPopupHeading" class="cart-popup__heading">Your Bag ( <span>{{ cart.item_count }}</span> )</h2>
+      <button class="cart-popup__close mm-ajaxcart-close" aria-label="{{ 'general.accessibility.close_modal' | t }}">
+        <svg width="25" height="25" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25.5 8.5L8.5 25.5" stroke="#2B2E34" stroke-linejoin="round"/>
+          <path d="M8.5 8.5L25.5 25.5" stroke="#2B2E34" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="cart-popup__notification">
+      {% if cart.total_price < 14999 %}
+      {% assign cartTotal = cart.total_price %}
+      <p>
+        Free Gift on Order above $149
+        <br>
+        <small>Shop for {{ 14999 | minus:cartTotal | money }} more and receive a Free Necklace worth $79</small>
+      </p>
+      {% else %}
+      <p>Free Necklace Worth $79 is Added to your Cart</p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="cart-popup-item-wrapper has-items" {% if cart.item_count < 1 %}style="display:none"{% endif %}>
+    {% for item in cart.items %}
+    <div class="cart-popup-item" data-variant-id="{{item.id}}">
+      <div class="cart-popup-item__image-wrapper">
+        <div class="cart-popup-item__image cart-popup-item__image--placeholder">
+          <a href="{{ item.url }}">
+            <img src="{{ item.image | product_img_url: '110x' }}" alt="{{ item.title }}">
+          </a>
+        </div>
+      </div>
+      <div class="cart-popup-item__description">
+        <div class="desc">
+          <h3 class="cart-popup-item__title">
+            <a href="{{ item.url }}">
+              {{ item.product.title }}
+            </a>
+          </h3>
+          {% if item.variant.inventory_quantity < 1 %}
+          <p class="pre-order-msg">This product is on backorder & expected to be shipped within 8 weeks.</p>
+          {% endif %}
+          {%- assign variant_options = 'template ' | split: ' ' -%}
+          {%- if item.product.has_only_default_variant != true -%}
+          {%- assign variant_options = item.options_with_values -%}
+          {%- endif -%}
+          {%- assign property_size = item.properties | size -%}
+          <ul class="product-details {% if item.product.has_only_default_variant and property_size == 0 %} hide{% endif %}">
+            {%- for option in variant_options -%}
+            <li class="product-details__item product-details__item--variant-option {% if item.product.has_only_default_variant %} hide{% endif %}">{{ option.name }}: {{ option.value }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+        <div class="cart-popup-item__quantity" >
+          <div class="quantity-box">
+            <div class="quantity-nav text-center">
+              <div class="quantity-button quantity-down quantity-minus">
+                {% comment %}
+                <svg width="13" height="5" viewBox="0 0 9 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.30119 0.982056H1.09329C0.71039 0.982056 0.67749 1.29216 0.67749 1.67506C0.67749 2.05796 0.71039 2.36806 1.09329 2.36806H8.30119C8.68409 2.36806 8.71699 2.05796 8.71699 1.67506C8.71699 1.29216 8.68409 0.982056 8.30119 0.982056Z" fill="#989898"/>
+                </svg>
+                {% endcomment %}
+                {% include 'icon-minus' %}
+              </div>
+              <input class="quantity-input"
+                     data-key="{{ item.key }}"
+                     data-line="{{ forloop.index }}"
+                     type="number"
+                     value="{{ item.quantity }}"
+                     min="0" pattern="[0-9]*">
+              <div class="quantity-button quantity-up quantity-plus">
+                {% comment %}
+                <svg width="13" height="13" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.62324 3.3264H4.71264V0.4158C4.71264 0.0329 4.40254 0 4.01964 0C3.63674 0 3.32664 0.0329 3.32664 0.4158V3.3264H0.416044C0.0331441 3.3264 0.000244141 3.6365 0.000244141 4.0194C0.000244141 4.4023 0.0331441 4.7124 0.416044 4.7124H3.32664V7.623C3.32664 8.0059 3.63674 8.0388 4.01964 8.0388C4.40254 8.0388 4.71264 8.0059 4.71264 7.623V4.7124H7.62324C8.00614 4.7124 8.03904 4.4023 8.03904 4.0194C8.03904 3.6365 8.00614 3.3264 7.62324 3.3264Z" fill="#1C59BB"/>
+                </svg>
+                {% endcomment %}
+                {% include 'icon-plus' %}
+              </div>
+            </div>
+          </div>
+          <div>
+            <span class="price-item">{{item.line_price | money}} /-</span>
+          </div>
+          <div class="close-button">
+            <a href="javascript:void(0);" class="remove-cart mm-ajaxcart-remove-item" data-line="{{ forloop.index }}" data-name="{{ item.product.title }}">
+              {% include 'icon-bin' %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="no-items" {% if cart.item_count > 0 %}style="display:none"{% endif %}>
+    <p>Your cart is currently empty</p>
+  </div>
+  <div class="cart__footer has-items" {% if cart.item_count < 1 %}style="display:none"{% endif %}>
+    <div class="summary">                
+      <span class="label">total</span>
+      <span class="price" data-Cart-Total="{{ cart.total_price }}">{{ cart.total_price | money }}</span> 
+    </div>
+    {% comment %}
+    <div class="a-button">
+      <a href="javascript:void(0);" class="btn continue-shopping" aria-describedby="a11y-external-message">
+        Continue shopping
+      </a>
+      <a class="btn btn-view-cart" href="/cart/">
+        View cart
+      </a>
+    </div>
+    {% endcomment %}
+    <div class="checkout-button">
+      <a href="/checkout" class="cart-popup__cta-link btn">
+        checkout
+      </a>
+    </div>
+  </div>
+</div>

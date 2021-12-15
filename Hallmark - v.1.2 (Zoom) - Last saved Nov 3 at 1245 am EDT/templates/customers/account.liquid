@@ -1,0 +1,167 @@
+<div class="myaccount-wrapper">
+  <div class="page-width">
+    <div class="breadcrumb medium-up--hide">
+      <a href="">My account</a>
+      <span class="separator"></span>
+      <span>Your Information</span>
+    </div>
+    <div class="grid myaccount">
+      {% include 'account-sidebar' %}
+      <div class="grid__item myaccount__content myaccount__account-details">
+        <div class="account-details-top">
+          <h2>Personal information</h2>
+          <p>Here you can view and edit your info & password</p>
+          <a href="/account/addresses" class="edit-btn">Edit</a>
+        </div>
+        <ul class="customer-info">
+          <li>
+            <span>Full name</span>
+            <p>{{ customer.default_address.first_name }} {{ customer.default_address.last_name }}</p>
+          </li>
+          <li>
+            <span>Email</span>
+            <p>{{ customer.email }}</p>
+          </li>
+          <li>
+            <span>Phone number</span>
+            <p>{{ customer.default_address.phone }}</p>
+          </li>
+        </ul>
+<!--         <h2>Hallmark Diamonds Membership Club</h2>
+        <p>Here you can see your status</p>
+        <ul class="membership-info">
+          <li>
+            <div>
+              <span>Total rewards points earned</span>
+              <p><span>200 Points</span></p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span>Bronze</span>
+              <p>More <b>800 points</b> to reach <b>bronze</b></p>
+            </div>
+            <div class="icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="61.63" height="59.31" viewBox="0 0 61.63 59.31"><defs><style>.myacc-circle-a,.myacc-circle-b,.myacc-circle-d,.myacc-circle-g{fill:none;}.myacc-circle-a{stroke:#707070;}.myacc-circle-c{clip-path:url(#a);}.myacc-circle-d{stroke:#cfd2d8;stroke-width:5px;}.myacc-circle-e,.myacc-circle-f{stroke:none;}.myacc-circle-f{fill:#d3a277;}</style><clipPath id="a"><path class="myacc-circle-a" d="M995.758,11825.638h30.309l-12.346-30.146,43.667,1.944v57.365l-61.63-.913Z" transform="translate(-995.758 -11795.491)"/></clipPath></defs><g transform="translate(-680.5 -418.345)"><g transform="translate(94.742 14.854)"><g class="myacc-circle-b" transform="translate(591.906 408.168)"><path class="myacc-circle-e" d="M25.47,0A25.47,25.47,0,1,1,0,25.47,25.47,25.47,0,0,1,25.47,0Z"/><path class="myacc-circle-f" d="M 25.46990966796875 5 C 20.00219917297363 5 14.86175537109375 7.129241943359375 10.99549865722656 10.99549865722656 C 7.129241943359375 14.86175537109375 5 20.00219917297363 5 25.46990966796875 C 5 30.93762016296387 7.129241943359375 36.07806396484375 10.99549865722656 39.94432067871094 C 14.86175537109375 43.81057739257812 20.00219917297363 45.9398193359375 25.46990966796875 45.9398193359375 C 30.93762016296387 45.9398193359375 36.07806396484375 43.81057739257812 39.94432067871094 39.94432067871094 C 43.81057739257812 36.07806396484375 45.9398193359375 30.93762016296387 45.9398193359375 25.46990966796875 C 45.9398193359375 20.00219917297363 43.81057739257812 14.86175537109375 39.94432067871094 10.99549865722656 C 36.07806396484375 7.129241943359375 30.93762016296387 5 25.46990966796875 5 M 25.46990966796875 0 C 39.53655242919922 0 50.9398193359375 11.40326690673828 50.9398193359375 25.46990966796875 C 50.9398193359375 39.53655242919922 39.53655242919922 50.9398193359375 25.46990966796875 50.9398193359375 C 11.40326690673828 50.9398193359375 0 39.53655242919922 0 25.46990966796875 C 0 11.40326690673828 11.40326690673828 0 25.46990966796875 0 Z"/></g><g class="myacc-circle-c" transform="translate(585.758 403.491)"><g class="myacc-circle-d" transform="translate(6.149 4.677)"><circle class="myacc-circle-e" cx="25.47" cy="25.47" r="25.47"/><circle class="myacc-circle-g" cx="25.47" cy="25.47" r="22.97"/></g></g></g></g></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="19" class="crown-svg" viewBox="0 0 22 19"><defs><style>.myacc-crown-a{fill:#fff;opacity:0;}.myacc-crown-b{fill:#d3a277;}</style></defs><g transform="translate(-700.442 -439)"><rect class="myacc-crown-a" width="22" height="19" transform="translate(700.442 439)"/><path class="myacc-crown-b" d="M274.252,109.666a1,1,0,0,1-.963-.963.964.964,0,1,1,1.927,0,1,1,0,0,1-.964.963m18.579,1.42c-.658,1.423-2.126,5.13-2.733,6.854-.05.154-.155.154-.3.051a18.044,18.044,0,0,0-11.642,0c-.152.1-.254.1-.306-.051-.608-1.725-2.074-5.431-2.731-6.854a.814.814,0,0,1-.1-.254.235.235,0,0,1,.2-.255.337.337,0,0,1,.251.205,32.376,32.376,0,0,0,2.026,3.1,1.08,1.08,0,0,0,.76.457.8.8,0,0,0,.708-.71,12.689,12.689,0,0,0-.1-2.843.224.224,0,0,1,.2-.3.259.259,0,0,1,.253.2,10.084,10.084,0,0,0,1.264,2.436,1.191,1.191,0,0,0,.914.51,1.392,1.392,0,0,0,1.012-.558c.86-1.168,1.011-4.263,1.214-5.736a.253.253,0,0,1,.507,0c.2,1.473.353,4.568,1.216,5.736a1.382,1.382,0,0,0,1.009.558,1.188,1.188,0,0,0,.914-.51,10.118,10.118,0,0,0,1.264-2.436.261.261,0,0,1,.255-.2.225.225,0,0,1,.2.3,12.78,12.78,0,0,0-.1,2.843.8.8,0,0,0,.707.71,1.077,1.077,0,0,0,.76-.457,32.588,32.588,0,0,0,2.026-3.1c.053-.1.152-.205.252-.205a.233.233,0,0,1,.2.255.824.824,0,0,1-.1.254m-14.378-1.775a1,1,0,0,1-.961-.966.962.962,0,1,1,1.923,0,1,1,0,0,1-.962.966m5.521,12.386c-2.228,0-5.773-.356-5.773-1.624s3.545-1.626,5.773-1.626,5.77.356,5.77,1.626-3.543,1.624-5.77,1.624m0-2.539c-2.228,0-4.761.407-4.761.915,0,.456,2.533.863,4.761.863s4.758-.407,4.758-.863c0-.508-2.531-.915-4.758-.915m0-13.351a.965.965,0,0,1-.963-.964.961.961,0,1,1,1.922,0,.961.961,0,0,1-.959.964m5.516,3.5a1,1,0,0,1-.961-.966.961.961,0,1,1,1.921,0,1,1,0,0,1-.961.966m4.2.354a1,1,0,0,1-.964-.963.963.963,0,1,1,1.926,0,1,1,0,0,1-.962.963" transform="translate(427.343 335.211)"/></g></svg>
+            </div>
+          </li>
+        </ul>
+        <h2>Special Occasions</h2>
+        <p>Here you can set reminders</p>
+        <ul class="reminder-info">
+          <li class="medium-up--hide">
+            <a href="" class="add-reminder">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10.123" height="10.123" viewBox="0 0 10.123 10.123"><defs><style>.myacc-plus-icon-a{fill:none;stroke:#633e60;stroke-width:1.5px;}</style></defs><g transform="translate(-171.5 -1115.5)"><line class="myacc-plus-icon-a" y2="10.123" transform="translate(176.562 1115.5)"/><line class="myacc-plus-icon-a" y2="10.123" transform="translate(181.623 1120.562) rotate(90)"/></g></svg>
+              add New reminders
+            </a>
+          </li>
+          <li>
+            <div class="reminder">
+              <div class="top">
+                <div>
+                  <span>Amber’s birthday</span>
+                  <p>21-10-1995</p>
+                </div>
+                <a href="" class="remove-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13"><defs><style>.myacc-remove-a{fill:#fff;opacity:0;}.myacc-remove-b{fill:#633e60;stroke:#623e60;stroke-width:0.5px;}</style></defs><g transform="translate(-563 -447.185)"><rect class="myacc-remove-a" width="14" height="13" transform="translate(563 447.185)"/><g transform="translate(564.225 445.746)"><g transform="translate(0 2.036)"><path class="myacc-remove-b" d="M463.865,1027.294h-7.544a.254.254,0,0,1-.254-.236l-.7-9.707a.254.254,0,0,1,.254-.274h8.95a.255.255,0,0,1,.255.274l-.7,9.707A.255.255,0,0,1,463.865,1027.294Zm-7.307-.511h7.069l.666-9.2h-8.4Z" transform="translate(-454.318 -1015.525)"/><path class="myacc-remove-b" d="M464.612,1017.586h-11.04a.255.255,0,1,1,0-.511h11.04a.255.255,0,1,1,0,.511Z" transform="translate(-453.316 -1015.524)"/><path class="myacc-remove-b" d="M464.451,1016.1h-3.3a.256.256,0,0,1-.242-.335l.507-1.552a.254.254,0,0,1,.243-.176h2.283a.255.255,0,0,1,.243.176l.507,1.552a.256.256,0,0,1-.243.335Zm-2.944-.511H464.1l-.34-1.041h-1.913Z" transform="translate(-457.027 -1014.038)"/><path class="myacc-remove-b" d="M464.391,1027.19a.255.255,0,0,1-.255-.255v-6.552a.255.255,0,0,1,.511,0v6.552A.255.255,0,0,1,464.391,1027.19Z" transform="translate(-458.611 -1017.018)"/><path class="myacc-remove-b" d="M468.092,1027.191h-.017a.257.257,0,0,1-.238-.273l.436-6.551a.26.26,0,0,1,.272-.238.256.256,0,0,1,.237.272l-.436,6.551A.255.255,0,0,1,468.092,1027.191Z" transform="translate(-460.422 -1017.018)"/><path class="myacc-remove-b" d="M460.273,1027.19a.256.256,0,0,1-.255-.239l-.436-6.551a.256.256,0,0,1,.238-.272.26.26,0,0,1,.272.238l.436,6.551a.256.256,0,0,1-.238.272Z" transform="translate(-456.382 -1017.018)"/></g></g></g></svg>
+                </a>
+              </div>
+              <div class="bottom">
+                <a href="">Reminder</a>
+                <a href="">Edit</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="reminder">
+              <div class="top">
+                <div>
+                  <span>Dad’s Birthday</span>
+                  <p>21-10-1970</p>
+                </div>
+                <a href="" class="remove-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13"><defs><style>.myacc-remove-a{fill:#fff;opacity:0;}.myacc-remove-b{fill:#633e60;stroke:#623e60;stroke-width:0.5px;}</style></defs><g transform="translate(-563 -447.185)"><rect class="myacc-remove-a" width="14" height="13" transform="translate(563 447.185)"/><g transform="translate(564.225 445.746)"><g transform="translate(0 2.036)"><path class="myacc-remove-b" d="M463.865,1027.294h-7.544a.254.254,0,0,1-.254-.236l-.7-9.707a.254.254,0,0,1,.254-.274h8.95a.255.255,0,0,1,.255.274l-.7,9.707A.255.255,0,0,1,463.865,1027.294Zm-7.307-.511h7.069l.666-9.2h-8.4Z" transform="translate(-454.318 -1015.525)"/><path class="myacc-remove-b" d="M464.612,1017.586h-11.04a.255.255,0,1,1,0-.511h11.04a.255.255,0,1,1,0,.511Z" transform="translate(-453.316 -1015.524)"/><path class="myacc-remove-b" d="M464.451,1016.1h-3.3a.256.256,0,0,1-.242-.335l.507-1.552a.254.254,0,0,1,.243-.176h2.283a.255.255,0,0,1,.243.176l.507,1.552a.256.256,0,0,1-.243.335Zm-2.944-.511H464.1l-.34-1.041h-1.913Z" transform="translate(-457.027 -1014.038)"/><path class="myacc-remove-b" d="M464.391,1027.19a.255.255,0,0,1-.255-.255v-6.552a.255.255,0,0,1,.511,0v6.552A.255.255,0,0,1,464.391,1027.19Z" transform="translate(-458.611 -1017.018)"/><path class="myacc-remove-b" d="M468.092,1027.191h-.017a.257.257,0,0,1-.238-.273l.436-6.551a.26.26,0,0,1,.272-.238.256.256,0,0,1,.237.272l-.436,6.551A.255.255,0,0,1,468.092,1027.191Z" transform="translate(-460.422 -1017.018)"/><path class="myacc-remove-b" d="M460.273,1027.19a.256.256,0,0,1-.255-.239l-.436-6.551a.256.256,0,0,1,.238-.272.26.26,0,0,1,.272.238l.436,6.551a.256.256,0,0,1-.238.272Z" transform="translate(-456.382 -1017.018)"/></g></g></g></svg>
+                </a>
+              </div>
+              <div class="bottom">
+                <a href="">Reminder</a>
+                <a href="">Edit</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="reminder">
+              <div class="top">
+                <div>
+                  <span>my anniversary</span>
+                  <p>21-10-1995</p>
+                </div>
+                <a href="" class="remove-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13"><defs><style>.myacc-remove-a{fill:#fff;opacity:0;}.myacc-remove-b{fill:#633e60;stroke:#623e60;stroke-width:0.5px;}</style></defs><g transform="translate(-563 -447.185)"><rect class="myacc-remove-a" width="14" height="13" transform="translate(563 447.185)"/><g transform="translate(564.225 445.746)"><g transform="translate(0 2.036)"><path class="myacc-remove-b" d="M463.865,1027.294h-7.544a.254.254,0,0,1-.254-.236l-.7-9.707a.254.254,0,0,1,.254-.274h8.95a.255.255,0,0,1,.255.274l-.7,9.707A.255.255,0,0,1,463.865,1027.294Zm-7.307-.511h7.069l.666-9.2h-8.4Z" transform="translate(-454.318 -1015.525)"/><path class="myacc-remove-b" d="M464.612,1017.586h-11.04a.255.255,0,1,1,0-.511h11.04a.255.255,0,1,1,0,.511Z" transform="translate(-453.316 -1015.524)"/><path class="myacc-remove-b" d="M464.451,1016.1h-3.3a.256.256,0,0,1-.242-.335l.507-1.552a.254.254,0,0,1,.243-.176h2.283a.255.255,0,0,1,.243.176l.507,1.552a.256.256,0,0,1-.243.335Zm-2.944-.511H464.1l-.34-1.041h-1.913Z" transform="translate(-457.027 -1014.038)"/><path class="myacc-remove-b" d="M464.391,1027.19a.255.255,0,0,1-.255-.255v-6.552a.255.255,0,0,1,.511,0v6.552A.255.255,0,0,1,464.391,1027.19Z" transform="translate(-458.611 -1017.018)"/><path class="myacc-remove-b" d="M468.092,1027.191h-.017a.257.257,0,0,1-.238-.273l.436-6.551a.26.26,0,0,1,.272-.238.256.256,0,0,1,.237.272l-.436,6.551A.255.255,0,0,1,468.092,1027.191Z" transform="translate(-460.422 -1017.018)"/><path class="myacc-remove-b" d="M460.273,1027.19a.256.256,0,0,1-.255-.239l-.436-6.551a.256.256,0,0,1,.238-.272.26.26,0,0,1,.272.238l.436,6.551a.256.256,0,0,1-.238.272Z" transform="translate(-456.382 -1017.018)"/></g></g></g></svg>
+                </a>
+              </div>
+              <div class="bottom">
+                <a href="">Reminder</a>
+                <a href="">Edit</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="reminder">
+              <div class="top">
+                <div>
+                  <span>Rachel’s anniversary</span>
+                  <p>21-10-1998</p>
+                </div>
+                <a href="" class="remove-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13"><defs><style>.myacc-remove-a{fill:#fff;opacity:0;}.myacc-remove-b{fill:#633e60;stroke:#623e60;stroke-width:0.5px;}</style></defs><g transform="translate(-563 -447.185)"><rect class="myacc-remove-a" width="14" height="13" transform="translate(563 447.185)"/><g transform="translate(564.225 445.746)"><g transform="translate(0 2.036)"><path class="myacc-remove-b" d="M463.865,1027.294h-7.544a.254.254,0,0,1-.254-.236l-.7-9.707a.254.254,0,0,1,.254-.274h8.95a.255.255,0,0,1,.255.274l-.7,9.707A.255.255,0,0,1,463.865,1027.294Zm-7.307-.511h7.069l.666-9.2h-8.4Z" transform="translate(-454.318 -1015.525)"/><path class="myacc-remove-b" d="M464.612,1017.586h-11.04a.255.255,0,1,1,0-.511h11.04a.255.255,0,1,1,0,.511Z" transform="translate(-453.316 -1015.524)"/><path class="myacc-remove-b" d="M464.451,1016.1h-3.3a.256.256,0,0,1-.242-.335l.507-1.552a.254.254,0,0,1,.243-.176h2.283a.255.255,0,0,1,.243.176l.507,1.552a.256.256,0,0,1-.243.335Zm-2.944-.511H464.1l-.34-1.041h-1.913Z" transform="translate(-457.027 -1014.038)"/><path class="myacc-remove-b" d="M464.391,1027.19a.255.255,0,0,1-.255-.255v-6.552a.255.255,0,0,1,.511,0v6.552A.255.255,0,0,1,464.391,1027.19Z" transform="translate(-458.611 -1017.018)"/><path class="myacc-remove-b" d="M468.092,1027.191h-.017a.257.257,0,0,1-.238-.273l.436-6.551a.26.26,0,0,1,.272-.238.256.256,0,0,1,.237.272l-.436,6.551A.255.255,0,0,1,468.092,1027.191Z" transform="translate(-460.422 -1017.018)"/><path class="myacc-remove-b" d="M460.273,1027.19a.256.256,0,0,1-.255-.239l-.436-6.551a.256.256,0,0,1,.238-.272.26.26,0,0,1,.272.238l.436,6.551a.256.256,0,0,1-.238.272Z" transform="translate(-456.382 -1017.018)"/></g></g></g></svg>
+                </a>
+              </div>
+              <div class="bottom">
+                <a href="">Reminder</a>
+                <a href="">Edit</a>
+              </div>
+            </div>
+          </li>
+          <li class="small--hide">
+            <a href="" class="add-reminder">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10.123" height="10.123" viewBox="0 0 10.123 10.123"><defs><style>.myacc-plus-icon-a{fill:none;stroke:#633e60;stroke-width:1.5px;}</style></defs><g transform="translate(-171.5 -1115.5)"><line class="myacc-plus-icon-a" y2="10.123" transform="translate(176.562 1115.5)"/><line class="myacc-plus-icon-a" y2="10.123" transform="translate(181.623 1120.562) rotate(90)"/></g></svg>
+              add New reminders
+            </a>
+          </li>
+        </ul> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="add-reminder-popup hide">
+  <h2 class="medium-up--text-center">add New reminders</h2>
+  <a href="javascript:void(0);" class="close-popup"><svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="33" height="32"><rect x="16.4995" y="0.346771" width="22.1372" height="22.1372" transform="rotate(45 16.4995 0.346771)" fill="#C4C4C4"/></mask><g mask="url(#mask0)"><path d="M17.1074 16.5065L20.9271 20.3263L20.3195 20.934L16.4997 17.1142L12.68 20.934L12.0723 20.3263L15.892 16.5065L12.0723 12.6868L12.68 12.0791L16.4997 15.8989L20.3195 12.0791L20.9271 12.6868L17.1074 16.5065Z" fill="#F8F8F8" stroke="#F8F8F8"/></g></svg></a>
+  <form>
+    <label for="occasion">Occasion</label>
+    <input type="text" id="occasion" name="" value="" placeholder="Enter the occasion" />
+    <label for="occasionDate">Date</label>
+    <input type="text" id="occasionDate" name="" value="" placeholder="Enter date here" />
+    <div class="input-group">
+      <span>Remind me via email</span>
+      <label class="switch-toggle">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="input-group">
+      <span>Remind me via message</span>
+      <label class="switch-toggle">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <label for="">Remind me on</label>
+    <select>
+      <option selected>1 Day before</option>
+    </select>
+    <input type="submit" class="btn" value="Save" />
+  </form>
+</div> -->

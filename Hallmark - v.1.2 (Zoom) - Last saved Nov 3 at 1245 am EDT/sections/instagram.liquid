@@ -1,0 +1,82 @@
+<section>
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+    <div class="section-header text-center wow fadeInUp" data-wow-delay="500ms">
+      <h2>{{ section.settings.title | escape }}</h2>
+      {% if section.settings.sub_title != blank %}
+      <p>{{ section.settings.sub_title }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+    {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+    {% if section.settings.enable_social_icons != blank %}
+    <div class="instagram-social-icons text-center wow fadeInUp" data-wow-delay="500ms">
+      <span>Follow us</span>
+      <ul class="social-icons">
+        {%- for social in socials -%}
+        {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+        {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+        {%- if settings[social_link] != blank -%}
+        <li class="social-icons__item">
+          <a class="social-icons__link" target="_blank" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+            {%- include icon_link -%}
+            <span class="icon__fallback-text">{{ social }}</span>
+          </a>
+        </li>
+        {%- endif -%}
+        {%- endfor -%}
+
+        {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
+        <li>
+          <a class="social-icons__link" target="_blank" href="{{ shop.url }}{{ blog.url }}.atom">
+            {% include 'icon-rss' %}
+            <span class="icon__fallback-text">RSS</span>
+          </a>
+        </li>
+        {%- endif -%}
+      </ul>
+    </div>
+    {% endif %}
+    <div class="wow fadeInUp" data-wow-delay="500ms">
+      {% include 'instagram' %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Instagram",
+	"class": "instagram-section section-padding",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subtitle",
+        "default": "Subtitle"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_social_icons",
+        "label": "Enable social icons"
+      }
+	],
+    "presets": [
+      {
+        "name": "Instagram",
+        "category": "Advanced layout"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

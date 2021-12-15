@@ -1,0 +1,41 @@
+{% include 'rich-text-with-banner' %}
+
+
+{% schema %}
+  {
+    "name": "Rich text with banner",
+	"class": "rich-text-with-banner",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Heading"
+      },
+	  {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+      },
+	  {
+        "type": "image_picker",
+        "id": "desk_image",
+        "label": "Desktop Image",
+        "info": "Recommended size: 1240px * 431px"
+      },
+	  {
+        "type": "image_picker",
+        "id": "mob_image",
+        "label": "Mobile Image",
+        "info": "Recommended size: 375px * 376px"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

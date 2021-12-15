@@ -1,0 +1,34 @@
+<section>
+  <div class="page-width">
+    {% if section.settings.text != blank %}
+    <div class="rte-setting">
+      <p><b>Hallmark Diamonds – Jewelry to celebrate the people who matter most.</b></p>
+      <p>For more than 110 years, Hallmark has been helping make the world a more emotionally connected place and striving to make a genuine difference in every life, every day—whether it’s through capturing and celebrating meaningful milestones or the little everyday moments in between. We help make people’s relationships, moments and stories tangible.</p>
+      <p>Hallmark Diamonds jewelry is inspired by the power of emotional connections, our personal stories, and sharing what’s in our hearts. Each piece is designed using timeless icons that represent the special moments, milestones and relationships in our lives. We’re known for being the “very best” and this is also true with our jewelry. High-quality craftsmanship, deep meaning, and great value are key in creating treasures you’ll love forever. Whether it’s a gift for yourself, a friend or family, a Hallmark Diamonds piece will celebrate your story for years to come.</p>
+      <p>Hallmark Diamonds tells your unique story and celebrates the things that are close to your heart with trendy and classic designs perfect for any season or occasion. Hallmark is your go-to place for buying quality diamond jewelry online. Our versatile collections offer stunning diamond rings, diamond earrings, diamond pendants and diamond bracelets. Share that inner spark that makes you who you are by wearing and giving heartfelt, timeless icons brought to life in superbly crafted pieces.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Footer description",
+  "class": "footer-description section-padding",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer description",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,504 @@
+{% assign pagination_type = section.settings.pagination_type %}
+{% assign no_products_image = section.settings.no_products_image %}
+{% assign empty_collection_text = section.settings.empty_collection_text %}
+{% assign show_collection_title = section.settings.show_collection_title %}
+{% assign enable_collection_sorting = section.settings.enable_collection_sorting %}
+{% assign show_collection_breadcrumb = section.settings.show_collection_breadcrumb %}
+{% assign show_collection_description = section.settings.show_collection_description %}
+{% assign desktop_banner = section.settings.desktop-banner %}
+{%- assign desktop_img_url = desktop_banner | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+{% assign mobile_banner = section.settings.mobile-banner %}
+{%- assign mobile_img_url = mobile_banner | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+{% assign show_pagination = false %}
+{% if pagination_type != 'infinite_scroll' %}
+{% assign show_pagination = true %}
+{% endif %}
+
+<section data-section-id="{{ section.id }}" data-section-type="mm-collection-template" class="mm-collection">
+  <div class="innerpage__banner full-width grid grid--no-gutters grid--uniform">
+    <div class="collection-information small--one-whole medium-up--one-half">
+      {% if show_collection_title %}
+      <div class=" mm-collection-title">
+        {% if collection.handle == "all" %}
+        <h1>All Products</h1>
+        {% else %}
+        <h1>{{ collection.title }}</h1>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if show_collection_description and collection.description %}
+      <div class="mm-collection-description">
+        <p>{{ collection.description }}</p>
+      </div>
+      {% endif %}
+    </div>
+    
+    <div class="collection-banner small--one-whole medium-up--one-half">
+      <img class="lazyload"
+           data-src="{{ desktop_img_url }}"
+           data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+           data-aspectratio="{{ section.settings.desktop-banner.aspect_ratio }}"
+           data-sizes="auto"
+           alt="{{ section.settings.desktop-banner.alt | escape }}">
+    </div>
+  </div>
+  
+  <div class="full-width">
+    {% if show_collection_breadcrumb %}
+    <div class="mm-collection-breadcrumb">
+      {% include 'breadcrumb' %}
+    </div>
+    {% endif %}
+    
+    
+    
+    <section class="mm_collection-bg">
+      <div class="mm-sticky-block grid grid--uniform">
+        <div class="grid__item medium-up--one-quarter">
+          <div class="mm-filter-sidebar mm-sticky-sidebar">
+            <div class="mm-sticky-inner">
+              {% include 'mm-filter-sidebar' %}
+            </div>
+          </div>
+        </div>
+        <div class="grid__item medium-up--three-quarters">        
+          <div class="mm-product-header">
+            <div class="mm-filter-btn">
+              <button class="mm-button" id="sidebar-filter-opener">{{ sidebar_filter_heading }}</button>
+            </div>
+            
+            <p></p>
+            
+            {% if enable_collection_sorting %}
+            <div class="mm-sort-content">
+              <select id="ajaxSort" class="sort-wrapper">
+                <option value="manual">Featured</option>
+                <option value="best-selling">Best Selling</option>
+                <option value="price-ascending">Price: Low to High</option>
+                <option value="price-descending">Price: High to Low</option>                
+                <option value="title-ascending">Alphabetically: A-Z</option>
+                <option value="title-descending">Alphabetically: Z-A</option>
+                <option value="created-descending">Date: New to Old</option>
+                <option value="created-ascending">Date: Old to New</option>
+              </select>
+            </div>
+            {% endif %}
+          </div>
+          
+          <div class="small--one-whole medium-up--one-whole applied__filter_wrapper" style="display: none;">
+            <div class="small--one-whole medium-up--one-whole" id="applied__filter">
+              
+            </div>
+          </div>
+          
+          <div class="product-container">
+            <div id="product-loop" class="grid grid--uniform">
+              
+            </div>
+            <div class="no-products" 
+            id="empty-products" 
+            style="display: none;">
+            {% if no_products_image != nil %}
+            <img class="lazyload" data-src="{{ no_products_image | img_url: '150x' }}" alt="Empty Collection Image" data-sizes="auto">
+            {% endif %}
+            {% if empty_collection_text != blank %}
+            <p>{{ empty_collection_text }}</p>
+            {% else %}
+            <p>We are sorry, no products match your filter selections. Please adjust them further.</p>
+            {% endif %}
+          </div>
+          <div class="mm-pagination" {% if show_pagination == false %}style="opacity: 0;"{% endif %}>
+            <div id="mm-pagination-holder"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% if section.settings.sidebar_filter_heading %}
+  {% assign sidebar_filter_heading = section.settings.sidebar_filter_heading %}
+  {% else %}
+  {% assign sidebar_filter_heading = 'Filter By' %}
+  {% endif %}
+  
+</div>
+
+</section>
+{% include 'mm-filter-content' %} 
+
+
+{% schema %}
+{
+  "name": "Collection Page",
+  "settings": [
+  {
+    "type": "checkbox",
+    "id": "show_collection_banner",
+    "label": "Show collection Banner",
+    "default": true
+  },
+  {
+    "type": "header",
+    "content": "Collections Page Banner"
+  },
+  {
+    "type": "image_picker",
+    "id": "desktop-banner",
+    "label": "Desktop Banner Image"
+  },
+  {
+    "type": "image_picker",
+    "id": "mobile-banner",
+    "label": "Mobile Banner Image"
+  },
+  {
+    "type": "header",
+    "content": "Heading and Description"
+  },
+  {
+    "type": "checkbox",
+    "id": "show_collection_title",
+    "label": "Show collection title",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "show_collection_description",
+    "label": "Show collection description",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "show_collection_breadcrumb",
+    "label": "Show breadcrumb links",
+    "default": true
+  },
+  {
+    "type": "header",
+    "content": "Product Layout"
+  },
+  {
+    "type": "checkbox",
+    "id": "show_product_vendor",
+    "label": "Show Vendor",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "show_sale_badge",
+    "label": "Show Sale Badge",
+    "default": true
+  },
+  {
+    "type": "text",
+    "id": "sale_badge_text",
+    "label": "Sale Badge Text",
+    "default": "Sale"
+  },
+  {
+    "type": "checkbox",
+    "id": "show_soldout_badge",
+    "label": "Show Soldout Badge",
+    "default": true
+  },
+  {
+    "type": "text",
+    "id": "soldout_badge_text",
+    "label": "Soldout Badge Text",
+    "default": "Soldout"
+  },
+  {
+    "type": "header",
+    "content": "Empty Collection"
+  },
+  {
+    "type": "image_picker",
+    "id": "no_products_image",
+    "label": "Empty Collection Image"
+  },
+  {
+    "type": "textarea",
+    "id": "empty_collection_text",
+    "label": "Empty Collection Text",
+    "default": "We are sorry, no products match your filter selections. Please adjust them further."
+  },
+  {
+    "type": "header",
+    "content": "Pagination"
+  },
+  {
+    "type": "select",
+    "id": "pagination_type",
+    "label": "Pagination Type",
+    "options": [
+    {
+      "value": "basic_pagination",
+      "label": "Page Links"
+    },
+    {
+      "value": "infinite_scroll",
+      "label": "Infinite Scroll"
+    }
+    ]
+  },
+  {
+    "type": "range",
+    "id": "pagination_limit",
+    "label": "Products per page",
+    "min": 3,
+    "max": 45,
+    "step": 1,
+    "default": 18
+  },
+  {
+    "type": "header",
+    "content": "Filter Sidebar"
+  },	  
+  {
+    "type": "checkbox",
+    "id": "show_filter_heading",
+    "label": "Show Filter Heading",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_sticky_sidebar",
+    "label": "Enable Sticky Sidebar",
+    "default": false
+  },
+  {
+    "type": "text",
+    "id": "sidebar_filter_heading",
+    "label": "Heading",
+    "default": "Filter By"
+  },
+  {
+    "type": "select",
+    "id": "mobile_sidebar_style",
+    "label": "Mobile Sidebar Style",
+    "options": [
+    {
+      "value": "from_down",
+      "label": "Open From Down"
+    },
+    {
+      "value": "from_side",
+      "label": "Open From Side"
+    }
+    ]
+  },
+  {
+    "type": "header",
+    "content": "Collection Sorting"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_collection_sorting",
+    "label": "Enable Collection Sorting",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "show_product_count",
+    "label": "Show product count",
+    "default": true
+  },
+  {
+    "type": "header",
+    "content": "Brand Filter"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_brand_filter",
+    "label": "Enable Brand Filter",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_brand_filter_search",
+    "label": "Enable Search Box",
+    "info": "This will show search box for brand filter, which will help user to search brands.",
+    "default": true
+  },
+  {
+    "type": "text",
+    "id": "brand_filter_heading",
+    "label": "Heading",
+    "default": "Brand"
+  },
+  {
+    "type": "header",
+    "content": "Product Type Filter"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_pt_filter",
+    "label": "Enable Product Type Filter",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_pt_filter_search",
+    "label": "Enable Search Box",
+    "info": "This will show search box for product type filter, which will help user to search product types.",
+    "default": true
+  },
+  {
+    "type": "text",
+    "id": "pt_filter_heading",
+    "label": "Heading",
+    "default": "Product Type"
+  },
+  {
+    "type": "header",
+    "content": "Price Filter"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_price_filter",
+    "label": "Enable Price Filter",
+    "default": true
+  },
+  {
+    "type": "text",
+    "id": "price_filter_heading",
+    "label": "Heading",
+    "default": "Price"
+  },
+  {
+    "type": "textarea",
+    "id": "price_ranges",
+    "label": "Price Range",
+    "default": "0-500,500-1000,1000-2000,2000-3000,3000-100000"
+  },
+  {
+    "type": "checkbox",
+    "id": "price_range_slider",
+    "label": "Enable Price Slider",
+    "default": false
+  },
+  {
+    "type": "header",
+    "content": "Size Filter"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_size_filter",
+    "label": "Enable Size Filter",
+    "info": "Sizes will appear only when products has the size variant.",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_size_filter_swatch",
+    "label": "Enable Size Swatch",
+    "default": true
+  },
+  {
+    "type": "text",
+    "id": "size_filter_heading",
+    "label": "Heading",
+    "default": "Size"
+  },
+  {
+    "type": "header",
+    "content": "Color Filter"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_color_filter",
+    "label": "Enable Color Filter",
+    "info": "Colors will appear only when products has the color variant.",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_color_filter_swatch",
+    "label": "Enable Color Swatch",
+    "default": true
+  },
+  {
+    "type": "text",
+    "id": "color_filter_heading",
+    "label": "Heading",
+    "default": "Color"
+  },
+  {
+    "type": "header",
+    "content": "Tag Filter"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_tag_filter",
+    "label": "Enable Tag Filter",
+    "info": "Add tag filters in sidebar by adding content blocks.",
+    "default": true
+  },
+  {
+    "type": "header",
+    "content": "Multi-level Filter"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable_multilevel_filter",
+    "label": "Enable Multi Level Filter",
+    "default": true
+  },
+  {
+    "type": "paragraph",
+    "content": "Add tag in to the products to activate multi level filters. Syntax: mf___First Level__Second Level--Tag"
+  },
+  {
+    "type": "header",
+    "content": "Zales Banner Content"
+  },
+  {
+    "type": "image_picker",
+    "id": "zales-banner",
+    "label": "Zales Banner"
+  },
+  {
+    "type": "image_picker",
+    "id": "zales-item",
+    "label": "Zales Item"
+  },
+  {
+    "type": "image_picker",
+    "id": "zales-logo",
+    "label": "Zales Logo"
+  },
+  {
+    "type": "text",
+    "id": "zales-text",
+    "label": "Text"
+  },
+  {
+    "type": "text",
+    "id": "button-label",
+    "label": "Text",
+    "default": "VIEW"
+  }
+  ],
+  "blocks": [
+  {
+    "type": "tag_filters",
+    "name": "Tag Filter",
+    "settings": [
+    {
+      "type": "text",
+      "id": "filter_name",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "filter_tags",
+      "label": "Tags",
+      "info": "Add a comma-separated list of product tags. Only the tags found in the collection will be displayed as filters."
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}

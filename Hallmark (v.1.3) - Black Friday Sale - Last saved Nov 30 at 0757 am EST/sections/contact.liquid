@@ -1,0 +1,225 @@
+<div class="wrapper">
+  <div class="page-width">
+    <section>
+      <div class="contact-top medium-up--text-center">
+        <div>
+          {% if section.settings.info_title != blank %}
+          <h2 class="info-title">{{ section.settings.info_title }}</h2>
+          {% endif %}
+          {% if section.settings.info_text != blank %}
+          <div class="text">{{ section.settings.info_text }}</div>
+          {% endif %}
+          <ul class="contact-info">
+            {% if section.settings.contact_number != blank %}
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"><defs><style>.contact-phone-a{fill:#fff;opacity:0;}.contact-phone-b{fill:#293542;}</style></defs><g transform="translate(-373 -338)"><rect class="contact-phone-a" width="21" height="21" transform="translate(373 338)"/><g transform="translate(375 339.633)"><path class="contact-phone-b" d="M224.458,2687.587c-1.871,0-4.146-1.431-7.152-4.5-2.988-3.047-4.363-5.337-4.327-7.208a4.7,4.7,0,0,1,1.92-3.346c.124-.118.246-.232.364-.348a.732.732,0,0,1,.517-.21.724.724,0,0,1,.519.219l3.579,3.646a.737.737,0,0,1-.009,1.035l-1.1,1.075a6.682,6.682,0,0,0,2.228,2.906c.89.756,1.4.891,1.509.834.04-.046,1.053-1.038,1.053-1.038a.732.732,0,0,1,1.026.013h0l3.592,3.631a.733.733,0,0,1,.014,1.014l-.188.2c-.884.959-1.887,2.044-3.494,2.068Zm-8.692-14.866a4.264,4.264,0,0,1-.353.358,4.057,4.057,0,0,0-1.686,2.818c-.031,1.633,1.314,3.814,4.113,6.67,2.818,2.874,4.985,4.273,6.62,4.273h.043c1.286-.019,2.135-.938,2.956-1.828l.191-.207-3.58-3.6c-.105.1-1.015.995-1.079,1.053a.976.976,0,0,1-.138.1c-1.084.55-3.21-1.634-4.015-2.713-.787-1.057-.988-1.8-.6-2.216l1.1-1.083Z" transform="translate(-212.979 -2670.125)"/><path class="contact-phone-b" d="M230.425,2678.871h-.014a.375.375,0,0,1-.36-.388,4.683,4.683,0,0,0-4.5-4.845c-.112-.006-.225-.006-.338,0a.374.374,0,0,1-.027-.748c.132,0,.262,0,.393,0a5.431,5.431,0,0,1,5.222,5.62A.374.374,0,0,1,230.425,2678.871Z" transform="translate(-215.969 -2670.355)"/><path class="contact-phone-b" d="M232.958,2678.013h-.01a.374.374,0,0,1-.364-.383,7.209,7.209,0,0,0-7.032-7.381c-.115,0-.232,0-.348,0H225.2a.374.374,0,0,1-.009-.748c.129,0,.256,0,.384,0a7.957,7.957,0,0,1,7.761,8.145A.375.375,0,0,1,232.958,2678.013Z" transform="translate(-215.969 -2669.5)"/><path class="contact-phone-b" d="M227.888,2679.722h-.025a.374.374,0,0,1-.348-.4,2.057,2.057,0,0,0,0-.288,2.159,2.159,0,0,0-2.293-2.006.365.365,0,0,1-.4-.348.374.374,0,0,1,.348-.4,2.9,2.9,0,0,1,3.089,2.7,2.825,2.825,0,0,1,0,.389A.374.374,0,0,1,227.888,2679.722Z" transform="translate(-215.969 -2671.211)"/></g></g></svg>
+              <div>{{ section.settings.contact_number }}</div>
+            </li>
+            {% endif %}
+            {% if section.settings.contact_address != blank %}
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" viewBox="0 0 15 20"><defs><style>.contact-address-a{fill:#fff;opacity:0;}.contact-address-b{fill:#293542;}</style></defs><g transform="translate(-855 -338)"><rect class="contact-address-a" width="15" height="20" transform="translate(855 338)"/><g transform="translate(856.616 339.158)"><path class="contact-address-b" d="M774.636,2014.885a.373.373,0,0,1-.313-.169c-.228-.344-5.572-8.5-5.572-11.621a5.884,5.884,0,0,1,11.768-.132v.132c0,3.12-5.344,11.276-5.572,11.621A.372.372,0,0,1,774.636,2014.885Zm0-16.991h-.061a5.137,5.137,0,0,0-5.077,5.2c0,2.493,3.979,8.913,5.137,10.73,1.158-1.817,5.136-8.238,5.136-10.726v-.122a5.137,5.137,0,0,0-5.134-5.079Z" transform="translate(-768.752 -1997.148)"/><path class="contact-address-b" d="M775.855,2005.554h0a2.275,2.275,0,0,1,0-4.55h0a2.275,2.275,0,0,1,2.274,2.275A2.279,2.279,0,0,1,775.855,2005.554Zm0-3.8a1.527,1.527,0,1,0,1.081.448,1.517,1.517,0,0,0-1.081-.448Z" transform="translate(-769.971 -1998.122)"/></g></g></svg>
+              <div>{{ section.settings.contact_address }}</div>
+            </li>
+            {% endif %}
+            {% if section.settings.contact_email != blank %}
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="15" viewBox="0 0 21 15"><defs><style>.contact-email-a{fill:#fff;opacity:0;}.contact-email-b{fill:#293542;}</style></defs><g transform="translate(-616 -340)"><rect class="contact-email-a" width="21" height="15" transform="translate(616 340)"/><g transform="translate(617.529 340.976)"><path class="contact-email-b" d="M462.125,2776.781a1.584,1.584,0,0,1-1.048-.393l-5.93-5.332a.374.374,0,0,1,.5-.556l5.926,5.329a.847.847,0,0,0,1.111,0l5.919-5.326a.374.374,0,0,1,.5.556l-5.923,5.329A1.6,1.6,0,0,1,462.125,2776.781Z" transform="translate(-453.238 -2768.641)"/><path class="contact-email-b" d="M472.06,2782.321a.374.374,0,0,1-.238-.086l-3.97-3.3a.374.374,0,0,1,.479-.575l3.97,3.3a.374.374,0,0,1-.239.661Z" transform="translate(-456.443 -2770.627)"/><path class="contact-email-b" d="M455.4,2782.321a.373.373,0,0,1-.239-.661l3.97-3.3a.374.374,0,0,1,.478.575l-3.97,3.3A.376.376,0,0,1,455.4,2782.321Z" transform="translate(-453.238 -2770.627)"/><path class="contact-email-b" d="M468.479,2781.5H454.751a2.1,2.1,0,0,1-2.115-2.082v-9.308a2.11,2.11,0,0,1,2.131-2.066h13.679a2.145,2.145,0,0,1,1.5.6,2.087,2.087,0,0,1,.626,1.48v9.289A2.107,2.107,0,0,1,468.479,2781.5Zm-.032-.748h.025a1.353,1.353,0,0,0,1.358-1.326v-9.3a1.344,1.344,0,0,0-.4-.951,1.28,1.28,0,0,0-.96-.388H454.761a1.352,1.352,0,0,0-1.377,1.321l-.375.018h.374v9.286a1.347,1.347,0,0,0,1.346,1.336h13.717Z" transform="translate(-452.636 -2768.046)"/></g></g></svg>
+              <div>{{ section.settings.contact_email }}</div>
+            </li>
+            {% endif %}
+          </ul>
+          {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+          <div class="contact-social-icons medium-up--hide">
+            <span>Follow us</span>
+            <ul class="social-icons">
+              {%- for social in socials -%}
+              {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+              {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+              {%- if settings[social_link] != blank -%}
+              <li class="social-icons__item">
+                <a class="social-icons__link" target="_blank" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+                  {%- include icon_link -%}
+                  <span class="icon__fallback-text">{{ social }}</span>
+                </a>
+              </li>
+              {%- endif -%}
+              {%- endfor -%}
+
+              {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
+              <li>
+                <a class="social-icons__link" target="_blank" href="{{ shop.url }}{{ blog.url }}.atom">
+                  {% include 'icon-rss' %}
+                  <span class="icon__fallback-text">RSS</span>
+                </a>
+              </li>
+              {%- endif -%}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="contact-bottom">
+        {% if section.settings.form_title != blank %}
+        <h2 class="form-title">{{ section.settings.form_title }}</h2>
+        {% endif %}
+        <div class="contact-form form-vertical">
+          {%- assign formId = 'ContactForm' -%}
+          {% form 'contact', id: formId %}
+          {% include 'form-status', form: form, form_id: formId %}
+          {%- if form.posted_successfully? -%}
+          <style>
+            #thankyou-popup.overlay{
+              opacity: 1;
+              visibility: visible;
+            }
+          </style>
+          {%- endif -%}
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-name">First Name<span>*</span></label>
+              <input type="text" id="{{ formId }}-first" name="contact[First Name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="Enter your first name">
+            </div>
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-name">Last Name<span>*</span></label>
+              <input type="text" id="{{ formId }}-last" name="contact[Last Name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="Enter your last name">
+            </div>
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-email">{{ 'contact.form.email' | t }}<span>*</span></label>
+              <input
+                     type="email"
+                     id="{{ formId }}-email"
+                     name="contact[email]"
+                     autocorrect="off"
+                     autocapitalize="off"
+                     value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                     aria-required="true"
+                     {%- if form.errors contains 'email' -%}
+                     class="input--error"
+                     aria-invalid="true"
+                     aria-describedby="{{ formId }}-email-error"
+                     {%- endif -%}
+                     placeholder="Enter your email address"
+                     >
+              {%- if form.errors contains 'email' -%}
+              <span id="{{ formId}}-email-error" class="input-error-message">
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }}<span>*</span></span>
+                {% include 'icon-error' %}
+                <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+              </span>
+              {%- endif -%}
+            </div>
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}<span>*</span></label>
+              <div class="input-tel">
+                <!-- <input type="tel" name="tel1" value="+1" size="3" pattern="\d{3}" title="3-digit area code" class="area-code" readonly /> -->
+                <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="Enter your phone number">
+              </div>
+            </div>
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-phone">Inquiry<span>*</span></label>
+              <select name="contact[nature]">
+                <option value="">Select nature of Inquiry</option>
+                <option value="Sales">Sales</option>
+                <option value="Complaints">Complaints</option>
+                <option value="Suggestions">Suggestions</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}<span>*</span></label>
+          <textarea rows="5" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="Write your message here">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+          <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
+
+          {% endform %}
+        </div>
+      </div>
+      <div class="contact-social-icons small--hide">
+        <span>Follow us</span>
+        <ul class="social-icons">
+          {%- for social in socials -%}
+          {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+          {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+          {%- if settings[social_link] != blank -%}
+          <li class="social-icons__item">
+            <a class="social-icons__link" target="_blank" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+              {%- include icon_link -%}
+              <span class="icon__fallback-text">{{ social }}</span>
+            </a>
+          </li>
+          {%- endif -%}
+          {%- endfor -%}
+
+          {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
+          <li>
+            <a class="social-icons__link" href="{{ shop.url }}{{ blog.url }}.atom">
+              {% include 'icon-rss' %}
+              <span class="icon__fallback-text">RSS</span>
+            </a>
+          </li>
+          {%- endif -%}
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Contact us",
+	"class": "contact-us-section",
+    "settings": [
+	  {
+        "type": "header",
+        "content": "Contact information"
+      },
+	  {
+        "type": "text",
+        "id": "info_title",
+		"label": "Title",
+		"default": "Contact information"
+      },
+	  {
+        "type": "richtext",
+        "id": "info_text",
+		"label": "Text",
+		"default": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</p>"
+      },
+	  {
+        "type": "text",
+        "id": "contact_number",
+		"label": "Contact number",
+		"default": "+0198 8876 5652"
+      },
+	  {
+        "type": "text",
+        "id": "contact_address",
+		"label": "Address",
+		"default": "Address"
+      },
+	  {
+        "type": "text",
+        "id": "contact_email",
+		"label": "Email ID",
+		"default": "contactus@hallmark.com"
+      },
+	  {
+        "type": "header",
+        "content": "Contact form"
+      },
+	  {
+        "type": "text",
+        "id": "form_title",
+		"label": "Title",
+		"default": "Send us a message"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

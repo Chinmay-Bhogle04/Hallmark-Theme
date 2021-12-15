@@ -1,0 +1,61 @@
+<div class="breadcrumb-wrapper">
+  {% unless template == 'index' or template == 'list-collections' %}
+  <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+    <a href="/" title="Home">Home</a>
+    <span class="seperator">•</span>
+    {% if template contains 'page' %}
+    <span aria-hidden="true"></span>
+    <span>{{ page.title }}</span>
+    {% elsif template contains 'cart' %}
+    <span aria-hidden="true"></span>
+    <span>Cart</span>
+    {% elsif template contains 'product' %} 
+    
+    {% for typelink in linklists['product-type'].links %}
+    {% assign linkHandle = typelink.title | handleize %}
+    {% assign typeHandle = product.type | handleize %}
+    {% if typeHandle == linkHandle %}
+    <span aria-hidden="true"></span>
+    <a href="{{ typelink.url }}/">{{product.type}}</a>
+    {% endif %}
+    {% endfor %}
+    
+    {% if collection.url %}
+    <span aria-hidden="true"></span>
+    {{ collection.title | link_to: collection.url }}
+    {% endif %}
+    <span aria-hidden="true"></span>
+    <span>{{ product.title }}</span>
+    
+    {% elsif template contains 'collection' and collection.handle %}
+    
+    <span aria-hidden="true"></span>
+    {% if current_tags %}
+    {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+    {{ collection.title | link_to: url }}
+    <span aria-hidden="true"></span>
+    <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+    <span>{{ collection.title }}</span>
+    {% endif %}
+    {% elsif template == 'blog' %}
+    <span aria-hidden="true"></span>
+    {% if current_tags %}
+    {{ blog.title | link_to: blog.url }}
+    <span aria-hidden="true"></span>
+    <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+    <span>{{ blog.title }}</span>
+    {% endif %}
+    {% elsif template == 'article' %}
+    <span aria-hidden="true"></span>
+    {{ blog.title | link_to: blog.url }}
+    <span aria-hidden="true">&rsaquo;</span>
+    <span>{{ article.title }}</span>
+    {% else %}
+    <span aria-hidden="true"></span>
+    <span>{{ page_title }}</span>
+    {% endif %}
+  </nav>
+  {% endunless %}
+</div>

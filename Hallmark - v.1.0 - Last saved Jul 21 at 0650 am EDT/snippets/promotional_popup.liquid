@@ -1,0 +1,23 @@
+{% if settings.enablePopup %}
+<div id="size-chart-popup" class="overlay">
+  <div class="popup-wrapper">
+    <div class="popup-header text-center">
+      <span class="close-popup"><svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="33" height="32"><rect x="16.4995" y="0.346771" width="22.1372" height="22.1372" transform="rotate(45 16.4995 0.346771)" fill="#C4C4C4"/></mask><g mask="url(#mask0)"><path d="M17.1074 16.5065L20.9271 20.3263L20.3195 20.934L16.4997 17.1142L12.68 20.934L12.0723 20.3263L15.892 16.5065L12.0723 12.6868L12.68 12.0791L16.4997 15.8989L20.3195 12.0791L20.9271 12.6868L17.1074 16.5065Z" fill="#575555" stroke="#575555"/></g></svg></span>
+    </div>
+    <div class="popup-content">
+      <a href="{{ settings.imageLink }}">
+        <div class="popup-content-relative" style="padding-top:{{ 1 | divided_by: settings.popupImage.aspect_ratio | times: 100 }}%;">
+          {%- assign img_url = settings.popupImage | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <img class="lazyload custom__image"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 600]"
+               data-aspectratio="{{ settings.popupImage.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ preview_image.alt }}"
+               data-image>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+{% endif %}

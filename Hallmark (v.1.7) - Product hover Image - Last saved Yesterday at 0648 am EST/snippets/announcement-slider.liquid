@@ -1,0 +1,11 @@
+<div class="announcement-slider text-center">
+  {% for block in section.blocks %}
+  <div class="slide">
+    {% if block.settings.title != blank %}
+    <div class="announcement_text">
+      <p>{{ block.settings.title }}</p>
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>

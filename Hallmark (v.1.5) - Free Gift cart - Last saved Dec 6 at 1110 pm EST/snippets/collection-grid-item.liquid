@@ -1,0 +1,51 @@
+{% comment %}
+    Renders a list of products from a collection
+
+    Accepts:
+    - collection: {Object} Collection Liquid object (required)
+
+    Usage:
+    {% include 'collection-grid-item', collection: collection %}
+{% endcomment %}
+{% if customImage != blank %}
+	{%- assign collection_image = customImage | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+{% elsif collection.image %}
+  {%- assign collection_image = collection.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+{% elsif collection.products.first and collection.products.first.media != empty %}
+  {%- assign collection_image = collection.products.first.featured_media.preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+{% else %}
+  {% assign collection_image = blank %}
+{% endif %}
+
+<div class="grid-slider-section">
+  <a href="{% if collection.products == empty %}#{% else %}{{ collection.url }}{% endif %}" class="">
+    {% if collection_image != blank %}
+    <div class="absolute-image-wrapper" style="padding-top:{% unless preview_image == blank %}{{ 1 | divided_by: preview_image.aspect_ratio | times: 100 }}%{% else %}100%{% endunless %};">
+      <img class="grid-view-item__image lazyload"
+           alt="{{ preview_image.alt }}"
+           data-src="{{ collection_image }}"
+           data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+           data-aspectratio="{{ collection_image.aspect_ratio }}"
+           data-sizes="auto"
+           data-image>
+    </div>
+    {% else %}
+      {% if collection == empty %}
+        <div class="collection-grid-item__overlay">
+          {% capture current %}{% cycle 1, 2, 3 %}{% endcapture %}
+          {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {% else %}
+        <div class="collection-grid-item__overlay" style="background-image: url('{{ collection_image | img_url: '1024x1024' }}')"></div>
+      {% endif %}
+    {% endif %}
+
+    <div class="content">
+      <h3>{{ collection.title }}</h3>
+      <span class="btn btn-inline btn-inline-dark">
+        SHOP Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="14" class="icon-arrow" viewBox="0 0 10 14"><defs><style>.bnsl-arr-a{fill:#fff;opacity:0;}.bnsl-arr-b{fill:#6a3c62;}</style></defs><g transform="translate(-290.602 -2970.5)"><rect class="bnsl-arr-a" width="10" height="14" transform="translate(290.602 2970.5)"></rect><g transform="translate(7122.689 1734.388)"><path class="bnsl-arr-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"></path></g></g></svg>
+      </span>
+    </div>
+  </a>
+</div>

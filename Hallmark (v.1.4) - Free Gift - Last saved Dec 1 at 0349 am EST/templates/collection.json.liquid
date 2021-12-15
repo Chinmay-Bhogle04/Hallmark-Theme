@@ -1,0 +1,11 @@
+{% layout none %}
+{% paginate collection.products by 100 %}
+[
+  {% assign products_by_company = collection.products | sort:"title" %}
+  {% for product in products_by_company %}
+   {% if product.title contains 'Crowned Amethyst Heart Necklace With A Halo of Created White Sapphire' %}{% else %}
+   {{ product | json }}{% if forloop.last == false %},{% endif %}
+   {% endif %}
+  {% endfor %}
+]
+{% endpaginate %}

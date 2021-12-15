@@ -1,0 +1,58 @@
+<!-- sections/collection.liquid -->
+ 
+<div class="collection-wrapper wow fadeInUp {% if section.settings.enable_section_padding != blank %} section-padding{% endif %}" >
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+    <div class="section-header text-center with-btn wow fadeInUp" data-wow-delay="500ms">
+      {% if section.settings.sub_title != blank %}
+      <p>{{ section.settings.sub_title }}</p>
+      {% endif %}
+      <h2>{{ section.settings.title }}</h2>
+      {% if section.settings.show_shop_all %}
+      <a href="{{ collection.url }}" class="btn btn-inline btn-inline-dark" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
+        {{ 'collections.general.view_all' | t }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="0 0 8 13"><defs><style>.inline-btn-dark-a{fill:#fff;opacity:0;}.inline-btn-dark-b{fill:#293542;}</style></defs><g transform="translate(-291.239 -2970.859)"><rect class="inline-btn-dark-a" width="8" height="13" transform="translate(291.239 2970.859)"></rect><g transform="translate(7122.69 1734.388)"><path class="inline-btn-dark-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"></path></g></g></svg>
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+    {%- assign collection = collections[section.settings.collection] -%}
+
+    {%- assign max_height = 345 -%}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+
+    {%- assign product_limit = section.settings.rows -%}
+    <div class="swiper-container swiper-product-container wow fadeInUp" data-wow-delay="500ms">
+      <div class="swiper-wrapper grid grid--no-gutters grid--uniform">
+        {% for product in collection.products limit: product_limit %}
+        <div class="swiper-slide grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+         
+          {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+        </div>
+        {% else %}
+
+        {% for i in (1..product_limit) %}
+        <div class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+          <div class="grid-view-item product-card">
+            <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="#">
+              <span class="visually-hidden">{{ 'homepage.onboarding.product_title' | t }}</span>
+            </a>
+            <div class="grid-view-item__image-wrapper">
+              {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+              {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+             
+            </div>
+            <div class="h4 grid-view-item__title" aria-hidden="true">{{ 'homepage.onboarding.product_title' | t }}</div>
+            {% include 'product-price' %}
+         
+          </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+  
+      </div>
+      <!-- Add Scrollbar -->
+      <div class="swiper-scrollbar"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+{% comment %}
+    Renders a product card using "Grid" style
+    Accepts:
+    - max_height: {Number} Maximum height of the product's image (required)
+    - product: {Object} Product Liquid object (required)
+    - show_vendor: {Boolean} Show the product's vendor depending on the section setting (optional)
+
+    Usage:
+    {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+<div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
+  {% capture img_id %}ProductCardImage-{{ section.id }}-{{ product.id }}{% endcapture %}
+  {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
+  {%- assign preview_image = product.featured_media.preview_image -%}
+  {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+  {% unless preview_image == blank %}
+    {% include 'image-style', image: preview_image, height: max_height, wrapper_id: wrapper_id, img_id: img_id %}
+  {% endunless %}
+
+  <a href="#" class="wishlist-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33"><defs><style>.pr-grid-heart-a{fill:#fff;opacity:0;}.pr-grid-heart-b{fill:none;stroke:#6a3c62;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}</style></defs><g transform="translate(-347 -1933)"><rect class="pr-grid-heart-a" width="33" height="33" transform="translate(347 1933)"/><g transform="translate(350.918 1939.488)"><path class="pr-grid-heart-b" d="M23.268,1.9a6.477,6.477,0,0,0-9.158,0L12.582,3.423,11.056,1.9A6.476,6.476,0,0,0,1.9,11.055L12.582,21.74,23.268,11.055A6.475,6.475,0,0,0,23.268,1.9Z" transform="translate(0 0)"/></g></g></svg>
+  </a>
+  <a href="{{ product.url | within: collection }}">
+    <div class="product-card__image-with-placeholder-wrapper" data-image-loading-animation>
+      <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
+        <div style="padding-top:{% unless preview_image == blank %}{{ 1 | divided_by: preview_image.aspect_ratio | times: 100 }}%{% else %}100%{% endunless %};">
+          <img id="{{ img_id }}"
+               class="grid-view-item__image lazyload"
+               alt="{{ preview_image.alt }}"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ preview_image.aspect_ratio }}"
+               data-sizes="auto"
+               data-image>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <noscript>
+    {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
+    <img class="grid-view-item__image" src="{{ preview_image | img_url: image_size, scale: 2 }}" alt="{{ preview_image.alt }}" style="max-width: {{ max_height | times: preview_image.aspect_ratio }}px;">
+  </noscript>
+
+  <div class="h4 grid-view-item__title product-card__title" aria-hidden="true">{{ product.title }}</div>
+  <p class="product-info">14k 1/5cttw</p>
+  
+  <div class="product-card__bottom">
+    <div>
+      {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
+    </div>
+    {% if product.available %}
+      {% if product.variant.size > 1 %}
+      <div>
+        <a href="{{ product.url | within: collection }}" class="btn btn-secondary">Select Option</a>
+      </div>
+      {% else %}
+      <div>
+        <form method="post" action="/cart/add" class="shopify-product-form" data-product-handle="{{ product.handle }}">
+          <input type="hidden" name="form_type" value="product" tabindex="0">
+          <input type="hidden" name="utf8" value="✓" tabindex="0">
+          <input type="hidden" name="quantity" value="1" tabindex="0">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" tabindex="0">
+          <button type="submit" class="mm_addToCart btn mm-ajax-add btn-secondary" tabindex="0">+ Add to bag</button>
+        </form>
+      </div>
+      {% endif %}
+    {% else %}
+    <div>
+      <button type="button" class="btn btn-secondary">Sold out</button>
+    </div>
+    {% endif %}
+  </div>
+
+</div>

@@ -1,0 +1,109 @@
+{% if product.title contains 'Crowned Amethyst Heart Necklace With A Halo of Created White Sapphire' %}
+{% else %}
+{% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '' %}
+{% unless product.has_only_default_variant %}
+<div class="product-form__controls-group">
+  {% for option in product.options_with_values %}
+  <div class="selector-wrapper js product-form__item">
+    <label for="SingleOptionSelector-{{ forloop.index0 }}">
+      {{ option.name }}
+    </label>
+    <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input"
+            id="SingleOptionSelector-{{ forloop.index0 }}"
+            data-index="option{{ forloop.index }}"
+            >
+      {% for value in option.values %}
+      <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+      {% endfor %}
+    </select>
+    <a href="https://cdn.shopify.com/s/files/1/0554/4398/0469/files/Size_Guide.png?v=1620645894" class="size-guide-btn" target="_blank">Size guide</a>
+  </div>
+  {% endfor %}
+</div>
+{% endunless %}
+
+<select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
+  {% for variant in product.variants %}
+  <option value="{{ variant.id }}" data-variant_quantity="{{ variant.inventory_quantity }}"{%- if variant == current_variant %} selected="selected" {%- endif -%}>
+    {{ variant.title }}  {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                    </option>
+  {% endfor %}
+</select>
+
+{% if section.settings.show_quantity_selector %}
+<div class="product-form__controls-group">
+  <div class="product-form__item">
+    <label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+    <input type="number" id="Quantity-{{ section.id }}"
+           name="quantity" value="1" min="1" pattern="[0-9]*"
+           class="product-form__input product-form__input--quantity" data-quantity-input
+           >
+  </div>
+</div>
+{% endif %}
+
+<div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden{% if section.settings.enable_payment_button %} product-form__error-message-wrapper--has-payment-button{% endif %}"
+     data-error-message-wrapper
+     role="alert"
+     >
+  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+  {% include 'icon-error' %}
+  <span class="product-form__error-message" data-error-message>{{ 'products.product.quantity_minimum_message' | t }}</span>
+</div>
+
+<div class="product-form__controls-group product-form__controls-group--submit">
+  <div class="product-form__item product-form__item--submit
+              {%- if section.settings.enable_payment_button %} product-form__item--payment-button {%- endif -%}
+              {%- if product.has_only_default_variant %} product-form__item--no-variants {%- endif -%}"
+       >
+    
+    
+    <button type="submit" name="add" {% unless current_variant.available %} aria-disabled="true"{% endunless %} aria-label="Back Order"
+            class="btn product-form__cart-submit {% unless current_variant.available %} hide {% endunless %}
+                   {% if section.settings.enable_payment_button and product.selling_plan_groups == empty %} btn--secondary-accent{% endif %}"
+            {% if settings.enable_ajax %}aria-haspopup="dialog"{% endif %}
+            data-add-to-cart>
+      <span data-add-to-cart-text>
+        {% if current_variant.available and current_variant.inventory_quantity <= 0 %}
+        	Back Order
+        {% else %}
+          {% unless current_variant.available %}
+          {{ 'products.product.sold_out' | t }}
+          {% else %}
+          {{ 'products.product.add_to_cart' | t }}
+          {% endunless %}
+        {% endif %}
+      </span>
+      <span class="hide" data-loader>
+        {% include 'icon-spinner' %}
+      </span>
+    </button>
+    
+    
+    <div class="shopify-payment-button sticky {% if section.settings.enable_payment_button and product.available %}{% else %}hide{% endif %}" >
+      <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded" data-testid="Checkout-button">
+        <span class="checkout-text">Buy now</span>
+        <span class="hide" data-loader="">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-spinner" viewBox="0 0 20 20">
+            <path d="M7.229 1.173a9.25 9.25 0 1 0 11.655 11.412 1.25 1.25 0 1 0-2.4-.698 6.75 6.75 0 1 1-8.506-8.329 1.25 1.25 0 1 0-.75-2.385z" fill="#919EAB"></path>
+          </svg>
+        </span>
+      </button>
+    </div>
+    
+    <!--     <div id="mhaRnProduct"></div> -->
+    <button id="BIS_trigger" class="email-when-available custom" type="button" style="{% if current_variant.available %}display:none;{% else %}display:block;{% endif %}" >Join waiting list</button>
+  </div>
+</div>
+
+{% include 'iwish_v2' with 'iwishproduct' %}
+{% endform %}
+{% endif %}
+
+<script>
+  var variantQuantity = {
+    {% for variant in product.variants %}
+    {{ variant.id }}:{{ variant.inventory_quantity }}{% if forloop.last == false %},{% endif %}
+    {% endfor %}
+  }
+</script>

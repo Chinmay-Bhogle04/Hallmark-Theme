@@ -1,0 +1,111 @@
+<div class="cart-popup" data-cart-popup tabindex="-1">
+  <div class="cart-popup__header">
+    <div class="header-wrapper">
+      <h2 id="CartPopupHeading" class="cart-popup__heading">Shopping Cart (<span>{{ cart.item_count }} {%- if cart.item_count > 1 -%}items{%- else -%}item{%- endif -%}</span>)</h2>
+      <button class="cart-popup__close mm-ajaxcart-close" aria-label="{{ 'general.accessibility.close_modal' | t }}">
+        <svg width="25" height="25" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25.5 8.5L8.5 25.5" stroke="#2B2E34" stroke-linejoin="round"/>
+          <path d="M8.5 8.5L25.5 25.5" stroke="#2B2E34" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="cart-popup-item-wrapper has-items" {% if cart.item_count < 1 %}style="display:none"{% endif %}>
+    {% for item in cart.items %}
+    <div class="cart-popup-item" data-variant-id="{{item.id}}">
+      <div class="cart-popup-item__image-wrapper">
+        <div class="cart-popup-item__image cart-popup-item__image--placeholder">
+          <a href="{{ item.url }}">
+            <img src="{{ item.image | product_img_url: '110x' }}" alt="{{ item.title }}">
+          </a>
+        </div>
+      </div>
+      <div class="cart-popup-item__description">
+        <div class="desc">
+          <h3 class="cart-popup-item__title">
+            <a href="{{ item.url }}">
+              {{ item.product.title }}
+            </a>
+          </h3>
+          {%- assign variant_options = 'template ' | split: ' ' -%}
+          {%- if item.product.has_only_default_variant != true -%}
+          {%- assign variant_options = item.options_with_values -%}
+          {%- endif -%}
+          {%- assign property_size = item.properties | size -%}
+          <ul class="product-details {% if item.product.has_only_default_variant and property_size == 0 %} hide{% endif %}">
+            {%- for option in variant_options -%}
+            <li class="product-details__item product-details__item--variant-option {% if item.product.has_only_default_variant %} hide{% endif %}">{{ option.name }}: {{ option.value }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+        <div class="cart-popup-item__quantity" >
+          <div class="quantity-box">
+            <div class="quantity-nav text-center">
+              <div class="quantity-button quantity-down quantity-minus">
+                {% comment %}
+                <svg width="13" height="5" viewBox="0 0 9 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.30119 0.982056H1.09329C0.71039 0.982056 0.67749 1.29216 0.67749 1.67506C0.67749 2.05796 0.71039 2.36806 1.09329 2.36806H8.30119C8.68409 2.36806 8.71699 2.05796 8.71699 1.67506C8.71699 1.29216 8.68409 0.982056 8.30119 0.982056Z" fill="#989898"/>
+                </svg>
+                {% endcomment %}
+                {% include 'icon-minus' %}
+              </div>
+              <input class="quantity-input"
+              data-key="{{ item.key }}"
+              data-line="{{ forloop.index }}"
+              type="number"
+              value="{{ item.quantity }}"
+              min="0" pattern="[0-9]*">
+              <div class="quantity-button quantity-up quantity-plus">
+                {% comment %}
+                <svg width="13" height="13" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.62324 3.3264H4.71264V0.4158C4.71264 0.0329 4.40254 0 4.01964 0C3.63674 0 3.32664 0.0329 3.32664 0.4158V3.3264H0.416044C0.0331441 3.3264 0.000244141 3.6365 0.000244141 4.0194C0.000244141 4.4023 0.0331441 4.7124 0.416044 4.7124H3.32664V7.623C3.32664 8.0059 3.63674 8.0388 4.01964 8.0388C4.40254 8.0388 4.71264 8.0059 4.71264 7.623V4.7124H7.62324C8.00614 4.7124 8.03904 4.4023 8.03904 4.0194C8.03904 3.6365 8.00614 3.3264 7.62324 3.3264Z" fill="#1C59BB"/>
+                </svg>
+                {% endcomment %}
+                {% include 'icon-plus' %}
+              </div>
+            </div>
+          </div>
+          <div>
+            <span class="price-item">{{item.line_price | money}} /-</span>
+          </div>
+          <div class="close-button cart-product-remove">
+            <a href="javascript:void(0);" class="remove-cart mm-ajaxcart-remove-item" data-line="{{ forloop.index }}" data-name="{{ item.product.title }}">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="18" height="24" viewBox="0 0 490.646 490.646" style="enable-background:new 0 0 490.646 490.646;" xml:space="preserve"><g><g>
+                <style>
+                  path.bottm {stroke: #ffffff;stroke-width: 18px;}
+                </style>
+                <path class="lid" d="M399.179,67.285l-74.794,0.033L324.356,0L166.214,0.066l0.029,67.318l-74.802,0.033l0.025,62.914h307.739L399.179,67.285z     M198.28,32.11l94.03-0.041l0.017,35.262l-94.03,0.041L198.28,32.11z"></path>
+                <path class="bottm" d="M91.465,490.646h307.739V146.359H91.465V490.646z M317.461,193.372h16.028v250.259h-16.028V193.372L317.461,193.372z     M237.321,193.372h16.028v250.259h-16.028V193.372L237.321,193.372z M157.18,193.372h16.028v250.259H157.18V193.372z"></path></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="no-items" {% if cart.item_count > 0 %}style="display:none"{% endif %}>
+    <p>Your cart is currently empty</p>
+  </div>
+  <div class="cart__footer has-items" {% if cart.item_count < 1 %}style="display:none"{% endif %}>
+    <div class="summary">                
+      <span class="label">total</span>
+      <span class="price">{{ cart.total_price | money }}</span> 
+    </div>
+    {% comment %}
+    <div class="a-button">
+      <a href="javascript:void(0);" class="btn continue-shopping" aria-describedby="a11y-external-message">
+        Continue shopping
+      </a>
+      <a class="btn btn-view-cart" href="/cart/">
+        View cart
+      </a>
+    </div>
+    {% endcomment %}
+    <div class="checkout-button">
+      <a href="/checkout" class="cart-popup__cta-link btn">
+        Complete Purchase
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="page-width">
+  {% include 'section-header' %}
+  {% include 'five-columns' %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "Five columns",
+    "class": "five-colummns-section",
+	"max_blocks": 5,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Five columns"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subtitle",
+        "default": "Subtitle"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+			"info": "Recommended size: 378px * 224px"
+          },
+          {
+            "type": "text",
+            "id": "column_title",
+            "label": "Title",
+            "default": "Add a title"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

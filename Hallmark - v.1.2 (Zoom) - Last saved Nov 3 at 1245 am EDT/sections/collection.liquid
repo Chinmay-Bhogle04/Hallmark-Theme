@@ -1,0 +1,148 @@
+{% include 'product-collection-slider-grid' %}
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "class": "index-section collection-section",
+  "settings": [
+	{
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subheading",
+      "default": "SHOP BY STYLE"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": "Total number of product in row",
+      "min": 1,
+      "max": 15,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": {
+        "cs": "Zobrazit dodavatele produktů",
+        "da": "Vis produktleverandører",
+        "de": "Produktanbieter anzeigen",
+        "en": "Show product vendors",
+        "es": "Mostrar proveedores del producto",
+        "fi": "Näytä tuotteen myyjät",
+        "fr": "Afficher les vendeurs",
+        "it": "Mostra fornitori prodotto",
+        "ja": "商品の販売元を表示する",
+        "ko": "제품 공급 업체 표시",
+        "nb": "Vis produktleverandører",
+        "nl": "Productleveranciers weergeven",
+        "pl": "Pokaż dostawców produktu",
+        "pt-BR": "Exibir fornecedores do produto",
+        "pt-PT": "Mostrar fornecedores do produto",
+        "sv": "Visa produktleverantörer",
+        "th": "แสดงผู้ขายสินค้า",
+        "tr": "Ürün satıcılarını göster",
+        "vi": "Hiển thị nhà cung cấp sản phẩm",
+        "zh-CN": "显示产品厂商",
+        "zh-TW": "顯示產品廠商"
+      },
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shop_all",
+      "label": {
+        "cs": "Zobrazit tlačítko Zobrazit vše",
+        "da": "Vis knappen \"Se flere\"",
+        "de": "'Alle anzeigen' Button anzeigen",
+        "en": "Show 'Shop all' button",
+        "es": "Mostrar el botón 'Ver todo'",
+        "fi": "Näytä \"Näytä kaikki\" -painike",
+        "fr": "Afficher le bouton “Tout voir”",
+        "it": "Mostra il pulsante \"Visualizza tutto\"",
+        "ja": "「すべて表示」ボタンを表示する",
+        "ko": "'모두 보기' 버튼 표시",
+        "nb": "Vis «Se alle»-knapp",
+        "nl": "Knop 'Alles weergeven' weergeven",
+        "pl": "Pokaż przycisk „Wyświetl wszystkie”",
+        "pt-BR": "Exibir botão 'Ver tudo'",
+        "pt-PT": "Mostrar botão 'Ver tudo'",
+        "sv": "Visa \"Visa alla\"-knappen",
+        "th": "แสดงปุ่ม 'ดูทั้งหมด'",
+        "tr": "\"Tümünü görüntüle\" düğmesini göster",
+        "vi": "Hiển thị nút \"Xem tất cả\"",
+        "zh-CN": "显示“查看全部”按钮",
+        "zh-TW": "顯示「檢視全部」按鈕"
+      },
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_section_padding",
+      "label": "Enable section padding",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "cs": "Propagovaná kolekce",
+        "da": "Udvalgt kollektion",
+        "de": "Vorgestellte Kategorie",
+        "en": "Featured collection",
+        "es": "Colección destacada",
+        "fi": "Esittelyssä oleva kokoelma",
+        "fr": "Collection en vedette",
+        "it": "Collezione in evidenza",
+        "ja": "特集コレクション",
+        "ko": "추천 컬렉션",
+        "nb": "Utvalgt samling",
+        "nl": "Uitgelichte collectie",
+        "pl": "Polecana kolekcja",
+        "pt-BR": "Coleção em destaque",
+        "pt-PT": "Coleção em destaque",
+        "sv": "Utvald kollektion",
+        "th": "คอลเลกชันแนะนำ",
+        "tr": "Öne çıkan koleksiyon",
+        "vi": "Bộ sưu tập nổi bật",
+        "zh-CN": "特色产品系列",
+        "zh-TW": "精選商品系列"
+      },
+      "category": {
+        "cs": "Kolekce",
+        "da": "Kollektion",
+        "de": "Kategorie",
+        "en": "Collection",
+        "es": "Colección",
+        "fi": "Kokoelma",
+        "fr": "Collection",
+        "it": "Collezione",
+        "ja": "コレクション",
+        "ko": "컬렉션",
+        "nb": "Samling",
+        "nl": "Collectie",
+        "pl": "Kolekcja",
+        "pt-BR": "Coleção",
+        "pt-PT": "Coleção",
+        "sv": "Produktserie",
+        "th": "คอลเลกชัน",
+        "tr": "Koleksiyon",
+        "vi": "Bộ sưu tập",
+        "zh-CN": "收藏",
+        "zh-TW": "商品系列"
+      }
+    }
+  ]
+}
+{% endschema %}

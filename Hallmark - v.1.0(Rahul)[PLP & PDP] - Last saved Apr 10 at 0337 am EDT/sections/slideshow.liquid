@@ -1,0 +1,254 @@
+<section data-section-id="{{ section.id }}" data-section-type="jewelili-banner-section">
+  <div class="slideshow__banner">
+    {%- assign max_height = 720 -%}
+    {% for block in section.blocks %}
+    {% if block.settings.enable_banner %}
+    <a href="{{ block.settings.button_url }}">
+      <div class="slideshow__banner-slide " id="block-{{ block.id }}">
+        {% if block.settings.video != blank %}
+        <div class="small--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_large.aspect_ratio | times: 100}}%;">
+          <video width="100%" height="100%" playsinline autoplay muted loop id="myVideo">
+            <source src="{{ block.settings.video }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {% else %}
+        {% unless block.settings.banner_large == nil %}
+        {%- assign img_url = block.settings.banner_large | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="small--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_large.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}"
+               class="custom__image lazyload js image_scale"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ block.settings.banner_large.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ block.settings.banner_large.alt | escape }}">
+        </div>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ block.banner_large.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.banner_large.image.alt, 'custom__image' }}
+        </noscript>
+        {% endunless %}
+        {% endif %}
+
+        {% if block.settings.mobVideo != blank %}
+        <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_small.aspect_ratio | times: 100}}%;">
+          <video width="100%" height="100%" playsinline autoplay muted loop id="myVideoMob" poster="{{ block.settings.banner_small | img_url:"800x" }}">
+            <source src="{{ block.settings.mobVideo }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {% else %}
+        {% unless block.settings.banner_small == nil %}
+        {%- assign img_url = block.settings.banner_small | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="medium-up--hide" style="padding-top:{{ 1 | divided_by: block.settings.banner_small.aspect_ratio | times: 100}}%;">
+          <img id="{{ img_id }}"
+               class="custom__image lazyload js image_scale"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ block.settings.banner_small.aspect_ratio }}"
+               data-sizes="auto"
+               alt="{{ block.settings.banner_small.alt | escape }}">
+        </div>
+        <noscript>
+          {% capture image_size %}{{ max_height }}x{% endcapture %}
+          {{ block.banner_small.image | img_url: image_size, scale: 2, crop: 'top' | img_tag: block.banner_small.image.alt, 'custom__image' }}
+        </noscript>
+        {% endunless %}
+        {% endif %}
+        <div class="slideshow__banner-text
+                    {% if block.settings.horizontal_alignment == 'center' %} content_center-aligned{% endif %}
+                    {% if block.settings.horizontal_alignment == 'right' %} content_right-aligned{% endif %}">
+          <div class="slideshow__banner-text-container
+                      {% if block.settings.vertical_alignment == 'middle' %} content_middle-aligned{% endif %}
+                      {% if block.settings.vertical_alignment == 'bottom' %} content_bottom-aligned{% endif %}
+                      {% if block.settings.text_align == 'center' %} text-center{% endif %}
+                      {% if block.settings.text_align == 'right' %} text-right{% endif %}
+                      {% if block.settings.full_width_content and block.settings.textand_button_align == 'text_left'%} full-width-alignment1{% endif %}
+                      {% if block.settings.full_width_content and block.settings.textand_button_align == 'text_right'%} full-width-alignment2{% endif %}">
+            {% unless block.settings.logo == blank %}
+            {%- assign img_url = block.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="lazyload js image_scale"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ block.settings.logo.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ block.settings.banner_small.alt | escape }}">
+            {% endunless %}
+            {% unless block.settings.title == blank %}
+            <h2 class="title" style="color:{{ block.settings.titleColor }};">{{ block.settings.title }}</h2>
+            {% endunless %}
+            {% unless block.settings.subtitle == blank %}
+            <p class="subtitle" style="color:{{ block.settings.subtitleColor }};">{{ block.settings.subtitle }}</p>
+            {% endunless %}
+            {% unless block.settings.button_label == blank %}
+            <span class="button-wrapper">
+              <span class="btn_style1">
+                {{ block.settings.button_label }}
+              </span>
+            </span>
+            {% endunless %}
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endif %}
+
+
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+    "name": "Banner Slideshow",
+    "class": "index-section index-section--flush index-section--slideshow",
+	"max_blocks": 6,
+    "blocks": [
+      {
+        "type": "banner-content",
+        "name": "Banner Content",
+        "settings": [
+		  {
+            "type": "checkbox",
+            "id": "enable_banner",
+            "label": "Enable Banner"
+          },
+		  {
+            "type": "textarea",
+            "id": "video",
+            "label": "mp4 video"
+          },
+		  {
+            "type": "textarea",
+            "id": "mobVideo",
+            "label": "mp4 mobile video"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_large",
+            "label": "Banner Image (Desktop)",
+            "info": "Recommended size 2562x1298 (px)"
+          },
+		  {
+            "type": "image_picker",
+            "id": "banner_small",
+            "label": "Banner Image (Mobile)",
+            "info": "Recommended size 800x1470 (px)"
+          },
+		  {
+             "type": "select",
+             "id": "horizontal_alignment",
+             "label": "Content Alignment (Horizontal)",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left"
+               },
+               {
+                 "value": "center",
+                 "label": "Center"
+               },
+               {
+                 "value": "right",
+                 "label": "Right"
+               }
+             ],
+             "default": "left"
+          },
+		  {
+             "type": "select",
+             "id": "vertical_alignment",
+             "label": "Content Alignment (Vertical)",
+             "options": [
+               {
+                 "value": "top",
+                 "label": "Top"
+               },
+               {
+                 "value": "middle",
+                 "label": "Middle"
+               },
+               {
+                 "value": "bottom",
+                 "label": "Bottom"
+               }
+             ],
+             "default": "top"
+          },
+		  {
+             "type": "select",
+             "id": "text_align",
+             "label": "Text Align",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left"
+               },
+               {
+                 "value": "center",
+                 "label": "Center"
+               },
+               {
+                 "value": "right",
+                 "label": "Right"
+               }
+             ],
+             "default": "left"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+          },
+		  {
+            "type": "color",
+            "id": "titleColor",
+            "label": "Title font color"
+          },
+		  {
+            "type": "text",
+            "id": "title_font_size",
+            "label": "Title font size",
+            "default": "57"
+          },
+		  {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Subtitle"
+          },
+		  {
+            "type": "color",
+            "id": "subtitleColor",
+            "label": "Subtitle font color"
+          },
+		  {
+            "type": "text",
+            "id": "subtitle_font_size",
+            "label": "Subtitle font size",
+            "default": "57"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button URL"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner Slideshow",
+        "category": "Advanced layout"
+      }
+    ]
+  }
+{% endschema %}

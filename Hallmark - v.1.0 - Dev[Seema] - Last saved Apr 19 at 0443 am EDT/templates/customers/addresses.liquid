@@ -1,0 +1,246 @@
+{% paginate customer.addresses by 5 %}
+
+<div class="myaccount-wrapper saved-addresses">
+  <div class="page-width">
+    <div class="breadcrumb medium-up--hide">
+      <a href="">My account</a>
+      <span class="separator"></span>
+      <span>Saved Addresses</span>
+    </div>
+    <div class="grid myaccount">
+      <div class="grid__item myaccount__sidebar">
+        <div>
+          <h1>{{ 'customer.account.title' | t }}</h1>
+          <ul>
+            <li class="sidebar-link">
+              <a href="{{ routes.account_url }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="light-icon" viewBox="0 0 16 16"><defs><style>.myacc-user-a,.myacc-user-b{fill:#fff;}.myacc-user-a{opacity:0;}</style></defs><g transform="translate(-45 -303)"><rect class="myacc-user-a" width="16" height="16" transform="translate(45 303)"/><g transform="translate(46 303.992)"><path class="myacc-user-b" d="M1326.218,830.185a3.346,3.346,0,0,1-2.98-3.024.866.866,0,0,1-.523-1.094.86.86,0,0,1,.225-.352,3.769,3.769,0,0,1-.117-.941,3.4,3.4,0,1,1,6.793.008,3.69,3.69,0,0,1-.12.935.867.867,0,0,1-.295,1.442A3.353,3.353,0,0,1,1326.218,830.185Zm-2.706-3.568a.3.3,0,0,1,.3.276c.094,1.276,1.107,2.7,2.41,2.7s2.317-1.421,2.413-2.7a.3.3,0,0,1,.3-.276.272.272,0,0,0,.091-.513.3.3,0,0,1-.151-.359,3.145,3.145,0,0,0,.152-.97,2.806,2.806,0,1,0-5.6-.008,3.169,3.169,0,0,0,.15.978.3.3,0,0,1-.153.358.271.271,0,0,0-.124.363A.273.273,0,0,0,1323.512,826.618Z" transform="translate(-1319.046 -821.19)"/><path class="myacc-user-b" d="M1330.345,841.952h-13.172a.588.588,0,0,1-.587-.585v-1.034a.587.587,0,0,1,.178-.421c.75-.729,4.725-2.84,5.246-2.561a4.113,4.113,0,0,0,3.508-.008c.385-.2,4.218,1.583,5.232,2.568a.582.582,0,0,1,.179.423v1.031A.586.586,0,0,1,1330.345,841.952Zm-8.5-4.024a16.426,16.426,0,0,0-4.663,2.411l0,1.026,13.163-.01-.01-1.02a16.978,16.978,0,0,0-4.663-2.408A4.716,4.716,0,0,1,1321.844,837.928Zm8.492,2.4Z" transform="translate(-1316.587 -827.713)"/></g></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="dark-icon" viewBox="0 0 20 20"><defs><style>.myacc-user-dark-a,.myacc-user-dark-b{fill:#293542;}.myacc-user-dark-a{stroke:#6a3b62;opacity:0;}.myacc-user-dark-b{stroke:#293542;stroke-width:0.2px;}.myacc-user-dark-c{stroke:none;}.myacc-user-dark-d{fill:none;}</style></defs><g transform="translate(0.229)"><g class="myacc-user-dark-a" transform="translate(-0.229)"><rect class="myacc-user-dark-c" width="20" height="20"/><rect class="myacc-user-dark-d" x="0.5" y="0.5" width="19" height="19"/></g><g transform="translate(1.228 1.219)"><path class="myacc-user-dark-b" d="M1327.028,832.24c-1.935,0-3.4-1.872-3.661-3.714a1.068,1.068,0,0,1-.59-.53,1.069,1.069,0,0,1,.225-1.245,4.629,4.629,0,0,1-.144-1.156,4.178,4.178,0,1,1,8.344.01,4.529,4.529,0,0,1-.147,1.149,1.065,1.065,0,0,1-.362,1.772C1330.432,830.366,1328.962,832.24,1327.028,832.24Zm-3.324-4.382a.366.366,0,0,1,.363.339c.116,1.567,1.36,3.312,2.961,3.312s2.846-1.746,2.964-3.313a.366.366,0,0,1,.365-.339.334.334,0,0,0,.112-.631.366.366,0,0,1-.186-.44,3.864,3.864,0,0,0,.187-1.191,3.447,3.447,0,1,0-6.88-.009,3.891,3.891,0,0,0,.184,1.2.367.367,0,0,1-.187.44.333.333,0,0,0-.152.446A.335.335,0,0,0,1323.7,827.857Z" transform="translate(-1318.218 -821.19)"/><path class="myacc-user-dark-b" d="M1333.487,843.008h-16.179a.722.722,0,0,1-.72-.719v-1.27a.72.72,0,0,1,.219-.517c.921-.9,5.8-3.488,6.444-3.146a5.053,5.053,0,0,0,4.309-.01c.473-.252,5.181,1.944,6.427,3.155a.715.715,0,0,1,.22.52v1.267A.72.72,0,0,1,1333.487,843.008Zm-10.443-4.943c-.737.233-4.365,1.638-5.728,2.962l0,1.261,16.168-.012-.012-1.253c-1.327-1.285-5-2.722-5.727-2.958A5.793,5.793,0,0,1,1323.044,838.065Zm10.431,2.954Z" transform="translate(-1316.587 -825.518)"/></g></g></svg>
+                Your Information
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" class="svg-arrow" viewBox="0 0 8 13"><defs><style>.inline-btn-dark-a{fill:#fff;opacity:0;}.inline-btn-dark-b{fill:#293542;}</style></defs><g transform="translate(-291.239 -2970.859)"><rect class="inline-btn-dark-a" width="8" height="13" transform="translate(291.239 2970.859)"></rect><g transform="translate(7122.69 1734.388)"><path class="inline-btn-dark-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"></path></g></g></svg>
+              </a>
+            </li>
+            <li class="sidebar-link">
+              <a href="/pages/orders">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="light-icon" viewBox="0 0 16 16"><defs><style>.myacc-order-a,.myacc-order-b{fill:#fff;}.myacc-order-a{opacity:0;}.myacc-order-b{stroke:#915686;stroke-width:0.2px;}</style></defs><g transform="translate(-45 -349)"><rect class="myacc-order-a" width="16" height="16" transform="translate(45 349)"/><g transform="translate(47 349.442)"><g transform="translate(0 3.614)"><path class="myacc-order-b" d="M1526.645,3823.606h-10.72a.418.418,0,0,1-.417-.448l.707-10a.419.419,0,0,1,.418-.388h9.334a.419.419,0,0,1,.417.389l.679,10a.418.418,0,0,1-.417.447Zm-10.272-.836h9.825l-.621-9.162h-8.556Z" transform="translate(-1515.507 -3812.771)"/></g><g transform="translate(2.832)"><path class="myacc-order-b" d="M1524.32,3814.307a.418.418,0,0,1-.418-.418V3811.5a2.164,2.164,0,0,0-2.043-2.221,2.214,2.214,0,0,0-2.129,2.22v2.385a.418.418,0,1,1-.836,0V3811.5a3.047,3.047,0,0,1,2.923-3.056,3.015,3.015,0,0,1,2.92,3.068v2.373A.418.418,0,0,1,1524.32,3814.307Z" transform="translate(-1518.895 -3808.448)"/></g></g></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19.053" class="dark-icon" viewBox="0 0 20 19.053"><defs><style>.myacc-order-dark-a,.myacc-order-dark-b{fill:#293542;stroke:#fcfcfc;}.myacc-order-dark-a{opacity:0;}.myacc-order-dark-b{stroke-width:0.2px;}.myacc-order-dark-c{stroke:none;}.myacc-order-dark-d{fill:none;}</style></defs><g transform="translate(0.229 -0.443)"><g class="myacc-order-dark-a" transform="translate(-0.229 0.496)"><rect class="myacc-order-dark-c" width="20" height="19"/><rect class="myacc-order-dark-d" x="0.5" y="0.5" width="19" height="18"/></g><g transform="translate(2.457 0.543)"><g transform="translate(0 4.439)"><path class="myacc-order-dark-b" d="M1529.189,3826.079H1516.02a.514.514,0,0,1-.512-.55l.869-12.281a.515.515,0,0,1,.513-.477h11.465a.515.515,0,0,1,.512.479l.834,12.281a.513.513,0,0,1-.512.548Zm-12.617-1.027h12.068l-.763-11.254h-10.51Z" transform="translate(-1515.507 -3812.771)"/></g><g transform="translate(3.479)"><path class="myacc-order-dark-b" d="M1525.559,3815.645a.513.513,0,0,1-.513-.514v-2.93a2.657,2.657,0,0,0-2.509-2.728,2.72,2.72,0,0,0-2.615,2.728v2.93a.513.513,0,1,1-1.026,0v-2.93a3.742,3.742,0,0,1,3.591-3.754,3.7,3.7,0,0,1,3.586,3.769v2.915A.514.514,0,0,1,1525.559,3815.645Z" transform="translate(-1518.895 -3808.447)"/></g></g></g></svg>
+                Your Orders
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" class="svg-arrow" viewBox="0 0 8 13"><defs><style>.inline-btn-dark-a{fill:#fff;opacity:0;}.inline-btn-dark-b{fill:#293542;}</style></defs><g transform="translate(-291.239 -2970.859)"><rect class="inline-btn-dark-a" width="8" height="13" transform="translate(291.239 2970.859)"></rect><g transform="translate(7122.69 1734.388)"><path class="inline-btn-dark-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"></path></g></g></svg>
+              </a>
+            </li>
+            <li class="sidebar-link">
+              <a href="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" class="light-icon" viewBox="0 0 14 12"><defs><style>.myacc-wishlist-a,.myacc-wishlist-b{fill:#fff;}.myacc-wishlist-a{opacity:0;}</style></defs><g transform="translate(-46 -396)"><rect class="myacc-wishlist-a" width="14" height="12" transform="translate(46 396)"/><path class="myacc-wishlist-b" d="M866.952,3161.917a.259.259,0,0,1-.183-.076l-4.976-4.976a3.274,3.274,0,0,1,4.63-4.63l.529.528.528-.528a3.278,3.278,0,0,1,4.63,0h0a3.279,3.279,0,0,1,0,4.63l-4.976,4.976A.258.258,0,0,1,866.952,3161.917Zm-2.843-10.123a2.756,2.756,0,0,0-1.95,4.706l4.793,4.793,4.793-4.793a2.761,2.761,0,0,0,0-3.9h0a2.762,2.762,0,0,0-3.9,0l-.711.711a.259.259,0,0,1-.366,0l-.711-.711A2.751,2.751,0,0,0,864.109,3151.794Z" transform="translate(-813.834 -2754.92)"/></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" class="dark-icon" viewBox="0 0 18 15"><defs><style>.myacc-wishlist-dark-a,.myacc-wishlist-dark-b{fill:#293542;}.myacc-wishlist-dark-a{opacity:0;}.myacc-wishlist-dark-b{stroke:#293542;stroke-width:0.2px;}</style></defs><g transform="translate(0.457 0.236)"><rect class="myacc-wishlist-dark-a" width="18" height="15" transform="translate(-0.457 -0.236)"/><path class="myacc-wishlist-dark-b" d="M868.349,3164.346a.318.318,0,0,1-.225-.094l-6.112-6.112a4.022,4.022,0,0,1,5.688-5.688l.649.648.648-.648a4.026,4.026,0,0,1,5.688,0h0a4.028,4.028,0,0,1,0,5.688l-6.112,6.112A.318.318,0,0,1,868.349,3164.346Zm-3.493-12.435a3.386,3.386,0,0,0-2.4,5.78l5.888,5.887,5.887-5.887a3.391,3.391,0,0,0,0-4.79h0a3.392,3.392,0,0,0-4.79,0l-.873.874a.318.318,0,0,1-.449,0l-.873-.874A3.379,3.379,0,0,0,864.856,3151.912Z" transform="translate(-859.606 -3150.838)"/></g></svg>
+                Wishlist
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" class="svg-arrow" viewBox="0 0 8 13"><defs><style>.inline-btn-dark-a{fill:#fff;opacity:0;}.inline-btn-dark-b{fill:#293542;}</style></defs><g transform="translate(-291.239 -2970.859)"><rect class="inline-btn-dark-a" width="8" height="13" transform="translate(291.239 2970.859)"></rect><g transform="translate(7122.69 1734.388)"><path class="inline-btn-dark-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"></path></g></g></svg>
+              </a>
+            </li>
+            <li class="sidebar-link active">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="14" class="light-icon" viewBox="0 0 10 14"><defs><style>.myacc-address-a,.myacc-address-b{fill:#fff;}.myacc-address-a{opacity:0;}</style></defs><g transform="translate(-48 -438)"><rect class="myacc-address-a" width="10" height="14" transform="translate(48 438)"/><g transform="translate(49 438.46)"><path class="myacc-address-b" d="M773.051,2010.107a.273.273,0,0,1-.228-.123c-.167-.252-4.07-6.211-4.07-8.49a4.3,4.3,0,0,1,8.6-.1v.1c0,2.279-3.9,8.238-4.071,8.49A.273.273,0,0,1,773.051,2010.107Zm0-12.413h-.045a3.753,3.753,0,0,0-3.709,3.8c0,1.821,2.907,6.512,3.753,7.839.846-1.327,3.752-6.018,3.752-7.836v-.089a3.753,3.753,0,0,0-3.751-3.711Z" transform="translate(-768.752 -1997.148)"/><path class="myacc-address-b" d="M775.242,2004.328h0a1.662,1.662,0,0,1,0-3.324h0a1.662,1.662,0,0,1,1.661,1.662A1.665,1.665,0,0,1,775.242,2004.328Zm0-2.778a1.116,1.116,0,1,0,.79.327,1.107,1.107,0,0,0-.79-.327Z" transform="translate(-770.943 -1998.898)"/></g></g></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="17" class="dark-icon" viewBox="0 0 12 17"><defs><style>.myacc-address-dark-a,.myacc-address-dark-b{fill:#293542;}.myacc-address-dark-a{opacity:0;}.myacc-address-dark-b{stroke:#293542;stroke-width:0.2px;}</style></defs><g transform="translate(-0.086 -0.174)"><rect class="myacc-address-dark-a" width="12" height="17" transform="translate(0.086 0.174)"/><g transform="translate(1.228 0.565)"><path class="myacc-address-dark-b" d="M774.032,2013.066a.335.335,0,0,1-.28-.151c-.2-.31-5-7.629-5-10.429a5.28,5.28,0,0,1,10.56-.119v.119c0,2.8-4.8,10.119-5,10.429A.335.335,0,0,1,774.032,2013.066Zm0-15.248h-.055a4.61,4.61,0,0,0-4.556,4.664c0,2.237,3.57,8,4.609,9.629,1.039-1.63,4.609-7.392,4.609-9.626v-.109a4.61,4.61,0,0,0-4.607-4.558Z" transform="translate(-768.752 -1997.148)"/><path class="myacc-address-dark-b" d="M775.622,2005.087h0a2.042,2.042,0,0,1,0-4.083h0a2.042,2.042,0,0,1,2.041,2.042A2.045,2.045,0,0,1,775.622,2005.087Zm0-3.412a1.371,1.371,0,1,0,.97.4,1.36,1.36,0,0,0-.97-.4Z" transform="translate(-770.341 -1998.417)"/></g></g></svg>
+              Saved Addresses
+              <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" class="svg-arrow" viewBox="0 0 8 13"><defs><style>.inline-btn-dark-a{fill:#fff;opacity:0;}.inline-btn-dark-b{fill:#293542;}</style></defs><g transform="translate(-291.239 -2970.859)"><rect class="inline-btn-dark-a" width="8" height="13" transform="translate(291.239 2970.859)"></rect><g transform="translate(7122.69 1734.388)"><path class="inline-btn-dark-b" d="M471.717,1700.012a.826.826,0,0,1-.584-1.41l3.94-3.942-3.94-3.941a.827.827,0,0,1,1.169-1.169l4.526,4.526a.828.828,0,0,1,0,1.169l-4.526,4.526A.829.829,0,0,1,471.717,1700.012Z" transform="translate(-7301.116 -451.686)"></path></g></g></svg>
+            </li>
+          </ul>
+          <a href="/account/logout" id="customer_logout_link" class="sidebar-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" class="light-icon" viewBox="0 0 14 15"><defs><style>.myacc-logout-a,.myacc-logout-b{fill:#fff;}.myacc-logout-a{opacity:0;}</style></defs><g transform="translate(-44 -737)"><rect class="myacc-logout-a" width="14" height="15" transform="translate(44 737)"/><g transform="translate(-1100 -1078.284)"><path class="myacc-logout-b" d="M1203.551,2273.086h-5.408a.282.282,0,0,1,0-.564h5.408a.282.282,0,0,1,0,.564Z" transform="translate(-53.637 -450.057)"/><path class="myacc-logout-b" d="M1203.084,2273.667a.278.278,0,0,1-.2-.085.282.282,0,0,1,0-.4l2.416-2.364-2.416-2.366a.282.282,0,0,1,.394-.4l2.623,2.568a.282.282,0,0,1,0,.4l-2.623,2.565A.284.284,0,0,1,1203.084,2273.667Z" transform="translate(-55.791 -448.073)"/><path class="myacc-logout-b" d="M1213.364,2274.583h-8.46a.282.282,0,0,1-.282-.282v-2.784a.282.282,0,1,1,.564,0v2.5h7.9V2261.61h-7.9v2.512a.282.282,0,0,1-.564,0v-2.794a.282.282,0,0,1,.282-.282h8.46a.282.282,0,0,1,.282.282V2274.3A.282.282,0,0,1,1213.364,2274.583Z" transform="translate(-56.584 -445.053)"/><path class="myacc-logout-b" d="M1216.416,2274.557a.275.275,0,0,1-.117-.026l-4.512-2.052a.281.281,0,0,1-.165-.257v-8.862a.281.281,0,0,1,.165-.257l4.512-2.052a.281.281,0,0,1,.4.257v12.966a.28.28,0,0,1-.129.237A.277.277,0,0,1,1216.416,2274.557Zm-4.23-2.516,3.948,1.8v-12.09l-3.948,1.8Z" transform="translate(-59.636 -445.045)"/><path class="myacc-logout-b" d="M1215.052,2272.576h-1.117a.282.282,0,1,1,0-.564h1.117a.282.282,0,1,1,0,.564Z" transform="translate(-60.522 -449.835)"/></g></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" class="dark-icon" viewBox="0 0 17 18"><defs><style>.myacc-logout-dark-a,.myacc-logout-dark-b{fill:#293542;}.myacc-logout-dark-a{opacity:0;}.myacc-logout-dark-b{stroke:#6a3b62;stroke-width:0.2px;}</style></defs><g transform="translate(0 -0.126)"><rect class="myacc-logout-dark-a" width="17" height="18" transform="translate(0 0.126)"/><g transform="translate(0.275 0.857)"><path class="myacc-logout-dark-b" d="M1204.85,2273.215h-6.643a.347.347,0,0,1,0-.693h6.643a.347.347,0,0,1,0,.693Z" transform="translate(-1197.861 -2264.558)"/><path class="myacc-logout-dark-b" d="M1203.148,2274.968a.342.342,0,0,1-.248-.1.346.346,0,0,1,.005-.49l2.968-2.9-2.968-2.906a.346.346,0,0,1,.484-.5l3.222,3.154a.347.347,0,0,1,0,.5l-3.222,3.151A.349.349,0,0,1,1203.148,2274.968Z" transform="translate(-1199.379 -2263.16)"/><path class="myacc-logout-dark-b" d="M1215.36,2277.673h-10.392a.346.346,0,0,1-.346-.347v-3.42a.346.346,0,1,1,.693,0v3.074h9.7v-15.242h-9.7v3.085a.346.346,0,0,1-.693,0v-3.432a.347.347,0,0,1,.346-.347h10.392a.347.347,0,0,1,.346.347v15.934A.346.346,0,0,1,1215.36,2277.673Z" transform="translate(-1199.938 -2261.033)"/><path class="myacc-logout-dark-b" d="M1217.511,2277.647a.338.338,0,0,1-.143-.031l-5.543-2.52a.345.345,0,0,1-.2-.315V2263.9a.346.346,0,0,1,.2-.316l5.543-2.521a.346.346,0,0,1,.49.315V2277.3a.344.344,0,0,1-.159.291A.339.339,0,0,1,1217.511,2277.647Zm-5.2-3.09,4.85,2.205v-14.851l-4.85,2.206Z" transform="translate(-1202.088 -2261.027)"/><path class="myacc-logout-dark-b" d="M1215.371,2272.7H1214a.346.346,0,1,1,0-.693h1.372a.346.346,0,1,1,0,.693Z" transform="translate(-1202.712 -2264.401)"/></g></g></svg>
+            Logout
+          </a>
+        </div>
+      </div>
+      <div class="grid__item myaccount__content myaccount__saved-addresses">
+        <h2>{{ 'customer.addresses.title' | t }}</h2>
+        <p>Here you can view saved addresses or add a new address</p>
+        {% comment %}
+        List all customer addresses with a unique edit form.
+        Also add pagination in case they have a large number of addresses
+        {% endcomment %}
+        <ul class="address-list">
+          {% for address in customer.addresses %}
+          <li>
+            <div class="address">
+              {% if address == customer.default_address %}
+              <div class="default-badge">{{ 'customer.addresses.default' | t }}</div>
+              {% endif %}
+              <p class="customer-name">{{ address.name }}</p>
+              
+              <p class="customer-address">
+                {{ address.company }}, {{ address.street }}, {{ address.city }}, {{ address.province_code }}, 
+                {{ address.country }}, {{ address.zip }}
+              </p>
+              
+              <p class="customer-phone">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><defs><style>.saved-add-phone-a{fill:#fff;opacity:0;}.saved-add-phone-b{fill:#3b444d;}</style></defs><g transform="translate(-291 -383)"><rect class="saved-add-phone-a" width="16" height="16" transform="translate(291 383)"/><g transform="translate(-431.888 120.751)"><g transform="translate(724.342 263.249)"><path class="saved-add-phone-b" d="M221.933,2684.154c-1.46,0-3.234-1.116-5.579-3.509-2.331-2.377-3.4-4.164-3.375-5.623a3.665,3.665,0,0,1,1.5-2.61c.1-.092.192-.181.284-.271a.571.571,0,0,1,.808.007l2.791,2.844a.575.575,0,0,1-.007.807l-.854.838a5.21,5.21,0,0,0,1.738,2.267c.694.589,1.09.7,1.177.651.031-.036.822-.81.822-.81a.571.571,0,0,1,.8.01h0l2.8,2.833a.571.571,0,0,1,.01.791l-.147.159a3.826,3.826,0,0,1-2.726,1.614Zm-6.781-11.6a3.4,3.4,0,0,1-.275.279,3.165,3.165,0,0,0-1.316,2.2c-.024,1.274,1.025,2.976,3.208,5.2,2.2,2.242,3.888,3.333,5.164,3.333h.034a3.329,3.329,0,0,0,2.306-1.426l.149-.161-2.793-2.808c-.082.081-.792.776-.841.822a.75.75,0,0,1-.107.077c-.846.429-2.5-1.275-3.132-2.117-.614-.824-.771-1.406-.465-1.728l.86-.845Z" transform="translate(-212.979 -2670.533)"/><path class="saved-add-phone-b" d="M229.193,2677.555h-.011a.292.292,0,0,1-.28-.3,3.652,3.652,0,0,0-3.512-3.779c-.087,0-.176,0-.264,0a.292.292,0,0,1-.021-.583c.1,0,.2,0,.306,0a4.236,4.236,0,0,1,4.073,4.384A.292.292,0,0,1,229.193,2677.555Z" transform="translate(-217.917 -2670.912)"/><path class="saved-add-phone-b" d="M231.168,2676.14h-.008a.292.292,0,0,1-.284-.3,5.623,5.623,0,0,0-5.485-5.757c-.09,0-.181,0-.271,0h-.007a.292.292,0,0,1-.007-.583c.1,0,.2,0,.3,0a6.206,6.206,0,0,1,6.054,6.354A.292.292,0,0,1,231.168,2676.14Z" transform="translate(-217.916 -2669.5)"/><path class="saved-add-phone-b" d="M227.213,2678.964h-.02a.292.292,0,0,1-.272-.311,1.6,1.6,0,0,0,0-.225,1.684,1.684,0,0,0-1.788-1.564.285.285,0,0,1-.311-.271.293.293,0,0,1,.272-.311,2.262,2.262,0,0,1,2.409,2.107,2.193,2.193,0,0,1,0,.3A.291.291,0,0,1,227.213,2678.964Z" transform="translate(-217.916 -2672.325)"/></g></g></g></svg>
+                {{ address.phone }}
+              </p>
+
+              <div class="btn-group">
+                <button
+                        id="EditFormButton_{{ address.id }}"
+                        type="button"
+                        class="btn address-edit-toggle"
+                        data-form-id="{{ address.id }}"
+                        aria-owns="EditAddress_{{ address.id }}"
+                        aria-expanded="false"
+                        >
+                  {{ 'customer.addresses.edit' | t }}
+                </button>
+                <button
+                        type="button"
+                        class="btn address-delete"
+                        data-target="{{ address.url }}"
+                        data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}"
+                        >
+                  {{ 'customer.addresses.delete' | t }}
+                </button>
+              </div>
+            </div>
+
+            <div id="EditAddress_{{ address.id }}" class="form-vertical hide">
+              {% form 'customer_address', address %}
+
+              <h2>{{ 'customer.addresses.edit_address' | t }}</h2>
+
+              <div class="grid">
+                <div class="grid__item medium-up--one-half">
+                  <label for="AddressFirstName_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
+                  <input type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name">
+                </div>
+
+                <div class="grid__item medium-up--one-half">
+                  <label for="AddressLastName_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
+                  <input type="text" id="AddressLastName_{{ form.id }}" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name">
+                </div>
+              </div>
+
+              <label for="AddressCompany_{{ form.id }}">{{ 'customer.addresses.company' | t }}</label>
+              <input type="text" id="AddressCompany_{{ form.id }}" name="address[company]" value="{{ form.company }}" autocomplete="organization">
+
+              <label for="AddressAddress1_{{ form.id }}">{{ 'customer.addresses.address1' | t }}</label>
+              <input type="text" id="AddressAddress1_{{ form.id }}" name="address[address1]" value="{{ form.address1 }}" autocomplete="street-address address-line1">
+
+              <label for="AddressAddress2_{{ form.id }}">{{ 'customer.addresses.address2' | t }}</label>
+              <input type="text" id="AddressAddress2_{{ form.id }}" name="address[address2]" value="{{ form.address2 }}" autocomplete="street-address address-line2">
+
+              <div class="grid">
+                <div class="grid__item medium-up--one-half">
+                  <label for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
+                  <input type="text" id="AddressCity_{{ form.id }}" name="address[city]" value="{{ form.city }}" autocomplete="address-level2">
+                </div>
+                <div class="grid__item medium-up--one-half">
+                  <label for="AddressCountry_{{ form.id }}">{{ 'customer.addresses.country' | t }}</label>
+                  <select id="AddressCountry_{{ form.id }}" class="address-country-option" data-form-id="{{ form.id }}" name="address[country]" data-default="{{ form.country }}" autocomplete="country">{{ all_country_option_tags }}</select>
+                </div>
+              </div>
+
+              <div id="AddressProvinceContainer_{{ form.id }}" style="display:none">
+                <label for="AddressProvince_{{ form.id }}">{{ 'customer.addresses.province' | t }}</label>
+                <select id="AddressProvince_{{ form.id }}" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+              </div>
+
+              <div class="grid">
+                <div class="grid__item">
+                  <label for="AddressZip_{{ form.id }}">{{ 'customer.addresses.zip' | t }}</label>
+                  <input type="text" id="AddressZip_{{ form.id }}" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters" autocomplete="postal-code">
+                </div>
+
+                <div class="grid__item">
+                  <label for="AddressPhone_{{ form.id }}">{{ 'customer.addresses.phone' | t }}</label>
+                  <input type="tel" id="AddressPhone_{{ form.id }}" name="address[phone]" value="{{ form.phone }}" autocomplete="phone">
+                </div>
+              </div>
+
+              <div class="text-center">
+                {{ form.set_as_default_checkbox }}
+                <label for="address_default_address_{{ form.id }}">{{ 'customer.addresses.set_default' | t }}</label>
+
+                <div><input type="submit" class="btn" value="{{ 'customer.addresses.update' | t }}"></div>
+                <div><button type="button" class="text-link address-edit-toggle" data-form-id="{{ form.id }}">{{ 'customer.addresses.cancel' | t }}</button></div>
+              </div>
+              {% endform %}
+            </div>
+          </li>
+          {% endfor %}
+          <li>
+            <button type="button" class="address-new-toggle" id="AddressNewButton" aria-expanded="false" aria-owns="AddressNewForm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10.123" height="10.123" viewBox="0 0 10.123 10.123"><defs><style>.myacc-plus-icon-a{fill:none;stroke:#633e60;stroke-width:1.5px;}</style></defs><g transform="translate(-171.5 -1115.5)"><line class="myacc-plus-icon-a" y2="10.123" transform="translate(176.562 1115.5)"/><line class="myacc-plus-icon-a" y2="10.123" transform="translate(181.623 1120.562) rotate(90)"/></g></svg>
+              {{ 'customer.addresses.add_new' | t }}
+            </button>
+          </li>
+        </ul>
+		
+        {%- if paginate.pages > 1 -%}
+        {% include 'pagination', paginate: paginate %}
+        {%- endif -%}
+        
+        {% comment %}
+        Add address form, hidden by default
+        {% endcomment %}
+        <div id="AddressNewForm" class="form-vertical hide">
+          {% form 'customer_address', customer.new_address %}
+          <h2>{{ 'customer.addresses.add_new' | t }}</h2>
+
+          <div class="grid">
+            <div class="grid__item medium-up--one-half">
+              <label for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }}</label>
+              <input type="text" id="AddressFirstNameNew" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name">
+            </div>
+
+            <div class="grid__item medium-up--one-half">
+              <label for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }}</label>
+              <input type="text" id="AddressLastNameNew" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="grid__item">
+              <label for="AddressCompanyNew">{{ 'customer.addresses.company' | t }}</label>
+              <input type="text" id="AddressCompanyNew" name="address[company]" value="{{ form.company }}" autocomplete="organization">
+
+              <label for="AddressAddress1New">{{ 'customer.addresses.address1' | t }}</label>
+              <input type="text" id="AddressAddress1New" name="address[address1]" value="{{ form.address1 }}" autocomplete="street-address address-line1">
+
+              <label for="AddressAddress2New">{{ 'customer.addresses.address2' | t }}</label>
+              <input type="text" id="AddressAddress2New" name="address[address2]" value="{{ form.address2 }}" autocomplete="street-address address-line2">
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="grid__item medium-up--one-half">
+              <label for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label>
+              <input type="text" id="AddressCityNew" name="address[city]" value="{{ form.city }}" autocomplete="address-level2">
+            </div>
+
+            <div class="grid__item medium-up--one-half">
+              <label for="AddressCountryNew">{{ 'customer.addresses.country' | t }}</label>
+              <select id="AddressCountryNew" name="address[country]" data-default="{{ form.country }}" autocomplete="country">{{ all_country_option_tags }}</select>
+            </div>
+          </div>
+
+          <div id="AddressProvinceContainerNew" style="display:none">
+            <label for="AddressProvinceNew">{{ 'customer.addresses.province' | t }}</label>
+            <select id="AddressProvinceNew" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+          </div>
+
+          <label for="AddressZipNew">{{ 'customer.addresses.zip' | t }}</label>
+          <input type="text" id="AddressZipNew" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters" autocomplete="postal-code">
+
+          <label for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
+          <input type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}" autocomplete="phone">
+
+          {{ form.set_as_default_checkbox }}
+          <label for="address_default_address_new">{{ 'customer.addresses.set_default' | t }}</label>
+
+          <div><input type="submit" class="btn" value="{{ 'customer.addresses.add' | t }}"></div>
+          <div><button type="button" class="text-link address-new-toggle">{{ 'customer.addresses.cancel' | t }}</button></div>
+          {% endform %}
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endpaginate %}

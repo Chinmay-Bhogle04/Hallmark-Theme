@@ -1,0 +1,11 @@
+<div class="page-width">
+  <div class="announcement-slider text-center">
+    {% for block in section.blocks %}
+    <div class="slide">
+      {% if block.settings.title != blank %}
+      <h3>{{ block.settings.title }}</h3>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>

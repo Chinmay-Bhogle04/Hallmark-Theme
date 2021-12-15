@@ -1,0 +1,406 @@
+<div class="not-index-slider">
+{% include 'main-banner-slider' %}
+</div>
+{% schema %}
+{
+    "name": "Banner Slideshow",
+    "class": "index-section index-section--flush index-section--slideshow",
+	"max_blocks": 6,
+    "blocks": [
+      {
+        "type": "banner-content",
+        "name": "Banner Content",
+        "settings": [
+		  {
+            "type": "checkbox",
+            "id": "enable_banner",
+            "label": "Show Banner"
+          },
+		  {
+            "type": "textarea",
+            "id": "video",
+            "label": "mp4 video"
+          },
+		  {
+            "type": "textarea",
+            "id": "mobVideo",
+            "label": "mp4 mobile video"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_large",
+            "label": "Banner Image (Desktop)",
+            "info": "Recommended size 2562x1298 (px)"
+          },
+		  {
+            "type": "image_picker",
+            "id": "banner_small",
+            "label": "Banner Image (Mobile)",
+            "info": "Recommended size 800x1470 (px)"
+          },
+		  {
+             "type": "select",
+             "id": "horizontal_alignment",
+             "label": "Content Alignment (Horizontal)",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left"
+               },
+               {
+                 "value": "center",
+                 "label": "Center"
+               },
+               {
+                 "value": "right",
+                 "label": "Right"
+               }
+             ],
+             "default": "left"
+          },
+		  {
+             "type": "select",
+             "id": "vertical_alignment",
+             "label": "Content Alignment (Vertical)",
+             "options": [
+               {
+                 "value": "top",
+                 "label": "Top"
+               },
+               {
+                 "value": "middle",
+                 "label": "Middle"
+               },
+               {
+                 "value": "bottom",
+                 "label": "Bottom"
+               }
+             ],
+             "default": "top"
+          },
+		  {
+             "type": "select",
+             "id": "text_align",
+             "label": "Text Align",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left"
+               },
+               {
+                 "value": "center",
+                 "label": "Center"
+               },
+               {
+                 "value": "right",
+                 "label": "Right"
+               }
+             ],
+             "default": "left"
+          },
+          {
+            "type": "text",
+            "id": "pretitle",
+            "label": "Pretitle",
+            "default": "Pretitle"
+          },
+		  {
+            "type": "text",
+            "id": "pretitleSize",
+            "label": "Pretitle font size"
+          },
+		  {
+            "type": "color",
+            "id": "PretitleColor",
+            "label": "Pretitle font color"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+          },
+		  {
+            "type": "text",
+            "id": "titleSize",
+            "label": "Title font size"
+          },
+		  {
+            "type": "color",
+            "id": "titleColor",
+            "label": "Title font color"
+          },
+		  {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Subtitle"
+          },
+		  {
+            "type": "text",
+            "id": "subtitleSize",
+            "label": "Subtitle font size"
+          },
+		  {
+            "type": "color",
+            "id": "subtitleColor",
+            "label": "Subtitle font color"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button URL"
+          }
+        ]
+      },
+	  {
+        "type": "banner-dropdown",
+        "name": "Banner with dropdown",
+        "settings": [
+		  {
+            "type": "checkbox",
+            "id": "enable_banner",
+            "label": "Enable Banner"
+          },
+		  {
+            "type": "textarea",
+            "id": "video",
+            "label": "mp4 video"
+          },
+		  {
+            "type": "textarea",
+            "id": "mobVideo",
+            "label": "mp4 mobile video"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_large",
+            "label": "Banner Image (Desktop)",
+            "info": "Recommended size 2562x1298 (px)"
+          },
+		  {
+            "type": "image_picker",
+            "id": "banner_small",
+            "label": "Banner Image (Mobile)",
+            "info": "Recommended size 800x1470 (px)"
+          },
+		  {
+             "type": "select",
+             "id": "horizontal_alignment",
+             "label": "Content Alignment (Horizontal)",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left"
+               },
+               {
+                 "value": "center",
+                 "label": "Center"
+               },
+               {
+                 "value": "right",
+                 "label": "Right"
+               }
+             ],
+             "default": "left"
+          },
+		  {
+             "type": "select",
+             "id": "vertical_alignment",
+             "label": "Content Alignment (Vertical)",
+             "options": [
+               {
+                 "value": "top",
+                 "label": "Top"
+               },
+               {
+                 "value": "middle",
+                 "label": "Middle"
+               },
+               {
+                 "value": "bottom",
+                 "label": "Bottom"
+               }
+             ],
+             "default": "top"
+          },
+		  {
+             "type": "select",
+             "id": "text_align",
+             "label": "Text Align",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left"
+               },
+               {
+                 "value": "center",
+                 "label": "Center"
+               },
+               {
+                 "value": "right",
+                 "label": "Right"
+               }
+             ],
+             "default": "left"
+          },
+		  {
+            "type": "text",
+            "id": "pretitle",
+            "label": "Pretitle",
+            "default": "Pretitle"
+          },
+		  {
+            "type": "text",
+            "id": "pretitleSize",
+            "label": "Pretitle font size"
+          },
+		  {
+            "type": "color",
+            "id": "PretitleColor",
+            "label": "Pretitle font color"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Title"
+          },
+		  {
+            "type": "text",
+            "id": "titleSize",
+            "label": "Title font size"
+          },
+		  {
+            "type": "color",
+            "id": "titleColor",
+            "label": "Title font color"
+          },
+		  {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Subtitle"
+          },
+		  {
+            "type": "text",
+            "id": "subtitleSize",
+            "label": "Subtitle font size"
+          },
+		  {
+            "type": "color",
+            "id": "subtitleColor",
+            "label": "Subtitle font color"
+          },
+		  
+		  {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button URL"
+          },
+		  {
+            "type": "header",
+            "content": "Filter button"
+          },
+     	  {
+            "type": "text",
+            "id": "button_pre1",
+            "label": "Button pretitle 1",
+            "default": "Shop"
+          },
+          {
+            "type": "text",
+            "id": "button_label1",
+            "label": "Button title 1",
+            "default": "What You Mean"
+          },
+          {
+            "type": "link_list",
+            "id": "button_url1",
+            "label": "Button dropdown 1"
+          },
+          {
+            "type": "text",
+            "id": "button_pre2",
+            "label": "Button pretitle 2",
+            "default": "Shop"
+          },
+          {
+            "type": "text",
+            "id": "button_label2",
+            "label": "Button title 2",
+            "default": "What You Mean"
+          },
+          {
+            "type": "link_list",
+            "id": "button_url2",
+            "label": "Button dropdown 2"
+          },
+          { 
+            "type": "text",
+            "id": "button_pre3",
+            "label": "Button pretitle 3",
+            "default": "Shop"
+          },
+          {
+            "type": "text",
+            "id": "button_label3",
+            "label": "Button title 3",
+            "default": "What You Mean"
+          },
+          {
+            "type": "link_list",
+            "id": "button_url3",
+            "label": "Button dropdown 3"
+          },
+          {
+            "type": "text",
+            "id": "button_pre4",
+            "label": "Button pretitle 4",
+            "default": "Shop"
+          },
+          {
+            "type": "text",
+            "id": "button_label4",
+            "label": "Button title 4",
+            "default": "What You Mean"
+          },
+          {
+            "type": "link_list",
+            "id": "button_url4",
+            "label": "Button dropdown 4"
+          },
+          {
+            "type": "text",
+            "id": "button_pre5",
+            "label": "Button pretitle 5",
+            "default": "Shop"
+          },
+          {
+            "type": "text",
+            "id": "button_label5",
+            "label": "Button title 5",
+            "default": "What You Mean"
+          },
+          {
+            "type": "link_list",
+            "id": "button_url5",
+            "label": "Button dropdown 5"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

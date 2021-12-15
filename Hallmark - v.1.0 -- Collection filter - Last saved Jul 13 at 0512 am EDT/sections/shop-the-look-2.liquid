@@ -1,0 +1,124 @@
+{% include 'shop-the-look' %}
+
+{% schema %}
+{
+  "name": "Shop the look",
+  "class": "shop-the-look-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Shop the look"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle",
+      "default": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Recommended size: 898px * 623px"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Image alignment",
+      "default": "right",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_section_padding",
+      "label": "Enable section padding",
+      "default": false
+    }
+  ],
+    "blocks":[
+      {
+        "type": "product",
+		"limit": 5,
+        "name": "product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+		  {
+            "type": "header",
+            "content": "Dot position"
+          },
+          {
+            "type": "range",
+            "id": "product_2_horizontal_position",
+            "label": "Horizontal position",
+            "min": 5,
+            "max": 95,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+            "type": "range",
+            "id": "product_2_vertical_position",
+            "label": "Vertical position",
+            "min": 5,
+            "max": 95,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+            "type": "range",
+            "id": "product_2_horizontal_position_mobile",
+            "label": "Horizontal position mobile",
+            "min": 5,
+            "max": 95,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          },
+          {
+            "type": "range",
+            "id": "product_2_vertical_position_mobile",
+            "label": "Vertical position mobile",
+            "min": 5,
+            "max": 95,
+            "step": 1,
+            "unit": "%",
+            "default": 50
+          }
+        ]
+      }
+    ]
+}
+{% endschema %}

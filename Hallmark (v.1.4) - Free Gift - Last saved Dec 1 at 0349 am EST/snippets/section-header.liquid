@@ -1,0 +1,8 @@
+{% if section.settings.title != blank %}
+<div class="section-header text-center wow fadeInUp">
+  {% if section.settings.sub_title != blank %}
+  <p>{{ section.settings.sub_title }}</p>
+  {% endif %}
+  <h2>{{ section.settings.title | escape }}</h2>
+</div>
+{% endif %}

@@ -1,0 +1,20 @@
+<div class="five-columns {% if section.settings.layout == 'left' %}layout-left{% else %}layout-right{% endif %}">
+  {% for block in section.blocks %}
+  <div class="column">
+    {% if block.settings.link != blank %}
+    <a href="{{ block.settings.link }}">
+      {% endif %}
+      <img class="lazyload"
+           src="{{ block.settings.image | img_url: 'master' }}"
+           data-src="{{ block.settings.image | img_url:"master" }}"
+           data-sizes="auto"
+           alt="" />
+      {% if block.settings.column_title != blank %}
+      <h3>{{ block.settings.column_title }}</h3>
+      {% endif %}
+      {% if block.settings.link != blank %}
+    </a>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>

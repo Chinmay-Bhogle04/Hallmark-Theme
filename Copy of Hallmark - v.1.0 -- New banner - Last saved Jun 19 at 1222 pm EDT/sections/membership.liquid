@@ -1,0 +1,130 @@
+<div class="full-width">
+  <div class="membership-header text-center">
+    <div class="crown-svg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="88" height="72" viewBox="0 0 88 72"><defs><style>.membership-section .crown-svg .a,.membership-section .crown-svg .b{fill:#fff;}.membership-section .crown-svg .a{opacity:0;}</style></defs><g transform="translate(-596 -4115)"><rect class="a" width="88" height="72" transform="translate(596 4115)"/><path class="b" d="M276.548,123.456a3.376,3.376,0,0,1-3.259-3.259,3.26,3.26,0,1,1,6.519,0,3.379,3.379,0,0,1-3.26,3.259m62.856,4.805c-2.224,4.814-7.194,17.355-9.245,23.189-.17.521-.524.521-1.031.173-4.451-2.4-12.324-3.264-19.688-3.264s-15.241.861-19.7,3.264c-.516.348-.858.348-1.034-.173-2.057-5.834-7.018-18.375-9.239-23.189a2.751,2.751,0,0,1-.349-.858.794.794,0,0,1,.692-.861,1.138,1.138,0,0,1,.848.694,109.519,109.519,0,0,0,6.853,10.475,3.655,3.655,0,0,0,2.572,1.545,2.694,2.694,0,0,0,2.394-2.4,42.931,42.931,0,0,0-.342-9.619.759.759,0,0,1,.688-1.031.877.877,0,0,1,.856.685,34.108,34.108,0,0,0,4.278,8.241,4.03,4.03,0,0,0,3.091,1.725,4.708,4.708,0,0,0,3.423-1.889c2.909-3.952,3.42-14.423,4.108-19.406a.857.857,0,0,1,1.714,0c.685,4.983,1.2,15.454,4.113,19.406a4.677,4.677,0,0,0,3.414,1.889,4.021,4.021,0,0,0,3.091-1.725,34.229,34.229,0,0,0,4.278-8.241.882.882,0,0,1,.861-.685.762.762,0,0,1,.683,1.031,43.235,43.235,0,0,0-.342,9.619,2.691,2.691,0,0,0,2.391,2.4c1.207,0,1.887-.856,2.57-1.545a110.238,110.238,0,0,0,6.853-10.475c.178-.346.515-.694.853-.694a.789.789,0,0,1,.688.861,2.783,2.783,0,0,1-.342.858m-48.642-6a3.377,3.377,0,0,1-3.252-3.269,3.254,3.254,0,1,1,6.507,0,3.378,3.378,0,0,1-3.255,3.269m18.678,41.9c-7.536,0-19.531-1.2-19.531-5.494s11.994-5.5,19.531-5.5,19.52,1.2,19.52,5.5-11.987,5.494-19.52,5.494m0-8.588c-7.536,0-16.107,1.377-16.107,3.095,0,1.541,8.571,2.918,16.107,2.918s16.1-1.377,16.1-2.918c0-1.718-8.562-3.095-16.1-3.095m0-45.167a3.264,3.264,0,0,1-3.259-3.261,3.251,3.251,0,1,1,6.5,0,3.25,3.25,0,0,1-3.243,3.261M328.1,122.257a3.375,3.375,0,0,1-3.25-3.269,3.25,3.25,0,1,1,6.5,0,3.375,3.375,0,0,1-3.25,3.269m14.217,1.2a3.377,3.377,0,0,1-3.26-3.259,3.258,3.258,0,1,1,6.516,0,3.376,3.376,0,0,1-3.255,3.259" transform="translate(330.711 4016.838)"/></g></svg>
+    </div>
+    {% if section.settings.sub_title != blank %}
+    <p>{{ section.settings.sub_title }}</p>
+    {% endif %}
+    {% if section.settings.title != blank %}
+    <h2>{{ section.settings.title }}</h2>
+    {% endif %}
+    <div class="btn-group">
+      {% if section.settings.button_label_1 != blank and section.settings.button_link_1 != blank %}
+      <a href="{{ section.settings.button_link_1 }}" class="btn btn-secondary">
+        {{ section.settings.button_label_1 }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="6" height="9" viewBox="0 0 6 9"><defs><style>.mmb-btn-arr-a{fill:#fff;opacity:0;}.mmb-btn-arr-b{fill:none;stroke:#fff;stroke-linecap:round;stroke-width:0.8px;}</style></defs><g transform="translate(-87.193 -5)"><rect class="mmb-btn-arr-a" width="6" height="9" transform="translate(87.193 5)"/><g transform="translate(88.643 6.02)"><line class="mmb-btn-arr-b" x2="3.282" y2="3.282"/><line class="mmb-btn-arr-b" y1="3.282" x2="3.282" transform="translate(0 3.282)"/></g></g></svg>
+      </a>
+      {% endif %}
+      {% if section.settings.button_label_2 != blank and section.settings.button_link_2 != blank %}
+      <a href="{{ section.settings.button_link_2 }}" class="btn btn-secondary">
+        {{ section.settings.button_label_2 }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="6" height="9" viewBox="0 0 6 9"><defs><style>.mmb-btn-arr-a{fill:#fff;opacity:0;}.mmb-btn-arr-b{fill:none;stroke:#fff;stroke-linecap:round;stroke-width:0.8px;}</style></defs><g transform="translate(-87.193 -5)"><rect class="mmb-btn-arr-a" width="6" height="9" transform="translate(87.193 5)"/><g transform="translate(88.643 6.02)"><line class="mmb-btn-arr-b" x2="3.282" y2="3.282"/><line class="mmb-btn-arr-b" y1="3.282" x2="3.282" transform="translate(0 3.282)"/></g></g></svg>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="membership-content">
+    <div class="content small--text-center">
+      {% if section.settings.content_title != blank %}
+      <h3>{{ section.settings.content_title | escape }}</h3>
+      {% endif %}
+      <ul>
+        {% for block in section.blocks %}
+        <li>
+          {% if block.settings.title != blank %}
+          <span>{{ block.settings.title }}</span>
+          {% endif %}
+          {% if block.settings.text != blank %}
+          <p>{{ block.settings.text }}</p>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Membership",
+	"class": "membership-section section-padding",
+	"max_blocks": 5,
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Heading"
+      },
+	  {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subtitle",
+        "default": "Subtitle"
+      },
+      {
+        "type": "text",
+        "id": "button_label_1",
+        "label": "Button label 1"
+      },
+      {
+        "type": "url",
+        "id": "button_link_1",
+        "label": "Button link 1"
+      },
+      {
+        "type": "text",
+        "id": "button_label_2",
+        "label": "Button label 2"
+      },
+      {
+        "type": "url",
+        "id": "button_link_2",
+        "label": "Button link 2"
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+	  {
+        "type": "text",
+        "id": "content_title",
+        "label": "Title",
+        "default": "Content title"
+      }
+	],
+    "blocks":[
+      {
+        "type": "row",
+        "name": "Row",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+			"default": "Title"
+          },
+		  {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+			"default": "Text goes here."
+          }
+    	]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Membership",
+        "category": "Promotional"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

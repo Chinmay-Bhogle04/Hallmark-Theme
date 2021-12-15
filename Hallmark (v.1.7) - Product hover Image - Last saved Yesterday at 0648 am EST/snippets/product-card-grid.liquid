@@ -1,0 +1,94 @@
+{% comment %}
+Renders a product card using "Grid" style
+Accepts:
+- max_height: {Number} Maximum height of the product's image (required)
+- product: {Object} Product Liquid object (required)
+- show_vendor: {Boolean} Show the product's vendor depending on the section setting (optional)
+
+Usage:
+{% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+<div class="{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
+  {% capture img_id %}ProductCardImage-{{ section.id }}-{{ product.id }}{% endcapture %}
+  {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
+  {%- assign preview_image = product.featured_media.preview_image -%}
+  {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  {%- assign img_url_2 = product.images[1] | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+  
+  {% unless preview_image == blank %}
+  {% include 'image-style', image: preview_image, height: max_height, wrapper_id: wrapper_id, img_id: img_id %}
+  {% endunless %}
+  
+  {% include 'iwish_v2' with 'iwishCollection' %}
+  
+  <a href="{{ product.url }}">
+    <div class="product-card__image-with-placeholder-wrapper {% if product.images.size > 1 %}has-hover-img{% endif %}" data-image-loading-animation>
+      <div class="grid-view-item__image-wrapper product-card__image-wrapper js">
+        <div style="padding-top:{% unless preview_image == blank %}{{ 1 | divided_by: preview_image.aspect_ratio | times: 100 }}%{% else %}100%{% endunless %};">
+          <img class="grid-view-item__image lazyload"
+          alt="{{ preview_image.alt }}"
+          data-src="{{ img_url }}"
+          data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+          data-aspectratio="{{ preview_image.aspect_ratio }}"
+          data-sizes="auto"
+          data-image>
+          {% if product.images.size > 1 %}
+            <span class="images-two">
+              <img class="grid-view-item__image lazyload"
+                   data-src="{{ img_url_2 }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ product.images[1].aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ preview_image.alt }}"
+                   data-image>
+            </span>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </a>
+  
+  <noscript>
+    {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
+    <img class="grid-view-item__image" src="{{ preview_image | img_url: image_size, scale: 2 }}" alt="{{ preview_image.alt }}" style="max-width: {{ max_height | times: preview_image.aspect_ratio }}px;">
+  </noscript>
+  
+  <div class="product-title-price">
+    <a href="{{ product.url }}" class="h4 grid-view-item__title product-card__title" aria-hidden="true">
+      {{ product.title }}
+    </a>
+    <!--   <p class="product-info">14k 1/5cttw</p> -->
+    
+    <div class="product-card__bottom">
+      <div>
+        {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
+      </div>
+      {% if product.available %}
+      {% if product.variant.size > 1 %}
+      <div>
+        <a href="{{ product.url }}" class="btn btn-secondary">Select Option</a>
+      </div>
+      {% else %}
+      <div>
+        <form method="post" action="/cart/add" class="shopify-product-form" data-product-handle="{{ product.handle }}">
+          <input type="hidden" name="form_type" value="product" tabindex="0">
+          <input type="hidden" name="utf8" value="✓" tabindex="0">
+          <input type="hidden" name="quantity" value="1" tabindex="0">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" tabindex="0">
+          <button type="submit" class="mm_addToCart btn mm-ajax-add btn-secondary" tabindex="0"><span data-add-to-cart-text>
+            Add to bag</span><span class="hide" data-loader><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-spinner" viewBox="0 0 20 20"><path d="M7.229 1.173a9.25 9.25 0 1 0 11.655 11.412 1.25 1.25 0 1 0-2.4-.698 6.75 6.75 0 1 1-8.506-8.329 1.25 1.25 0 1 0-.75-2.385z" fill="#919EAB"></path></svg></span>
+          </button>
+        </form>
+      </div>
+      
+      {% endif %}
+      {% else %}
+      <div>
+        
+        <button type="button" class="btn btn-secondary">Sold out</button>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  
+</div>

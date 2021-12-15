@@ -1,0 +1,64 @@
+<!-- product-collection-info.liquid -->
+<div class="full-width hide">
+  <section class="collection-info-one">
+    <div class="content">
+      {% if section.settings.sub_title_one != blank %}
+      <span class="subtitle">{{ section.settings.sub_title_one }}</span>
+      {% endif %}
+      {% if section.settings.title_one != blank %}
+      <h3>{{ section.settings.title_one }}</h3>
+      {% endif %}
+      {% if section.settings.text_one != blank %}
+      <div class="text">{{ section.settings.text_one }}</div>
+      {% endif %}
+    </div>
+    <img class="lazyload"
+         src="{{ section.settings.image_one | img_url: 'master' }}"
+         data-src="{{ section.settings.image_one | img_url:"master" }}"
+         data-sizes="auto"
+         alt="" />
+  </section>
+</div>
+
+{% schema %}
+  {
+    "name": "Product collection info",
+	"class": "product-collection-info",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Section one"
+      },
+      {
+        "type": "text",
+        "id": "title_one",
+        "label": "Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "sub_title_one",
+        "label": "Subtitle",
+        "default": "Subtitle"
+      },
+	  {
+        "type": "text",
+        "id": "text_one",
+		"label": "Text",
+		"default": "<p>Text goes here.</p>"
+      },
+	  {
+        "type": "image_picker",
+        "id": "image_one",
+		"label": "Image",
+		"info": "Recommended image: 1280px * 715px"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

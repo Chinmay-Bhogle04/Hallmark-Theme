@@ -1,0 +1,34 @@
+{% include 'lookbook-bar' %}
+
+{% schema %}
+  {
+    "name": "Lookbook bar",
+	"class": "lookbook-bar-section section-padding",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+      },
+	  {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subtitle",
+        "default": "Subtitle"
+      },
+	  {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "Text goes here."
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

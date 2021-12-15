@@ -1,0 +1,66 @@
+<section>
+  {% for block in section.blocks %}
+  {% capture image_layout %}
+  <div class="feature-row__item feature-row--image feature-row__image--{% if block.settings.layout == 'left' %}left{% else %}right{% endif %}">
+    {% if block.settings.image != blank %}
+    {% capture img_id %}FeatureRowImage-{{ block.id }}{% endcapture %}
+    {% capture wrapper_id %}FeatureRowImageWrapper-{{ block.id }}{% endcapture %}
+    {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+    <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+      <div data-image-loading-animation>
+        <img id="{{ img_id }}"
+             class="feature-row__image lazyload"
+             data-src="{{ img_url }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+             data-sizes="auto"
+             alt="{{ block.settings.image.alt | escape }}">
+      </div>
+    </div>
+
+    <noscript>
+      {{ block.settings.image | img_url: '600x600', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+    </noscript>
+    {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  </div>
+  {% endcapture %}
+  <div class="feature-row">
+    {% if block.settings.layout == 'left' %}
+    {{ image_layout }}
+    {% endif %}
+
+    <div class="feature-row__item feature-row__text feature-row__text--{{ block.settings.layout }} text-center">
+      {% if block.settings.heading != blank %}
+      <h2 class="h3">{{ block.settings.heading | escape }}</h2>
+      {% endif %}
+      {% if block.settings.text != blank %}
+      <div class="rte rte-setting featured-row__subtext">{{ block.settings.text }}</div>
+      {% endif %}
+      {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+      {%- capture ariaLabel -%}
+      {{- block.settings.button_label -}}
+      {%- if block.settings.button_link.type == 'frontpage_link' -%}
+      : {{ 'homepage.general.title' | t -}}
+      {%- elsif block.settings.button_link.type == 'catalog_link' -%}
+      : {{ 'collections.catalog.title' | t -}}
+      {%- elsif block.settings.button_link.object.title -%}
+      : {{ block.settings.button_link.object.title -}}
+      {%- endif -%}
+      {%- endcapture -%}
+
+      <a href="{{ block.settings.button_link }}"
+         class="btn"
+         aria-label="{{ ariaLabel }}">
+        {{- block.settings.button_label | escape -}}
+      </a>
+      {% endif %}
+    </div>
+
+    {% if block.settings.layout == 'right' %}
+    {{ image_layout }}
+    {% endif %}
+  </div>
+  {% endfor %}
+</section>

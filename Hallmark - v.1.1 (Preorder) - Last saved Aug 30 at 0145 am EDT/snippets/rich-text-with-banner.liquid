@@ -1,0 +1,25 @@
+<div class="page-width">
+  <div class="breadcrumb medium-up--hide">
+    <span>About us</span>
+  </div>
+  <div class="rich-text text-center">
+    {% include 'section-header' %}
+    {% if section.settings.text != blank %}
+    <div class="text">{{ section.settings.text }}</div>
+    {% endif %}
+  </div>
+  <div class="image-wrapper">
+    <img class="lazyload {% if section.settings.mob_image != blank %}small--hide{% endif %}"
+         src="{{ section.settings.desk_image | img_url: 'master' }}"
+         data-src="{{ section.settings.desk_image | img_url:"master" }}"
+         data-sizes="auto"
+         alt="" />
+    {% if section.settings.mob_image != blank %}
+    <img class="lazyload medium-up--hide"
+       src="{{ section.settings.mob_image | img_url: 'master' }}"
+       data-src="{{ section.settings.mob_image | img_url:"master" }}"
+       data-sizes="auto"
+       alt="" />
+    {% endif %}
+  </div>
+</div>

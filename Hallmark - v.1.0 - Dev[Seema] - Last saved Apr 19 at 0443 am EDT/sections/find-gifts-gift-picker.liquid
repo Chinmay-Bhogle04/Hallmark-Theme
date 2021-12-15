@@ -1,0 +1,96 @@
+<div class="full-width">
+  <div class="grid grid--no-gutters text-center">
+    <div class="grid__item medium-up--one-half image-wrapper">
+      <img class="lazyload"
+           src="{{ section.settings.image | img_url: 'master' }}"
+           data-src="{{ section.settings.image | img_url:"master" }}"
+           data-sizes="auto"
+           alt="" />
+    </div>
+    <div class="grid__item medium-up--one-half content">
+      <div>
+        {% include 'section-header' %}
+        <div class="btn-group">
+          {% if section.settings.button_label_1 != blank and section.settings.button_link_1 != blank %}
+          <a href="{{ section.settings.button_link_1 }}" class="btn btn-secondary">
+            {{ section.settings.button_label_1 }}
+          </a>
+          {% endif %}
+          {% if section.settings.button_label_2 != blank and section.settings.button_link_2 != blank %}
+          <a href="{{ section.settings.button_link_2 }}" class="btn btn-secondary">
+            {{ section.settings.button_label_2 }}
+          </a>
+          {% endif %}
+          {% if section.settings.button_label_3 != blank and section.settings.button_link_3 != blank %}
+          <a href="{{ section.settings.button_link_3 }}" class="btn btn-secondary">
+            {{ section.settings.button_label_3 }}
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Gift picker",
+	"class": "gift-picker-section section-padding",
+    "settings": [
+	  {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+        "info": "Recomended size: 640px * 405px"
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Title"
+      },
+	  {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subtitle",
+        "default": "Subtitle"
+      },
+      {
+        "type": "text",
+        "id": "button_label_1",
+        "label": "Button label 1"
+      },
+      {
+        "type": "url",
+        "id": "button_link_1",
+        "label": "Button link 1"
+      },
+      {
+        "type": "text",
+        "id": "button_label_2",
+        "label": "Button label 2"
+      },
+      {
+        "type": "url",
+        "id": "button_link_2",
+        "label": "Button link 2"
+      },
+      {
+        "type": "text",
+        "id": "button_label_3",
+        "label": "Button label 3"
+      },
+      {
+        "type": "url",
+        "id": "button_link_3",
+        "label": "Button link 3"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
